@@ -20,7 +20,6 @@ $(document).ready ->
         updateViewportDimensions()
     $("#viewport").addClass "viewport-resized"
     $("#viewport-title").text(settingName).fadeIn()
-    updateViewportDimensions()
 
 
   # BIND DIMENSION OPTION LINKS TO CHANGE VIEWPORT
@@ -32,11 +31,15 @@ $(document).ready ->
 
   # RESET DIMENSIONS TO NORMAL
   $(".dimension-normal").on "click", (e)->
+    e.preventDefault()
     $("#viewport-title").fadeOut ->
       $("#viewport").removeClass "viewport-resized"
-      e.preventDefault()
-      adjustViewportHeight()
-      updateViewportDimensions()
+      $("#viewport-iframe-wrap").animate
+        height: '9000px'
+        width: '100%', ->
+          adjustViewportHeight()
+          updateViewportDimensions()
+
 
 
   # MATCH CURRENT OVERLAY
@@ -77,6 +80,34 @@ $(document).ready ->
     if key == 102
       $("#overlay-image").toggleClass "fixed"
       console.log 'toggle fixed'
+
+
+
+  # VIEWPORT URL CHANGE
+  $("#viewport-url-form").on "submit", (e)->
+    e.preventDefault()
+    $("#viewport-iframe").attr "src", $(this).find("input").val()
+
+  $("#viewport-iframe").load ->
+    console.log 'test, viewport iframe load'
+    console.log $(this).attr "src"
+    $("#viewport-url").val $(this).attr "src"
+
+
+
+  # TOGGLE THE GRID
+  $("#overlay-grid-toggle").click ->
+    $(this).toggleClass "active"
+    $("#overlay-grid").toggle()
+
+  # TOGGLE THE RHYTHM
+  $("#overlay-rhythm-toggle").click ->
+    $(this).toggleClass "active"
+    $("#overlay-rhythm").toggle()
+  i = 0
+  while i < 1000
+    $("#overlay-rhythm .container").prepend "<div class='rhythm-row'/>"
+    i++
 
 
   # UPDATE VALUES FOR WINDOW DIMENSIONS
