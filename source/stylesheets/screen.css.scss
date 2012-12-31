@@ -1,0 +1,180 @@
+/* Screen - main CSS file
+ * Created on 12/28/12 by Jeff Schram, IAMFRANZ
+-------------------------------------------------------------------------------- */
+
+
+// Import Compass Helpers
+@import "compass/css3";
+@import "compass/utilities/general/clearfix";
+
+// Import Font Assets
+@import "vendor/webfonts/ss-social";
+@import "vendor/webfonts/ss-standard";
+
+// Import partials CSS Partials
+@import "partials/variables";
+@import "partials/reset";
+@import "partials/mixins";
+@import "partials/base";
+@import "partials/typography";
+@import "partials/modules";
+@import "partials/misc";
+
+
+
+/* Main Layout
+-------------------------------------------------------------------------------- */
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: #121212;
+  padding-top: 56px;
+}
+
+
+// section for main controls
+#controls {
+  height: 56px;
+  background: $grey;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9990;
+}
+
+
+// section for the viewport, contains the iframe
+#viewport {
+  position: relative;
+  overflow: hidden;
+  #viewport-title {
+    font-family: $sans-stack;
+    color: white;
+    font-size: 13px;
+    display: none;
+    margin: 16px auto;
+    opacity: .3;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  // viewport that has been resized
+  &.viewport-resized {
+    text-align: center;
+    position: relative;
+    padding-bottom: 60px;
+  }
+}
+
+#viewport-iframe-wrap {
+  position: relative;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 9000px;
+  margin: 0 auto;
+}
+
+
+// the main iframe viewport
+#viewport-iframe {
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none; outline: none;
+  z-index: 9970;
+}
+
+// section for secondary controls
+#controls-secondary {
+  height: 25px;
+  @include background(linear-gradient(top bottom, $light-grey, $lighter-grey));
+  border-top: 1px solid $medium-grey;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+
+// Button groups
+.button-group {
+  font-family: $sans-stack;
+  display: inline-block;
+  @include pie-clearfix;
+  > li {
+    display: inline-block;
+    height: 100%;
+    float: right;
+    > a {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+
+
+// Button groups in main controls
+#controls .button-group {
+  float: right;
+  a {
+    height: 56px;
+    width: 65px;
+    padding: 10px 0;
+    font-size: 12px;
+    line-height: 23px;
+    color: black;
+    i {
+      display: block;
+      font-size: 22px;
+      color: #333;
+    }
+  }
+}
+
+
+
+// Button groups in secondary controls
+#controls-secondary .button-group {
+  float: right;
+  > li {
+    height: 25px;
+    font-size: 12px;
+    line-height: 9px;
+    color: black;
+    border-left: 1px solid $medium-grey;
+    p, a {
+      display: block;
+      padding: 6px 5px;
+    }
+    i {
+      position: relative;
+      top: 3px;
+      float: left;
+      display: inline-block;
+      font-size: 13px;
+      margin-right: 5px;
+      padding-left: 10px;
+      color: #333;
+      &.rotated {
+        margin-top: -7px;
+        transform: rotate(90deg);
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Safari and Chrome */
+        -o-transform: rotate(90deg); /* Opera */
+        -moz-transform: rotate(90deg); /* Firefox */
+
+      }
+    }
+  }
+}

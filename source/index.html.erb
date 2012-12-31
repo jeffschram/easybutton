@@ -1,4 +1,55 @@
 ---
-title: Hello World
+title: Easy Button
 ---
-<p>Hello World, Hey There</p>
+
+<section id="controls">
+
+  <ul class="button-group pixel-matching">
+    <li>
+      <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
+      <ul class="button-options" id="overlay">
+         <li><input type="file" id="overlay-file-selector" onchange="readURL(this);"></li>
+         <li><input id="overlay-file-opacity" type="range" min="0" max="100" value="50">
+       </ul>
+    </li>
+    <li><a data-toggle="rhythm"><i class="ss-icon">&#xE9A1;</i>Rhythm</a></li>
+    <li><a data-toggle="grid"><i class="ss-icon">&#xE9A2;</i>Grid</a></li>
+    <li>
+      <a data-toggle="fonticons" class="button-with-options"><i class="ss-icon">&#x1F4BC;</i>Fonts</a>
+       <ul class="button-options" id="fonticons">
+         <li><a target="docs" href="/docs/SymbolSet/ss-standard/documentation.html">SymbolSet Standard</a></li>
+         <li><a target="docs" href="/docs/SymbolSet/ss-social/documentation.html">SymbolSet Social</a></li>
+       </ul>
+    </li>
+  </ul>
+
+</section>
+
+<section id="viewport">
+  <h1 id="viewport-title">Test</h1>
+  <div id="viewport-iframe-wrap">
+    <iframe id="viewport-iframe" src="http://crushlovely.com"></iframe>
+  </div>
+</section>
+
+<section id="controls-secondary">
+  <ul class="button-group window-info">
+    <li>
+      <a data-toggle="dimensions" class="button-with-options"><i class="ss-icon icon-window-width">&#xE201;</i> <span class="data" id="window-width"></span> x <span id="window-height"></span></a>
+       <ul class="button-options" id="dimensions">
+         <li><label>Select A Dimension Setting</label></li>
+         <li><a class="dimension-option" data-dimension-option-name="iPhone 5 Portrait" data-dimension-option-width="320" data-dimension-option-height="568">iPhone 5 Portrait</a></li>
+         <li><a class="dimension-option" data-dimension-option-name="iPhone 5 Landscape" data-dimension-option-width="568" data-dimension-option-height="320">iPhone 5 Landscape</a></li>
+         <li><a class="dimension-option" data-dimension-option-name="iPad Portrait" data-dimension-option-width="768" data-dimension-option-height="1024">iPad Portrait</a></li>
+         <li><a class="dimension-option" data-dimension-option-name="iPad Landscape" data-dimension-option-width="1024" data-dimension-option-height="768">iPad Landscape</a></li>
+         <li><a class="dimension-option" data-dimension-option-name="13in. Laptop" data-dimension-option-width="1280" data-dimension-option-height="800">13in. Laptop</a></li>
+         <li><a class="dimension-option" data-dimension-option-name="Desktop" data-dimension-option-width="1400" data-dimension-option-height="1000">Desktop</a></li>
+         <li><a class="dimension-normal"><i class="ss-icon">&#x21BA;</i> Reset</a></li>
+         <li><a class="dimension-resize-to-match-overlay"><i class="ss-icon">&#x1F304;</i> Match The Overlay</a></li>
+       </ul>
+    </li>
+    <li><p><i class="ss-icon icon-resolution">&#xE9A3;</i> <span class="data" id="resolution"></span></p></li>
+    <li><p><i class="ss-icon">&#x2139;</i> <span class="data" id="browser-info"></span></p></li>
+  </ul>
+
+</section>

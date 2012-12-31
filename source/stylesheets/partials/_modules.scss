@@ -1,0 +1,186 @@
+/* Modules
+   Re-usable groups/patterns of elements/styles
+----------------------------------------------------------------------------------  */
+
+#controls .button-with-options.active {
+  background: $lighter-grey;
+  // border-left: 1px solid #a3a3a3;
+  // border-right: 1px solid #a3a3a3;
+  border-bottom: 3px solid $lighter-grey;
+}
+
+
+#controls .button-options {
+  display: none;
+  position: fixed;
+  top: 56px;
+  right: 0;
+  z-index: 9990;
+  width: 25%;
+  min-width: 320px;
+  background: $lighter-grey;
+  @include border-radius(2px);
+  padding: 15px 10px 5px 10px;
+  border-left: 8px solid #DFDFDF;
+  border-bottom: 8px solid #DFDFDF;
+  > li {
+    display: block;
+    padding: 0;
+    margin: 0 0 10px 0;
+    overflow: hidden;
+    > a {
+      display: block;
+      background: white;
+      background: rgba(255,255,255,.8);
+      color: $body-text;
+      text-decoration: none;
+      white-space: nowrap;
+      height: auto;
+      width: auto;
+      padding: 8px 15px;
+      border: 1px solid #efefef;
+      &:hover {
+        border: 1px solid $blue;
+        background: $blue;
+        color: white;
+      }
+    }
+    > label {
+      font-size: 12px;
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+
+#controls-secondary .button-with-options.active {
+  background: $light-grey;
+  border-top: 2px solid $light-grey;
+  margin-top: -2px;
+}
+
+
+#controls-secondary .button-options {
+  display: none;
+  position: fixed;
+  bottom: 25px;
+  right: 0;
+  z-index: 9999;
+  width: 25%;
+  min-width: 320px;
+  background: $light-grey;
+  padding: 15px 10px 5px 10px;
+  border-top: 1px solid $medium-grey;
+  border-left: 1px solid $medium-grey;
+  > li {
+    display: block;
+    padding: 0;
+    margin: 0 0 10px 0;
+    overflow: hidden;
+    label {
+      display: block;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid $medium-grey;
+      font-weight: 600;
+    }
+    > a {
+      display: block;
+      background: white;
+      background: rgba(255,255,255,.8);
+      color: $body-text;
+      text-decoration: none;
+      white-space: nowrap;
+      height: auto;
+      width: auto;
+      padding: 8px 15px;
+      border: 1px solid #efefef;
+      &:hover {
+        border: 1px solid $blue;
+        background: $blue;
+        color: white;
+      }
+    }
+    > label {
+      font-size: 12px;
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+
+#overlay {
+
+  #overlay-file-selector {
+    width: 100%;
+    position: relative;
+    display: block;
+    padding: 10px 0;
+    z-index: 9990;
+    cursor: pointer;
+    &:after {
+      cursor: pointer;
+      content: "Upload a file";
+      font-size: 12px;
+      display: block;
+      position: absolute;
+      z-index: 9995;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: white;
+      padding: 10px;
+      @include border-radius(5px);
+    }
+    &:hover:after {
+      background: $blue;
+      color: white;
+    }
+  }
+
+  #overlay-file-opacity {
+    width: 100%;
+  }
+
+
+  > li.overlay-option {
+    > a {
+      display: inline-block;
+      float: left;
+      height: 65px;
+      line-height: 65px;
+      width: 90%;
+      &.delete-overlay-option {
+        width: 10%;
+        text-align: center;
+        padding: 0;
+        line-height: 65px;
+      }
+      > img {
+        margin-right: 5px;
+        height: 40px;
+        width: auto;
+      }
+    }
+  }
+}
+
+#overlay-image {
+  position: absolute;
+  z-index: 9980;
+  top: 0;
+  left: 0;
+  width: auto !important;
+  max-width: 500% !important;
+  height: auto !important;
+  opacity: .5;
+  pointer-events: none;
+  cursor: none;
+  &.active {
+    pointer-events: auto;
+    cursor: move;
+  }
+  &.fixed {
+   position: fixed;
+  }
+}
