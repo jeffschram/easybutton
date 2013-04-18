@@ -216,9 +216,8 @@
   opacity: .1;
   pointer-events: none;
   .container {
-    max-width: 1150px;
+    max-width: 1400px;
     width: 100%;
-    padding: 30px;
     margin: 0 auto;
   }
   // SCAFFOLD STRUCTURE
@@ -276,13 +275,12 @@
   opacity: .2;
   pointer-events: none;
   .container {
-    max-width: 1150px;
+    max-width: 1400px;
     width: 100%;
-    padding: 30px;
     margin: 0 auto;
   }
   .rhythm-row {
-    height: 1em;
+    height: 16px;
     border-bottom: 1px solid #222;
     display: block;
     &:nth-child(even){

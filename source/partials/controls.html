@@ -1,0 +1,23 @@
+<ul class="input-group">
+  <li>
+    <form id="viewport-url-form"><input type="url" id="viewport-url" value="http://schramindustries.com"/></form>
+  </li>
+</ul>
+<ul class="button-group pixel-matching">
+  <li>
+    <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
+    <ul class="button-options" id="overlay">
+       <li><input type="file" id="overlay-file-selector" onchange="readURL(this);"></li>
+       <li><input id="overlay-file-opacity" type="range" min="0" max="100" value="50">
+     </ul>
+  </li>
+  <li><a id="overlay-rhythm-toggle"><i class="ss-icon">&#xE9A1;</i>Rhythm</a></li>
+  <li><a id="overlay-grid-toggle"><i class="ss-icon">&#xE9A2;</i>Grid</a></li>
+  <li>
+    <a data-toggle="fonticons" class="button-with-options"><i class="ss-icon">&#x1F4BC;</i>Fonts</a>
+     <ul class="button-options" id="fonticons">
+       <li><a target="docs" href="/docs/SymbolSet/ss-standard/documentation.html">SymbolSet Standard</a></li>
+       <li><a target="docs" href="/docs/SymbolSet/ss-social/documentation.html">SymbolSet Social</a></li>
+     </ul>
+  </li>
+</ul>

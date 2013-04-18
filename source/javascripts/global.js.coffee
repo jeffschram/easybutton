@@ -1,5 +1,22 @@
 $(document).ready ->
 
+ # KEYPRESS
+ $(document).on "keyup", (event)->
+   $("#keypress-section").fadeIn()
+   $("#keypress").text(event.which)
+   setTimeout(-> 
+     $("#keypress-section").fadeOut()  
+   , 1000)
+  
+  
+  # TESTING
+  $("#test-run").on "click", ->
+    $("body").append "<section id='controls'/><section id='overlay'/><section id='controls-secondary'/>"
+    $("#controls").load "partials/controls.html"
+    $("#overlay").load "partials/overlay.html"
+    $("#controls-secondary").load "partials/controls-secondary.html"
+
+
   # ADJUST HEIGHT OF VIEWPORT
   adjustViewportHeight = ->
     # trying out making iframe super tall
@@ -55,7 +72,7 @@ $(document).ready ->
 
   # OVERLAY OPTIONS
   # DELETE
-  $(".delete-overlay-option").click (e) ->
+  $(".delete-overlay-option").on "click", (e) ->
     e.preventDefault()
     $(this).parent().remove()
     i = $(this).data("overlay-option-key")
@@ -87,11 +104,19 @@ $(document).ready ->
   $("#viewport-url-form").on "submit", (e)->
     e.preventDefault()
     $("#viewport-iframe").attr "src", $(this).find("input").val()
+    # Set Local Storage
+    localStorage.setItem("viewport-url",  $(this).find("input").val());
 
   $("#viewport-iframe").load ->
     console.log 'test, viewport iframe load'
     console.log $(this).attr "src"
     $("#viewport-url").val $(this).attr "src"
+    
+    
+  # ON LOAD, CHECK IF SAVED URL EXISTS
+  if localStorage.getItem("viewport-url")
+    $("#viewport-url").attr "value", localStorage.getItem("viewport-url")
+    $("#viewport-iframe").attr "src", localStorage.getItem("viewport-url")
 
 
 
@@ -169,7 +194,8 @@ $(document).ready ->
 
 
   # A HELPER FOR BUTTON WITH OPTIONS
-  $("a[data-toggle]").click (e)->
+  $("a[data-toggle]").on "click", (e)->
+    console.log 'toggler clicked'
     e.preventDefault()
     $this = $(this)
     $buttonGroup = $this.parents(".button-group")

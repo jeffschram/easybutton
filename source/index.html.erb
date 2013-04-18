@@ -6,11 +6,9 @@ title: Easy Button
 
   <ul class="input-group">
     <li>
-      <form id="viewport-url-form"><input type="url" id="viewport-url" value="http://schramindustries.com"/></form>
+      <form id="viewport-url-form"><input type="text" id="viewport-url" value="http://schramindustries.com"/></form>
     </li>
   </ul>
-
-
   <ul class="button-group pixel-matching">
     <li>
       <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
@@ -48,8 +46,8 @@ title: Easy Button
      <div class="container"></div>
   </div>
 
+    <iframe id="viewport-iframe" src="http://schramindustries.com"></iframe>
 
-    <iframe id="viewport-iframe" src="http://schramindustries.com" onload="console.log('i just loaded', this.src);"></iframe>
   </div>
 </section>
 
@@ -71,6 +69,7 @@ title: Easy Button
     </li>
     <li><p><i class="ss-icon icon-resolution">&#xE9A3;</i> <span class="data" id="resolution"></span></p></li>
     <li><p><i class="ss-icon">&#x2139;</i> <span class="data" id="browser-info"></span></p></li>
+    <li id="keypress-section" style="display: none;"><p><b>KEYPRESS</b> <span class="data" id="keypress"></span></p></li>
   </ul>
 
 </section>
