@@ -4,8 +4,7 @@
 
 
 // Import Compass Helpers
-@import "compass/css3";
-@import "compass/utilities/general/clearfix";
+@import "compass";
 
 // Import Font Assets
 @import "vendor/webfonts/ss-social";
@@ -94,6 +93,26 @@ body {
   background: white;
 }
 
+// viewport refresh link
+#viewport-refresh {
+  background: none;
+  border: none;
+  opacity: .8;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  font-size: 16px;
+  margin-right: 3px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+
 // viewport URL box
 #viewport-url {
   width: 200px;
@@ -139,13 +158,14 @@ body {
     height: 56px;
     width: 65px;
     padding: 10px 0;
-    font-size: 12px;
-    line-height: 23px;
+    font-size: 11px;
+    line-height: 20px;
     color: black;
     i {
       display: block;
-      font-size: 22px;
+      font-size: 30px;
       color: #333;
+      margin-top: 4px;
     }
   }
 }
