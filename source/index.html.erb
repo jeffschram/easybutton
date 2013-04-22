@@ -6,16 +6,18 @@ title: Easy Button
 
   <ul class="input-group">
     <li>
-      <form id="viewport-url-form" action="" method="get">
-        <button type="button" id="viewport-refresh"><i class="ss-icon">&#x21BA;</i></button>
-        <input type="text" list="viewport-url-list" id="viewport-url" value="http://schramindustries.com"/>
-        <datalist id="viewport-url-list" >
-           <option>http://localhost:3000</option>
-           <option>http://localhost:4567</option>
-           <option>http://schramindustries.com</option>
-           <option>http://iamfranz.com/fuckthis</option>
-        </datalist>
-        </form>
+      <form id="viewport-url-form" action="#" method="post">
+        <button id="viewport-refresh"><i class="ss-icon">&#x21BA;</i></button>
+        <div class="field" id="viewport-url-container">  
+          <input type="text" id="viewport-url" value="http://schramindustries.com" autocomplete="off" />
+          <div id="viewport-urls" >
+             <a href="http://localhost:3000">http://localhost:3000</a>
+             <a href="http://localhost:4567">http://localhost:4567</a>
+             <a href="http://schramindustries.com">http://schramindustries.com</a>
+             <a href="http://iamfranz.com/fuckthis">http://iamfranz.com/fuckthis</a>
+          </div>
+        </div>
+      </form>
     </li>
   </ul>
   <ul class="button-group pixel-matching">

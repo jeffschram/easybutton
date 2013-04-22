@@ -48,7 +48,7 @@ $(document).ready(function(){
     visitedURLs = $.parseJSON(localStorage.getItem("ezbtnVisitedURLs"));
     $.each(visitedURLs, function(i, item) {
       var visitedURL = visitedURLs[i].visitedURL;
-      $("#viewport-url-list").append("<option value='"+visitedURL+"'>");
+      $("#viewport-urls").append("<a href='"+visitedURL+"'>"+visitedURL+"</a>");
     });
   }
   
@@ -56,21 +56,17 @@ $(document).ready(function(){
   
   /* Viewport & URLs
   ----------------------------------------------------------------- */
+  // Submitting form
   $("#viewport-url-form").submit(function(event) {
     event.preventDefault();
-    
-    thisURL = $("#viewport-url").val();    
-    
+    thisURL = $("#viewport-url").val();        
     // Update the viewport iframe
     $("#viewport-iframe").attr("src", thisURL);
-    
     // If thisURL is not in visitedURLs, do some shit
     var newURL = true;
     $.each(visitedURLs, function(i, item) {
-      console.log('comparing', visitedURLs[i].visitedURL, 'to', thisURL);
       if(thisURL == visitedURLs[i].visitedURL) {
         newURL = false;
-        console.log("found a match", "newURL", newURL);
       }
     });
     if (newURL == true) {
@@ -79,11 +75,30 @@ $(document).ready(function(){
       // Update localStorage
       localStorage.setItem("ezbtnVisitedURLs", JSON.stringify(visitedURLs));
       // Append this to the url options
-      $("#viewport-url-list").append("<option value='"+thisURL+"'>");
+      $("#viewport-urls").append("<a href='"+thisURL+"'>"+thisURL+"</a>");
     }
-
   });
   
+  // Showing/Hiding Viewed URLs list
+  $("#viewport-url").on("focus keyup", function(){
+    $("#viewport-urls").addClass("shown");
+    $("#viewport-urls a").removeClass("shown");
+    $("#viewport-urls a[href*='"+$(this).val()+"']").addClass("shown");
+  });
+  $("#viewport-url").on("blur", function(){
+    $("#viewport-urls").removeClass("shown");
+  });
+
+  // Clicking on a Viewed URL
+  $("#viewport-urls a").on("click", function(event){
+  	 event.preventDefault();
+  	 $("#viewport-url").val($(this).attr("href"));
+  	 $("#viewport-url-form").submit();
+  	 $("#viewport-urls").removeClass("shown");
+  });
+  
+  
+  // Onload, if latest url is stored, let's use that  
   if (localStorage.getItem("ezbtnLatestURL")) {
     latestURL = localStorage.getItem("ezbtnLatestURL");
     alert("latestURL: "+latestURL);
@@ -91,6 +106,7 @@ $(document).ready(function(){
     $("#viewport-iframe").attr("src", latestURL);
   }
   
+  /// Viewport refresh button
   $("#viewport-refresh").on("click", function(event) {
     event.preventDefault();
     $("#viewport-iframe").attr("src", "");
@@ -326,6 +342,8 @@ $(document).ready(function(){
       $("#" + $this.data("toggle")).show().addClass("active");
     }
   });
+  
+
   
   
 });
