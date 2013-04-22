@@ -135,8 +135,10 @@ body {
   width: 100%;
   background: white;
   border: 1px solid #cbcbcb;
-  border-top: none;
+  border-top: 1px solid #eee;
   margin-top: -1px;
+  max-height: 250px;
+  overflow: scroll;
   &.shown {
     display: block;
   }
@@ -150,8 +152,11 @@ body {
   &.shown {
     display: block;
   }
-  &:hover, &:focus {
+  &:hover, &:focus, &.active {
     color: white;
+    background: #7c7c7c;
+  }
+  &:active {
     background: #333;
   }
 }

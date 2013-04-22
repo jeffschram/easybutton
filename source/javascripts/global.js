@@ -42,9 +42,7 @@ $(document).ready(function(){
   visitedURLs = [];
 
   if (localStorage.getItem("ezbtnVisitedURLs")) {
-  
-    console.log(localStorage.getItem("ezbtnVisitedURLs"));
-    
+      
     visitedURLs = $.parseJSON(localStorage.getItem("ezbtnVisitedURLs"));
     $.each(visitedURLs, function(i, item) {
       var visitedURL = visitedURLs[i].visitedURL;
@@ -56,12 +54,18 @@ $(document).ready(function(){
   
   /* Viewport & URLs
   ----------------------------------------------------------------- */
+  // Todo: Add "Show all" button to form field
+  
+  
   // Submitting form
   $("#viewport-url-form").submit(function(event) {
     event.preventDefault();
     thisURL = $("#viewport-url").val();        
     // Update the viewport iframe
     $("#viewport-iframe").attr("src", thisURL);
+    // Save as the latest URL
+    localStorage.setItem("ezbtnLatestURL", thisURL);
+    
     // If thisURL is not in visitedURLs, do some shit
     var newURL = true;
     $.each(visitedURLs, function(i, item) {
@@ -77,31 +81,57 @@ $(document).ready(function(){
       // Append this to the url options
       $("#viewport-urls").append("<a href='"+thisURL+"'>"+thisURL+"</a>");
     }
+    setTimeout(function(){ $("#viewport-urls").removeClass("shown"); }, 500);
   });
   
   // Showing/Hiding Viewed URLs list
-  $("#viewport-url").on("focus keyup", function(){
-    $("#viewport-urls").addClass("shown");
-    $("#viewport-urls a").removeClass("shown");
-    $("#viewport-urls a[href*='"+$(this).val()+"']").addClass("shown");
+  $("#viewport-url").on("focus keyup", function(event){
+    // if pressing up, down, or enter
+    var key = event.which;
+    if (key === 38){
+      // up arrow
+      $("#viewport-urls a.active").removeClass("active").prev("a.shown").addClass("active");
+      $("#viewport-url").val($("#viewport-urls a.active").attr("href"));
+    }
+    else if (key === 40){
+      // down arrow
+      $("#viewport-urls a.active").removeClass("active").next("a.shown").addClass("active");
+      $("#viewport-url").val($("#viewport-urls a.active").attr("href"));
+    }
+    else if (key === 13){
+      // no need
+    }
+    else {
+      $("#viewport-urls").addClass("shown");
+      $("#viewport-urls a").removeClass("shown active");
+      $("#viewport-urls a[href*='"+$(this).val()+"']").addClass("shown");
+      $("#viewport-urls a[href*='"+$(this).val()+"']").eq(0).addClass("active")
+    }
   });
+  $("#viewport-url").on("focus", function(){
+  	$(this).attr("data-original-value", $(this).val());    
+  });
+  
+  /*
   $("#viewport-url").on("blur", function(){
-    $("#viewport-urls").removeClass("shown");
+    $("#viewport-urls").removeClass("shown"); 
+    $("#viewport-url").val($("#viewport-url").attr("data-original-value"));
   });
+  */
 
   // Clicking on a Viewed URL
-  $("#viewport-urls a").on("click", function(event){
-  	 event.preventDefault();
-  	 $("#viewport-url").val($(this).attr("href"));
-  	 $("#viewport-url-form").submit();
-  	 $("#viewport-urls").removeClass("shown");
+  $("body").delegate("#viewport-urls a", "click", function(event){
+    console.log("urls a clicked");
+    event.preventDefault();
+    $("#viewport-url").val($(this).attr("href"));
+    $("#viewport-url-form").submit();
+    setTimeout(function(){ $("#viewport-urls").removeClass("shown"); }, 500);
   });
   
   
   // Onload, if latest url is stored, let's use that  
   if (localStorage.getItem("ezbtnLatestURL")) {
     latestURL = localStorage.getItem("ezbtnLatestURL");
-    alert("latestURL: "+latestURL);
     $("#viewport-url").attr("value", latestURL);
     $("#viewport-iframe").attr("src", latestURL);
   }
@@ -135,7 +165,7 @@ $(document).ready(function(){
   
   /* Resize Viewport
   ----------------------------------------------------------------- */  
-  function resiveViewport(settingName, settingWidth, settingHeight) {
+  function resizeViewport(settingName, settingWidth, settingHeight) {
     $("#viewport-iframe-wrap").animate({
       height: settingHeight,
       width: settingWidth
@@ -187,7 +217,7 @@ $(document).ready(function(){
     localStorage.setItem("ezbtnOverlays", JSON.stringify(overlays));
   });
   
-  $(".overlay-option a").on("click", function(event) {
+  $("body").delegate(".overlay-option a", "click", function(event) {
     var imgSrc;
     event.preventDefault();
     if ($("#overlay-image").length) {
