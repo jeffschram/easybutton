@@ -164,6 +164,7 @@ body {
 // section for secondary controls
 #controls-secondary {
   height: 25px;
+  background: $lighter-grey;
   @include background(linear-gradient(top bottom, $light-grey, $lighter-grey));
   border-top: 1px solid $medium-grey;
   position: fixed;
