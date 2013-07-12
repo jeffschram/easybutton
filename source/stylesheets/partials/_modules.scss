@@ -66,6 +66,24 @@
         background: $blue;
         color: white;
       }
+      i {
+        display: inline-block;
+        margin: 0 5px 0 0;
+        position: relative;
+        bottom: -4px;
+        font-size: 1.75em;
+        color: inherit;
+      }
+    }
+    > .edit-text {
+      background: rgba(255,255,255,.95);
+      color: $body-text;
+      word-break: break-word;
+      padding: 8px 15px;
+      border: 1px solid #efefef;
+      font-size: 13px;
+      min-height: 500px;
+      width: 100%;
     }
     > label {
       font-size: 12px;
@@ -161,9 +179,20 @@
   }
 
   #overlay-file-opacity {
+    cursor: pointer;
     width: 100%;
+    -webkit-appearance: none;
+    // background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==);
+    // background-size: 50% 100%;
+    // background-repeat: no-repeat;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 12px;
+      width: 12px;
+      background: #333;
+      border-radius: 2px;
+    }
   }
-
 
   > li.overlay-option {
     > a {

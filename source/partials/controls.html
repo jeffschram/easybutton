@@ -3,7 +3,9 @@
     <form id="viewport-url-form"><input type="url" id="viewport-url" value="http://schramindustries.com"/></form>
   </li>
 </ul>
-<ul class="button-group pixel-matching">
+
+<ul class="button-group">
+  <!--Overlay-->
   <li>
     <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
     <ul class="button-options" id="overlay">
@@ -11,13 +13,23 @@
        <li><input id="overlay-file-opacity" type="range" min="0" max="100" value="50">
      </ul>
   </li>
-  <li><a id="overlay-rhythm-toggle"><i class="ss-icon">&#xE9A1;</i>Rhythm</a></li>
-  <li><a id="overlay-grid-toggle"><i class="ss-icon">&#xE9A2;</i>Grid</a></li>
+  <!--Resources-->
   <li>
-    <a data-toggle="fonticons" class="button-with-options"><i class="ss-icon">&#x1F4BC;</i>Fonts</a>
-     <ul class="button-options" id="fonticons">
+    <a data-toggle="resources" class="button-with-options"><i class="ss-icon">&#x1F4BC;</i>Resources</a>
+     <ul class="button-options" id="resources">
        <li><a target="docs" href="/docs/SymbolSet/ss-standard/documentation.html">SymbolSet Standard</a></li>
        <li><a target="docs" href="/docs/SymbolSet/ss-social/documentation.html">SymbolSet Social</a></li>
      </ul>
   </li>
+  <!--Notes-->
+  <li>
+    <a data-toggle="notes" class="button-with-options"><i class="ss-icon">&#x1F4DD;</i>Notes</a>
+     <ul class="button-options" id="notes">
+       <li><textarea id="note" class="note">Jot down some notes.</textarea></li>
+     </ul>
+  </li>
 </ul>
+
+
+
+

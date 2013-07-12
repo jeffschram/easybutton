@@ -2,7 +2,7 @@
 --------------------------------------------------------------------
 
   Javascript for Easy Button
-  
+
 ----------------------------------------------------------------- */
 
 
@@ -18,14 +18,14 @@
 
 $(document).ready(function(){
 
-  
+
   /* Overlays
   ----------------------------------------------------------------- */
 
   overlays = [];
 
   if (localStorage.getItem("ezbtnOverlays")) {
-      
+
     overlays = $.parseJSON(localStorage.getItem("ezbtnOverlays"));
     $.each(overlays, function(i, item) {
       var filename = overlays[i].overlayFilename,
@@ -33,39 +33,49 @@ $(document).ready(function(){
       $("#overlay").append("<li class='overlay-option'><a href=''><img src='" + filedata + "'> " + filename + "</a><a data-overlay-option-key='" + i + "' class='delete-overlay-option'>x</a></li>");
     });
   }
-  
-  
-  
+
+
+  /* Notes
+  ----------------------------------------------------------------- */
+  if (localStorage.getItem("ezbtnNotes")) {
+    $("#note").text(localStorage.getItem("ezbtnNotes"));
+  }
+  function saveNoteContents() {
+    localStorage.setItem("ezbtnNotes", $("#note").text());
+  }
+  $("#note").on("blur", function(){
+    saveNoteContents();
+  });
+
+
   /* Visited URLS
   ----------------------------------------------------------------- */
-  
+
   visitedURLs = [];
 
   if (localStorage.getItem("ezbtnVisitedURLs")) {
-      
+
     visitedURLs = $.parseJSON(localStorage.getItem("ezbtnVisitedURLs"));
     $.each(visitedURLs, function(i, item) {
       var visitedURL = visitedURLs[i].visitedURL;
       $("#viewport-urls").append("<a href='"+visitedURL+"'>"+visitedURL+"</a>");
     });
   }
-  
-  
-  
+
+
+
   /* Viewport & URLs
   ----------------------------------------------------------------- */
-  // Todo: Add "Show all" button to form field
-  
-  
+
   // Submitting form
   $("#viewport-url-form").submit(function(event) {
     event.preventDefault();
-    thisURL = $("#viewport-url").val();        
+    thisURL = $("#viewport-url").val();
     // Update the viewport iframe
     $("#viewport-iframe").attr("src", thisURL);
     // Save as the latest URL
     localStorage.setItem("ezbtnLatestURL", thisURL);
-    
+
     // If thisURL is not in visitedURLs, do some shit
     var newURL = true;
     $.each(visitedURLs, function(i, item) {
@@ -83,7 +93,7 @@ $(document).ready(function(){
     }
     setTimeout(function(){ $("#viewport-urls").removeClass("shown"); }, 500);
   });
-  
+
   // Showing/Hiding Viewed URLs list
   $("#viewport-url").on("focus keyup", function(event){
     // if pressing up, down, or enter
@@ -109,15 +119,9 @@ $(document).ready(function(){
     }
   });
   $("#viewport-url").on("focus", function(){
-  	$(this).attr("data-original-value", $(this).val());    
+  	$(this).attr("data-original-value", $(this).val());
   });
-  
-  /*
-  $("#viewport-url").on("blur", function(){
-    $("#viewport-urls").removeClass("shown"); 
-    $("#viewport-url").val($("#viewport-url").attr("data-original-value"));
-  });
-  */
+
 
   // Clicking on a Viewed URL
   $("body").delegate("#viewport-urls a", "click", function(event){
@@ -127,15 +131,21 @@ $(document).ready(function(){
     $("#viewport-url-form").submit();
     setTimeout(function(){ $("#viewport-urls").removeClass("shown"); }, 500);
   });
-  
-  
-  // Onload, if latest url is stored, let's use that  
+
+
+  // Mouseleave URLS hides it
+  $("#viewport-urls").mouseleave(function(){
+    $(this).removeClass("shown");
+  });
+
+
+  // Onload, if latest url is stored, let's use that
   if (localStorage.getItem("ezbtnLatestURL")) {
     latestURL = localStorage.getItem("ezbtnLatestURL");
     $("#viewport-url").attr("value", latestURL);
     $("#viewport-iframe").attr("src", latestURL);
   }
-  
+
   /// Viewport refresh button
   $("#viewport-refresh").on("click", function(event) {
     event.preventDefault();
@@ -143,14 +153,14 @@ $(document).ready(function(){
     $("#viewport-iframe").attr("src", $("#viewport-url").val());
   });
 
-    
-  
-  
-  
-  
+
+
+
+
+
   /* Keyup Indicator
   ----------------------------------------------------------------- */
-  
+
   $(document).on("keyup", function(event) {
     $("#keypress-section").fadeIn();
     $("#keypress").text(event.which);
@@ -158,13 +168,13 @@ $(document).ready(function(){
       $("#keypress-section").fadeOut();
     }, 1000);
   });
-      
-  
-  
-  
-  
+
+
+
+
+
   /* Resize Viewport
-  ----------------------------------------------------------------- */  
+  ----------------------------------------------------------------- */
   function resizeViewport(settingName, settingWidth, settingHeight) {
     $("#viewport-iframe-wrap").animate({
       height: settingHeight,
@@ -175,14 +185,23 @@ $(document).ready(function(){
     $("#viewport").addClass("viewport-resized");
     $("#viewport-title").text(settingName).fadeIn();
   };
-  
+
+  function resizeViewportToMatchOverlay() {
+    var $img = $("#overlay-image");
+    $img.css({
+      top: 0,
+      left: 0
+    });
+    resizeViewport("", $img.width(), $img.height());
+  }
+
   $(".dimension-option").on("click", function(event) {
     var $this;
     event.preventDefault();
     $this = $(this);
     resizeViewport($this.data('dimension-option-name'), $this.data('dimension-option-width'), $this.data('dimension-option-height'));
   });
-  
+
   $(".dimension-normal").on("click", function(event) {
     event.preventDefault();
     $("#viewport-title").fadeOut(function() {
@@ -196,18 +215,12 @@ $(document).ready(function(){
       });
     });
   });
-  
+
   $(".dimension-resize-to-match-overlay").on("click", function(event) {
-    var $img;
     event.preventDefault();
-    $img = $("#overlay-image");
-    $img.removeClass("fixed").addClass("active").css({
-      top: 0,
-      left: 0
-    });
-    resizeViewport("", $img.width(), $img.height());
+    resizeViewportToMatchOverlay();
   });
-  
+
   $(".delete-overlay-option").on("click", function(event) {
     var i;
     event.preventDefault();
@@ -216,7 +229,7 @@ $(document).ready(function(){
     overlays.splice(i, 1);
     localStorage.setItem("ezbtnOverlays", JSON.stringify(overlays));
   });
-  
+
   $("body").delegate(".overlay-option a", "click", function(event) {
     var imgSrc;
     event.preventDefault();
@@ -224,20 +237,28 @@ $(document).ready(function(){
       $("#overlay-image").remove();
     }
     imgSrc = $(this).find("img").attr("src");
-    $("#viewport-iframe-wrap").prepend($("<img draggable='true' class='active' id='overlay-image' src='" + imgSrc + "'>"));
-    $("#overlay-image").draggable();
+    $("#viewport-iframe-wrap").prepend($("<img draggable='true' id='overlay-image' src='" + imgSrc + "'>"));
+    //$("#overlay-image").draggable();
+    // RESIZE VIEWPORT TO MATCH
+    resizeViewportToMatchOverlay();
   });
-  
+
   $("#overlay-file-opacity").on("change", function() {
+    console.log('range changed', $(this).val());
+    var percentage = $(this).val();
+    $(this).css({
+      // "background-size": percentage+"% 100%"
+      "background": "-webkit-gradient(linear, left top, right top, color-stop("+percentage+"%,#fff), color-stop("+percentage+"%,#DFDFDF), color-stop(0%,#fff))"
+    });
     $("#overlay-image").css({
-      opacity: $(this).val() / 100
+      opacity: percentage / 100
     });
   });
-      
-  
-  
-  
-  
+
+
+
+
+
   /* Toggle overlay active state
   ----------------------------------------------------------------- */
   $(document).keypress(function(event) {
@@ -252,30 +273,9 @@ $(document).ready(function(){
       console.log('toggle fixed');
     }
   });
-      
-  
-  
-  
-  
-  /* Grid Stuff: On it's way out of this app
-  ----------------------------------------------------------------- */
-  $("#overlay-grid-toggle").click(function() {
-    $(this).toggleClass("active");
-    $("#overlay-grid").toggle();
-  });
-  
-  $("#overlay-rhythm-toggle").click(function() {
-    $(this).toggleClass("active");
-    $("#overlay-rhythm").toggle();
-  });
-  var i = 0;
-  while (i < 1000) {
-    $("#overlay-rhythm .container").prepend("<div class='rhythm-row'/>");
-    i++;
-  }
-  
-  
-  
+
+
+
   /* Update Viewport Dimensions
   ----------------------------------------------------------------- */
   function updateViewportDimensions() {
@@ -317,9 +317,9 @@ $(document).ready(function(){
     $("#window-width").html(wW);
     $("#window-height").html(win.height());
   };
-  
-  
-  
+
+
+
   /* Update Monitor Resolution
   ----------------------------------------------------------------- */
   function updateMonitorResolution() {
@@ -330,18 +330,18 @@ $(document).ready(function(){
       $(".icon-resolution").html("&#xE9A0;");
     }
   };
-  
-  
-  
-  
+
+
+
+
   /* Update Browser Info
   ----------------------------------------------------------------- */
   function updateBrowserInfo() {
     $("#browser-info").html(BrowserDetect.browser + ' ' + BrowserDetect.version + ' on ' + BrowserDetect.OS);
   };
-  
-  
-  
+
+
+
   /* Bind functions to Window
   ----------------------------------------------------------------- */
   $(window).bind("resize load", function() {
@@ -351,9 +351,9 @@ $(document).ready(function(){
     updateMonitorResolution();
     updateBrowserInfo();
   });
-  
-  
-  
+
+
+
   /* Button Toggler Helper
   ----------------------------------------------------------------- */
   $("a[data-toggle]").on("click", function(event) {
@@ -372,10 +372,16 @@ $(document).ready(function(){
       $("#" + $this.data("toggle")).show().addClass("active");
     }
   });
-  
+  // On mouseleave
+  $(".button-options").on("mouseleave", function(){
+    $(this).removeClass("active").hide();
+    $(this).siblings(".button-with-options").removeClass("active");
+    saveNoteContents();
+  });
 
-  
-  
+
+
+
 });
 
 
@@ -395,9 +401,9 @@ var BrowserDetect = {
 			|| "an unknown version";
 		this.OS = this.searchString(this.dataOS) || "an unknown OS";
 	},
-	
+
 	searchString: function (data) {
-	 	
+
 		for (var i=0;i<data.length;i++)	{
 			var dataString = data[i].string;
 			var dataProp = data[i].prop;

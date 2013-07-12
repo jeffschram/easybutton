@@ -45,6 +45,7 @@ body {
   left: 0;
   width: 100%;
   z-index: 9990;
+  border: 1px solid #9999;
 }
 
 
@@ -168,7 +169,7 @@ body {
   @include background(linear-gradient(top bottom, $light-grey, $lighter-grey));
   border-top: 1px solid $medium-grey;
   position: fixed;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
   z-index: 9999;
