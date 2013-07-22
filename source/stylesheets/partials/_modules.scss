@@ -178,10 +178,24 @@
     }
   }
 
+  // Overlay Controls, opacity and drag
+  // By default, they are inactive
+  .overlay-control {
+    transition: opacity .4s;
+    -webkit-transition: opacity .4s;
+    opacity: .5;
+    pointer-events: none;
+    &.active {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
   #overlay-file-opacity {
     cursor: pointer;
     width: 100%;
     -webkit-appearance: none;
+    background-color: #dfdfdf;
     // background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==);
     // background-size: 50% 100%;
     // background-repeat: no-repeat;
@@ -201,6 +215,11 @@
       height: 65px;
       line-height: 65px;
       width: 90%;
+      &.active {
+        background: $blue;
+        color: white;
+        pointer-events: none;
+      }
       &.delete-overlay-option {
         width: 10%;
         text-align: center;
@@ -234,6 +253,32 @@
   &.fixed {
    position: fixed;
   }
+}
+
+.on-off-icon {
+  color: #333 !important;
+  font-size: 4em;
+  float: right;
+  vertical-align: middle;
+  margin-top: -2px;
+  opacity: .3;
+}
+
+#overlay-toggle-active {
+  border-radius: 5px;
+}
+#overlay-toggle-active.active,
+#overlay-toggle-active.active:hover {
+  background: $blue !important;;
+  color: white !important;
+  .on-off-icon {
+    color: #bada55 !important;
+    opacity: 1;
+  }
+}
+#overlay-toggle-active.active:active,
+#overlay-toggle-active:active {
+  opacity: .8;
 }
 
 #overlay-grid {

@@ -7,11 +7,6 @@
 
 
 
-
-
-
-
-
 /* jQuery on document ready
 --------------------------------------------------------------------
 ----------------------------------------------------------------- */
@@ -237,14 +232,20 @@ $(document).ready(function(){
       $("#overlay-image").remove();
     }
     imgSrc = $(this).find("img").attr("src");
+    // ADD ACTIVE CLASS TO THIS A
+    $(this).addClass("active");
+    // ADD DRAGGABLE OVERLAY
     $("#viewport-iframe-wrap").prepend($("<img draggable='true' id='overlay-image' src='" + imgSrc + "'>"));
-    //$("#overlay-image").draggable();
+    $("#overlay-image").draggable();
+    // ACTIVATE OVERLAY CONTROLS
+    $(".overlay-control").addClass("active");
     // RESIZE VIEWPORT TO MATCH
-    resizeViewportToMatchOverlay();
+    setTimeout(function(){resizeViewportToMatchOverlay();}, 500);
+    // SET OPACITY TO 50
+    $("#overlay-file-opacity").attr("value", 50).css("background", "-webkit-gradient(linear, left top, right top, color-stop(50%,#fff), color-stop(50%,#DFDFDF), color-stop(0%,#fff))");
   });
 
   $("#overlay-file-opacity").on("change", function() {
-    console.log('range changed', $(this).val());
     var percentage = $(this).val();
     $(this).css({
       // "background-size": percentage+"% 100%"
@@ -259,19 +260,14 @@ $(document).ready(function(){
 
 
 
+
+
   /* Toggle overlay active state
   ----------------------------------------------------------------- */
-  $(document).keypress(function(event) {
-    var key;
-    key = event.which;
-    if (key === 97) {
-      $("#overlay-image").toggleClass("active");
-      console.log('toggle active');
-    }
-    if (key === 102) {
-      $("#overlay-image").toggleClass("fixed");
-      console.log('toggle fixed');
-    }
+  $(document).on("click", "#overlay-toggle-active", function(event) {
+    event.preventDefault();
+    console.log('clicked');
+    $("#overlay-image, #overlay-toggle-active").toggleClass("active");
   });
 
 
@@ -373,11 +369,11 @@ $(document).ready(function(){
     }
   });
   // On mouseleave
-  $(".button-options").on("mouseleave", function(){
-    $(this).removeClass("active").hide();
-    $(this).siblings(".button-with-options").removeClass("active");
-    saveNoteContents();
-  });
+  // $(".button-options").on("mouseleave", function(){
+  //   $(this).removeClass("active").hide();
+  //   $(this).siblings(".button-with-options").removeClass("active");
+  //   saveNoteContents();
+  // });
 
 
 

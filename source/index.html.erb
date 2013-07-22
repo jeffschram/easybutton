@@ -18,6 +18,21 @@ title: Easy Button
     </li>
   </ul>
   <ul class="button-group">
+    <!--Resources-->
+    <li>
+      <a data-toggle="resources" class="button-with-options"><i class="ss-icon">&#x1F4BC;</i>Resources</a>
+       <ul class="button-options" id="resources">
+         <li><a target="docs" href="/docs/SymbolSet/ss-standard/documentation.html">SymbolSet Standard</a></li>
+         <li><a target="docs" href="/docs/SymbolSet/ss-social/documentation.html">SymbolSet Social</a></li>
+       </ul>
+    </li>
+    <!--Notes-->
+    <li>
+      <a data-toggle="notes" class="button-with-options"><i class="ss-icon">&#x1F4DD;</i>Notes</a>
+       <ul class="button-options" id="notes">
+         <li><textarea id="note" class="edit-text">Jot down some notes.</textarea></li>
+       </ul>
+    </li>
     <!-- Dimensions -->
     <li>
       <a data-toggle="dimensions" class="button-with-options"><i class="ss-icon icon-window-width">&#xE201;</i> <span class="data" id="window-width"></span> x <span id="window-height"></span></a>
@@ -38,23 +53,9 @@ title: Easy Button
       <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
       <ul class="button-options" id="overlay">
         <li><input type="file" id="overlay-file-selector" onchange="readURL(this);"></li>
-        <li><input id="overlay-file-opacity" type="range" min="0" max="100" value="50">
+        <li class="overlay-control"><a href="#" id="overlay-toggle-active"><i class="ss-icon">&#xE070;</i>Drag Overlay <b class="on-off-icon">&bull;</b></a></li>
+        <li class="overlay-control"><input id="overlay-file-opacity" type="range" min="0" max="100" value="0">
       </ul>
-    </li>
-    <!--Resources-->
-    <li>
-      <a data-toggle="resources" class="button-with-options"><i class="ss-icon">&#x1F4BC;</i>Resources</a>
-       <ul class="button-options" id="resources">
-         <li><a target="docs" href="/docs/SymbolSet/ss-standard/documentation.html">SymbolSet Standard</a></li>
-         <li><a target="docs" href="/docs/SymbolSet/ss-social/documentation.html">SymbolSet Social</a></li>
-       </ul>
-    </li>
-    <!--Notes-->
-    <li>
-      <a data-toggle="notes" class="button-with-options"><i class="ss-icon">&#x1F4DD;</i>Notes</a>
-       <ul class="button-options" id="notes">
-         <li><textarea id="note" class="edit-text">Jot down some notes.</textarea></li>
-       </ul>
     </li>
   </ul>
 
