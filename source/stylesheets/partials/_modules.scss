@@ -39,17 +39,24 @@
   right: 0;
   z-index: 9990;
   width: 25%;
-  min-width: 320px;
+  min-width: 270px;
   background: $lighter-grey;
   @include border-radius(2px);
   padding: 15px 10px 5px 10px;
-  border-left: 8px solid #DFDFDF;
-  border-bottom: 8px solid #DFDFDF;
+  border: 8px solid #DFDFDF;
+  border-top:none;
   > li {
     display: block;
     padding: 0;
     margin: 0 0 10px 0;
     overflow: hidden;
+    &.separator {
+      height: 10px;
+      background: $grey;
+      position: relative;
+      left: -10px;
+      width: 263px;
+    }
     > a {
       display: block;
       background: white;
@@ -62,9 +69,12 @@
       padding: 8px 15px;
       border: 1px solid #efefef;
       &:hover {
-        border: 1px solid $blue;
-        background: $blue;
+        border: 1px solid $active;
+        background: $active;
         color: white;
+      }
+      &:active {
+        opacity: .8;
       }
       i {
         display: inline-block;
@@ -137,8 +147,8 @@
       padding: 8px 15px;
       border: 1px solid #efefef;
       &:hover {
-        border: 1px solid $blue;
-        background: $blue;
+        border: 1px solid $active;
+        background: $active;
         color: white;
       }
     }
@@ -173,7 +183,7 @@
       @include border-radius(5px);
     }
     &:hover:after {
-      background: $blue;
+      background: $active;
       color: white;
     }
   }
@@ -196,9 +206,6 @@
     width: 100%;
     -webkit-appearance: none;
     background-color: #dfdfdf;
-    // background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==);
-    // background-size: 50% 100%;
-    // background-repeat: no-repeat;
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       height: 12px;
@@ -216,7 +223,7 @@
       line-height: 65px;
       width: 90%;
       &.active {
-        background: $blue;
+        background: $active;
         color: white;
         pointer-events: none;
       }
@@ -237,13 +244,12 @@
 
 #overlay-image {
   position: absolute;
-  z-index: 9980;
+  z-index: 9960; // below the iframe
   top: 0;
   left: 0;
   width: auto !important;
   max-width: 500% !important;
   height: auto !important;
-  opacity: .5;
   pointer-events: none;
   cursor: none;
   &.active {
@@ -269,7 +275,7 @@
 }
 #overlay-toggle-active.active,
 #overlay-toggle-active.active:hover {
-  background: $blue !important;;
+  background: $active !important;;
   color: white !important;
   .on-off-icon {
     color: #bada55 !important;
@@ -362,4 +368,10 @@
     }
   }
 
+}
+
+
+// icons
+.icon--90deg {
+  @include transform(rotate(90deg));
 }

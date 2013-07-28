@@ -171,11 +171,54 @@ $(document).ready(function(){
   /* Resize Viewport
   ----------------------------------------------------------------- */
   function resizeViewport(settingName, settingWidth, settingHeight) {
-    $("#viewport-iframe-wrap").animate({
+    var settingHeight,
+        settingWidth,
+        settingTopBarHeight,
+        settingBottomBarHeight;
+
+    if (settingName == "iPhone 5 Portrait") {
+      settingHeight = 568;
+      settingWidth = 320;
+      settingTopBarHeight = 80;
+      settingBottomBarHeight = 44;
+    }
+
+    if (settingName == "iPhone 5 Landscape") {
+      settingHeight = 320;
+      settingWidth = 568;
+      settingTopBarHeight = 80;
+      settingBottomBarHeight = 44;
+    }
+
+    if (settingName == "iPad Portrait") {
+      settingHeight = 1024;
+      settingWidth = 768;
+      settingTopBarHeight = 78;
+      settingBottomBarHeight = 0;
+    }
+
+    if (settingName == "iPad Landscape") {
+      settingHeight = 1024;
+      settingWidth = 768;
+      settingTopBarHeight = 78;
+      settingBottomBarHeight = 0;
+    }
+
+    $("#viewport-iframe-wrap").attr("data-setting-name", settingName.replace(" ", "-")).animate({
       height: settingHeight,
       width: settingWidth
     }, 500, function() {
       updateViewportDimensions();
+    });
+
+    // TO DO
+    // Use real calculated versions of these
+    settingTopBarHeight = 0;
+    settingBottomBarHeight = 0;
+
+    $("#viewport-iframe").animate({
+      top: settingTopBarHeight,
+      bottom: settingBottomBarHeight
     });
     $("#viewport").addClass("viewport-resized");
     $("#viewport-title").text(settingName).fadeIn();
@@ -243,16 +286,20 @@ $(document).ready(function(){
     setTimeout(function(){resizeViewportToMatchOverlay();}, 500);
     // SET OPACITY TO 50
     $("#overlay-file-opacity").attr("value", 50).css("background", "-webkit-gradient(linear, left top, right top, color-stop(50%,#fff), color-stop(50%,#DFDFDF), color-stop(0%,#fff))");
+    $("#viewport-iframe").css("opacity", .5);
+
   });
 
   $("#overlay-file-opacity").on("change", function() {
     var percentage = $(this).val();
     $(this).css({
-      // "background-size": percentage+"% 100%"
       "background": "-webkit-gradient(linear, left top, right top, color-stop("+percentage+"%,#fff), color-stop("+percentage+"%,#DFDFDF), color-stop(0%,#fff))"
     });
-    $("#overlay-image").css({
-      opacity: percentage / 100
+    // CHANGE IFRAME'S OPACITY
+    // We want the percentage of how much to reduce the opacity of the iframe, so we go for the inverse number
+    var iframePercentage = 100 - percentage;
+    $("#viewport-iframe").css({
+      opacity: iframePercentage / 100
     });
   });
 
@@ -319,8 +366,7 @@ $(document).ready(function(){
   /* Update Monitor Resolution
   ----------------------------------------------------------------- */
   function updateMonitorResolution() {
-    var monitorResolution;
-    monitorResolution = window.devicePixelRatio;
+    var monitorResolution = window.devicePixelRatio;
     $("#resolution").html("Pixel Ratio " + monitorResolution);
     if (monitorResolution > 1) {
       $(".icon-resolution").html("&#xE9A0;");

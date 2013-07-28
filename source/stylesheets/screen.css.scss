@@ -79,6 +79,10 @@ body {
   width: 100%;
   height: 9000px;
   margin: 0 auto;
+  // contains the 'overlay bg'
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-scroll: scroll;
 }
 
 
@@ -92,6 +96,7 @@ body {
   border: none; outline: none;
   z-index: 9970;
   background: white;
+
 }
 
 // viewport refresh link

@@ -38,14 +38,24 @@ title: Easy Button
       <a data-toggle="dimensions" class="button-with-options"><i class="ss-icon icon-window-width">&#xE201;</i> <span class="data" id="window-width"></span> x <span id="window-height"></span></a>
        <ul class="button-options" id="dimensions">
          <li><label>Select A Dimension Setting</label></li>
+
          <li><a class="dimension-normal"><i class="ss-icon">&#x21BA;</i> Reset</a></li>
+
          <li><a class="dimension-resize-to-match-overlay"><i class="ss-icon">&#x1F304;</i> Match The Overlay</a></li>
-         <li><a class="dimension-option" data-dimension-option-name="iPhone 5 Portrait" data-dimension-option-width="320" data-dimension-option-height="568">iPhone 5 Portrait</a></li>
-         <li><a class="dimension-option" data-dimension-option-name="iPhone 5 Landscape" data-dimension-option-width="568" data-dimension-option-height="320">iPhone 5 Landscape</a></li>
-         <li><a class="dimension-option" data-dimension-option-name="iPad Portrait" data-dimension-option-width="768" data-dimension-option-height="1024">iPad Portrait</a></li>
-         <li><a class="dimension-option" data-dimension-option-name="iPad Landscape" data-dimension-option-width="1024" data-dimension-option-height="768">iPad Landscape</a></li>
-         <li><a class="dimension-option" data-dimension-option-name="13in. Laptop" data-dimension-option-width="1280" data-dimension-option-height="800">13in. Laptop</a></li>
-         <li><a class="dimension-option" data-dimension-option-name="Desktop" data-dimension-option-width="1400" data-dimension-option-height="1000">Desktop</a></li>
+
+         <li class="separator"></li>
+
+         <li><a class="dimension-option" data-dimension-option-name="iPhone 5 Portrait" data-dimension-option-width="320" data-dimension-option-height="568"><i class="ss-icon">&#x1F4F1;</i> iPhone 5 Portrait</a></li>
+
+         <li><a class="dimension-option" data-dimension-option-name="iPhone 5 Landscape" data-dimension-option-width="568" data-dimension-option-height="320"><i class="ss-icon icon--90deg">&#x1F4F1;</i> iPhone 5 Landscape</a></li>
+
+         <li><a class="dimension-option" data-dimension-option-name="iPad Portrait" data-dimension-option-width="768" data-dimension-option-height="946" data-dimension-chrome-height="78"><i class="ss-icon">&#xEA01;</i> iPad Portrait</a></li>
+
+         <li><a class="dimension-option" data-dimension-option-name="iPad Landscape" data-dimension-option-width="1024" data-dimension-option-height="690" data-dimension-chrome-height="78"><i class="ss-icon icon--90deg">&#xEA01;</i> iPad Landscape</a></li>
+
+         <li><a class="dimension-option" data-dimension-option-name="13in. Laptop" data-dimension-option-width="1280" data-dimension-option-height="800"><i class="ss-icon">&#xEA00;</i> 13in. Laptop</a></li>
+
+         <li><a class="dimension-option" data-dimension-option-name="Desktop" data-dimension-option-width="1400" data-dimension-option-height="1000"><i class="ss-icon">&#x1F4BB;</i> Desktop</a></li>
        </ul>
     </li>
     <!--Overlay-->
@@ -53,8 +63,10 @@ title: Easy Button
       <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
       <ul class="button-options" id="overlay">
         <li><input type="file" id="overlay-file-selector" onchange="readURL(this);"></li>
-        <li class="overlay-control"><a href="#" id="overlay-toggle-active"><i class="ss-icon">&#xE070;</i>Drag Overlay <b class="on-off-icon">&bull;</b></a></li>
+        <li class="separator"></li>
+        <!--<li class="overlay-control"><a href="#" id="overlay-toggle-active"><i class="ss-icon">&#xE070;</i>Drag Overlay <b class="on-off-icon">&bull;</b></a></li>-->
         <li class="overlay-control"><input id="overlay-file-opacity" type="range" min="0" max="100" value="0">
+        <li class="separator"></li>
       </ul>
     </li>
   </ul>
@@ -62,23 +74,9 @@ title: Easy Button
 </section>
 
 <section id="viewport">
-  </div>
   <h1 id="viewport-title">Test</h1>
   <div id="viewport-iframe-wrap">
-    <div id="overlay-grid">
-     <div class="container">
-      <div class="row">
-        <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div> <div class="span1"></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="overlay-rhythm">
-     <div class="container"></div>
-  </div>
-
     <iframe id="viewport-iframe" src="http://schramindustries.com"></iframe>
-
   </div>
 </section>
 
