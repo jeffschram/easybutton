@@ -314,7 +314,7 @@ $(document).ready(function(){
   $(document).on("click", "#overlay-toggle-active", function(event) {
     event.preventDefault();
     console.log('clicked');
-    $("#overlay-image, #overlay-toggle-active").toggleClass("active");
+    $("#overlay-image, #overlay-toggle-active, #viewport-iframe").toggleClass("active");
   });
 
 
