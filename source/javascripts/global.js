@@ -198,8 +198,8 @@ $(document).ready(function(){
     }
 
     if (settingName == "iPad Landscape") {
-      settingHeight = 1024;
-      settingWidth = 768;
+      settingHeight = 768;
+      settingWidth = 1024;
       settingTopBarHeight = 78;
       settingBottomBarHeight = 0;
     }
