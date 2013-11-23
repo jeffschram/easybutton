@@ -1,0 +1,20 @@
+/**
+
+  @well
+---------------------------------------------------------
+
+  Wells create padding and visual separation
+
+  Example:
+  <article class="well">
+    <h4>Small heading here</h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, consequatur, quis, unde, libero odit similique hic repudiandae doloremque expedita mollitia ipsum et excepturi pariatur facere optio obcaecati sit dicta dolorum.</p>
+  </article>
+
+--------------------------------------------------------- */
+
+.well {
+  padding: 2em;
+  background: rgba(0,0,0,.025);
+  border: 1px solid $color__black;
+}

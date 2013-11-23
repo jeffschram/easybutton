@@ -1,0 +1,60 @@
+/**
+
+  @modals
+---------------------------------------------------------
+
+  These are very basic modals, there's room for improvement.
+
+--------------------------------------------------------- */
+
+// main modal box
+.modal {
+  position: fixed;
+  z-index: 200; // modals live in level 2
+  top: 0; bottom: 0; left: 0; right: 0;
+  // Sample styles below, edit as you wish...
+  border: 1rem solid black;
+  background: white;
+  color: black;
+}
+
+// modal header
+.modal__header {
+  // Sample styles below, edit as you wish...
+  height: 3rem;
+  padding: 1rem;
+  p {
+    font-size: .8rem;
+    line-height: 1.2;
+  }
+}
+
+.modal__close {
+  position: absolute;
+  // Sample styles below, edit as you wish...
+  top: 1rem;
+  right: 1.4rem;
+}
+
+// modal body
+.modal__body {
+  position: absolute;
+  top: 3rem; // same as header height
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+
+
+
+
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+
+
+
+

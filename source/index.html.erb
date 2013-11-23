@@ -4,6 +4,7 @@ title: Easy Button
 
 <section id="controls">
 
+  <!-- URL inputs -->
   <ul class="input-group">
     <li>
       <form id="viewport-url-form" action="#" method="post">
@@ -17,6 +18,9 @@ title: Easy Button
       </form>
     </li>
   </ul>
+
+
+  <!-- Main UI buttons -->
   <ul class="button-group">
     <!--Resources-->
     <li>
@@ -27,11 +31,23 @@ title: Easy Button
        </ul>
     </li>
     <!--Notes-->
+    <!--
     <li>
       <a data-toggle="notes" class="button-with-options"><i class="ss-icon">&#x1F4DD;</i>Notes</a>
        <ul class="button-options" id="notes">
          <li><textarea id="note" class="edit-text">Jot down some notes.</textarea></li>
        </ul>
+    </li>
+    -->
+    <!--Overlay-->
+    <li>
+      <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
+      <ul class="button-options" id="overlay">
+        <li class="overlay-control"><a href="#" id="overlay-toggle-active"><i class="ss-icon">&#xE070;</i>Drag Overlay <b class="on-off-icon">&bull;</b></a></li>
+        <li class="overlay-control"><input id="overlay-file-opacity" type="range" min="0" max="100" value="0">
+        <li class="separator"></li>
+        <li><input type="file" id="overlay-file-selector" onchange="readURL(this);"></li>
+      </ul>
     </li>
     <!-- Dimensions -->
     <li>
@@ -57,16 +73,6 @@ title: Easy Button
 
          <li><a class="dimension-option" data-dimension-option-name="Desktop" data-dimension-option-width="1400" data-dimension-option-height="1000"><i class="ss-icon">&#x1F4BB;</i> Desktop</a></li>
        </ul>
-    </li>
-    <!--Overlay-->
-    <li>
-      <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
-      <ul class="button-options" id="overlay">
-        <li class="overlay-control"><a href="#" id="overlay-toggle-active"><i class="ss-icon">&#xE070;</i>Drag Overlay <b class="on-off-icon">&bull;</b></a></li>
-        <li class="overlay-control"><input id="overlay-file-opacity" type="range" min="0" max="100" value="0">
-        <li class="separator"></li>
-        <li><input type="file" id="overlay-file-selector" onchange="readURL(this);"></li>
-      </ul>
     </li>
   </ul>
 

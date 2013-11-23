@@ -1,0 +1,180 @@
+/**
+
+   Nav
+---------------------------------------------------------
+  _3_elements/nav.scss
+--------------------------------------------------------
+
+  The '.nav' modules
+
+  NOTE: We are reconsidering using these because sometimes
+        a nav is a row, but at different viewports, it is
+        stacked.  This is up for debate.
+
+---------------------------------------------------------  */
+
+
+
+/* @nav
+--------------------------------------------------------
+
+  The usual .nav floats everything left in a row
+
+  Example: .nav
+   <ul class=nav>
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+
+------------------------------------------------------ */
+
+.nav {
+  list-style:none;
+  margin-left:0;
+  @include clearfix();
+  > li {
+    &,
+    > a{
+        display:inline-block;
+    }
+  }
+}
+
+
+
+
+
+/* @nav--stacked
+--------------------------------------------------------
+
+  .nav--stacked extends .nav and throws the list into vertical mode, e.g.:
+
+  Example: Nav, stacked
+   <ul class="nav  nav--stacked">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+
+------------------------------------------------------ */
+
+.nav--stacked{
+
+  > li {
+    margin-left: 0;
+    display:list-item;
+
+    > a {
+        display:block;
+    }
+  }
+}
+
+
+
+
+
+/* @nav--centered
+--------------------------------------------------------
+
+  .nav--centered extends .nav and centers the list
+
+  Example: Nav, centered
+   <ul class="nav  nav--centered">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+------------------------------------------------------ */
+
+.nav--centered {
+    text-align:center;
+}
+
+
+
+
+
+/* @nav--fit
+--------------------------------------------------------
+
+  Force a nav to occupy 100% of the available width of its parent.
+
+  Example: Nav, fit
+  <ul class="nav  nav--fit">
+     <li><a href=#>Home</a></li>
+     <li><a href=#>About</a></li>
+     <li><a href=#>Portfolio</a></li>
+     <li><a href=#>Contact</a></li>
+  </ul>
+
+------------------------------------------------------ */
+
+.nav--fit{
+    display:table;
+    width:100%;
+
+    > li{
+        display:table-cell;
+
+        > a{
+            display:block;
+        }
+    }
+}
+
+
+
+
+
+/* @nav--piped
+--------------------------------------------------------
+
+  Add pipes in between nav links.
+
+  Example: Nav piped
+  <ul class="nav  nav--piped">
+     <li><a href=#>Home</a></li>
+     <li><a href=#>About</a></li>
+     <li><a href=#>Portfolio</a></li>
+     <li><a href=#>Contact</a></li>
+  </ul>
+
+------------------------------------------------------ */
+
+.nav--piped {
+  a {
+    display: inline-block;
+    padding-right: .75em;
+    margin-right: .5em;
+    position: relative;
+    &:after {
+      content: "";
+      display: block;
+      width: 1px;
+      background: white;
+      position: absolute;
+      top: 20%;
+      right: 0;
+      bottom: 30%;
+    }
+  }
+}
+
+
+
+
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+
+
+
+
+

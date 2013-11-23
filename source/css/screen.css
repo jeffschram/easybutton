@@ -1,0 +1,5769 @@
+@charset "UTF-8";
+/****
+
+  MAIN STYLESHEET for Crush & Lovely
+---------------------------------------------------------
+  screen.css.scss
+---------------------------------------------------------
+
+  CREATED by Crush & Lovely Front End Team
+  AUTHOR(S) Jeff Schram (@jeffschram)
+
+---------------------------------------------------------
+
+
+  ADDITIONAL CREDITS, INSPIRATION & SHOUT OUTS
+
+  Harry Roberts       Chris Coyier
+  (@csswizardry)      (@crishcoyier)
+  csswizardry.com     css-tricks.com
+  inuitcss.com        codepen.io
+
+  Jonathan Snook      Nicole Sullivan
+  (@snook)            (@stubbornella)
+  smaccs.com          stubbornella.org
+
+  - For some mixins, naming conventions and OOCSS concepts
+  - Check these guys out and learn from their awesomeness
+
+
+  Nicolas Gallagher
+  http://nicolasgallagher.com
+  http://necolas.github.io/normalize.css/
+
+  - For the reset
+
+
+  HTML5 Boilerplate (@h5bp)
+  html5boilerplate.com
+
+  - For the print stylesheet
+
+
+  Twitter Bootstrap (@twbootstrap)
+  twitter.github.com/bootstrap
+
+  - For some component ideas, naming conventions and javascript
+
+
+  A quite note on navigating through these files:
+  We are using @waypoints to allow you to easily search
+  for certain sections. For instance, to get to the
+  Table Of Contents (or toc) just search for "@toc"
+  and you'll jump right to it.
+
+  If you're using Sublime Text and want to quickly open
+  a partial, use cmd+p and then start typing the name of
+  the partial.
+
+---------------------------------------------------------
+
+  TABLE OF CONTENTS
+  @toc
+
+  - Dependencies
+
+  - 1 Foundations
+  - 2 Layout
+  - 2 Elements
+  - 4 Components
+  - 5 Sections
+
+  - Misc.
+
+---------------------------------------------------------  */
+/***
+
+  @dependencies
+---------------------------------------------------------
+
+  We're using Compass here for some awesome things.
+
+-----------------------------------------------------  */
+/***
+
+  @foundations
+---------------------------------------------------------
+
+  Your CSS begins with some global variables, a reset which
+  is basically Normalize, some mixins, and a print stylesheet.
+
+-----------------------------------------------------  */
+/**
+
+  @variables
+---------------------------------------------------------
+  _1_foundations/vars.scss
+--------------------------------------------------------
+
+  Global variables are defined here.  Define your colors,
+  spacing and grid settings.
+
+-----------------------------------------------------  */
+/* @colors
+--------------------------------------------------------
+
+  All color variables are defined here.
+
+  We use real color names here.  Although naming something
+  like 'brand' is in fact more generic and reusable, we've
+  found that you end up creating variables like $brand-2,
+  $brand-alt, $brand-complimentary etc.  While coding,
+  it's too easy to forget what those mean.
+
+  If the design changes drastically and the brand changes
+  from, let's say, blue to green, just do a global
+  find/replace - that's what text editors are for.
+
+------------------------------------------------------ */
+/* @breakpoints
+---------------------------------------------------------
+
+  Define global breakpoints as xs, sm, md, lg, xl
+
+--------------------------------------------------------- */
+/* @grid settings
+---------------------------------------------------------
+
+  Define the grid padding/gutter width and also the
+  breakpoint at which default grid-units stack.
+
+--------------------------------------------------------- */
+/* @drawer settings
+---------------------------------------------------------
+
+  Define the widths of the sidebar drawer
+
+--------------------------------------------------------- */
+/**
+
+  @reset
+---------------------------------------------------------
+  _1_foundations/reset.scss
+--------------------------------------------------------
+
+  This reset institutes the border-box box model and then
+  it's just normalize.css from here on out.
+
+--------------------------------------------------------- */
+/* ==========================================================================
+   Add the new box model definition & reset to no top margin on anything
+   ========================================================================== */
+/* line 22, ../css/manhattan/1_foundations/_reset.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0; }
+
+/*! normalize.css v2.1.0 | MIT License | git.io/normalize */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/*
+ * Correct `block` display not defined in IE 8/9.
+ */
+/* line 55, ../css/manhattan/1_foundations/_reset.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+/*
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+/* line 65, ../css/manhattan/1_foundations/_reset.scss */
+audio,
+canvas,
+video {
+  display: inline-block; }
+
+/*
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 74, ../css/manhattan/1_foundations/_reset.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/*
+ * Address styling not present in IE 8/9.
+ */
+/* line 83, ../css/manhattan/1_foundations/_reset.scss */
+[hidden] {
+  display: none; }
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/*
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 97, ../css/manhattan/1_foundations/_reset.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */ }
+
+/*
+ * Remove default margin.
+ */
+/* line 107, ../css/manhattan/1_foundations/_reset.scss */
+body {
+  margin: 0; }
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/*
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+/* line 119, ../css/manhattan/1_foundations/_reset.scss */
+a:focus {
+  outline: thin dotted; }
+
+/*
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 128, ../css/manhattan/1_foundations/_reset.scss */
+a:active,
+a:hover {
+  outline: 0; }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/*
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+/* Actually for Manhattan we're not going to use this
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+/*
+
+/*
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+/* line 153, ../css/manhattan/1_foundations/_reset.scss */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/*
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 162, ../css/manhattan/1_foundations/_reset.scss */
+b,
+strong {
+  font-weight: bold; }
+
+/*
+ * Address styling not present in Safari 5 and Chrome.
+ */
+/* line 170, ../css/manhattan/1_foundations/_reset.scss */
+dfn {
+  font-style: italic; }
+
+/*
+ * Address differences between Firefox and other browsers.
+ */
+/* line 178, ../css/manhattan/1_foundations/_reset.scss */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/*
+ * Address styling not present in IE 8/9.
+ */
+/* line 188, ../css/manhattan/1_foundations/_reset.scss */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/*
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+/* line 200, ../css/manhattan/1_foundations/_reset.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+/*
+ * Improve readability of pre-formatted text in all browsers.
+ */
+/* line 209, ../css/manhattan/1_foundations/_reset.scss */
+pre {
+  white-space: pre-wrap; }
+
+/*
+ * Set consistent quote types.
+ */
+/* line 217, ../css/manhattan/1_foundations/_reset.scss */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/*
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 225, ../css/manhattan/1_foundations/_reset.scss */
+small {
+  font-size: 80%; }
+
+/*
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 234, ../css/manhattan/1_foundations/_reset.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+/* line 241, ../css/manhattan/1_foundations/_reset.scss */
+sup {
+  top: -0.5em; }
+
+/* line 245, ../css/manhattan/1_foundations/_reset.scss */
+sub {
+  bottom: -0.25em; }
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/*
+ * Remove border when inside `a` element in IE 8/9.
+ */
+/* line 257, ../css/manhattan/1_foundations/_reset.scss */
+img {
+  border: 0; }
+
+/*
+ * Correct overflow displayed oddly in IE 9.
+ */
+/* line 265, ../css/manhattan/1_foundations/_reset.scss */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/*
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+/* line 277, ../css/manhattan/1_foundations/_reset.scss */
+figure {
+  margin: 0; }
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/*
+ * Define consistent border, margin, and padding.
+ */
+/* line 289, ../css/manhattan/1_foundations/_reset.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/*
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+/* line 300, ../css/manhattan/1_foundations/_reset.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/*
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 314, ../css/manhattan/1_foundations/_reset.scss */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/*
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 326, ../css/manhattan/1_foundations/_reset.scss */
+button,
+input {
+  line-height: normal; }
+
+/*
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+/* line 338, ../css/manhattan/1_foundations/_reset.scss */
+button,
+select {
+  text-transform: none; }
+
+/*
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+/* line 353, ../css/manhattan/1_foundations/_reset.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/*
+ * Re-set default cursor for disabled elements.
+ */
+/* line 363, ../css/manhattan/1_foundations/_reset.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/*
+ * 1. Address box sizing set to `content-box` in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ */
+/* line 373, ../css/manhattan/1_foundations/_reset.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/*
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 384, ../css/manhattan/1_foundations/_reset.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/*
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+/* line 397, ../css/manhattan/1_foundations/_reset.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/*
+ * Remove inner padding and border in Firefox 4+.
+ */
+/* line 406, ../css/manhattan/1_foundations/_reset.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/*
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+/* line 416, ../css/manhattan/1_foundations/_reset.scss */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */ }
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/*
+ * Remove most spacing between table cells.
+ */
+/* line 429, ../css/manhattan/1_foundations/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/**
+
+  @mixins
+--------------------------------------------------------
+  _1_foundations/mixins.scss
+--------------------------------------------------------
+
+  Here you'll find a breakpoint mixin, nice arrow helper,
+  and a font embedder
+
+-----------------------------------------------------  */
+/* @breakpoints
+-----------------------------------------------------
+
+  In _1_foundations/vars.scss, you set up your main
+  breakpoint variables.  Here, you'll use those variables
+  to create your breakpoints.
+
+  For example, let's add some styles for anything at least
+  $breakpoint__md, which is portrait tablet
+
+  @include bp-at-least($breakpoint__md){
+    your-styles: go-here;
+  }
+
+  To make this even easier, use the manhattan sublime
+  snippets.
+
+-----------------------------------------------------  */
+/* @arrow
+----------------------------------------------------------
+
+  A mixin to create an arrow relative to a parent.  Note
+  that your parent element will need to have relative,
+  absolute, or fixed position declared.
+
+  The arguments are:
+
+    Position: top / right / bottom / left
+    Background Color
+    Size
+    Border Color
+    Border Size
+
+  @include arrow( $position, $bg-color, $size, $border-color, $border-size );
+
+--------------------------------------------------------- */
+/* @font-face import
+-----------------------------------------------------------
+  Use this mixin to embed a font
+
+  $font-name is used in your css in font-family declarations
+  $font-filepath-and-name is the location of your font
+  file and the filename WITHOUT the file extension.  The
+  extensions are added here in the mixin
+
+  @include embed-font($font-name, $font-filepath-and-name);
+--------------------------------------------------------- */
+/**
+
+  @print
+--------------------------------------------------------
+  _1_foundations/print.scss
+--------------------------------------------------------
+
+  Print Stylesheet from http://h5bp.com/r
+
+-----------------------------------------------------  */
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   CREDIT: HTML5 Boilerplate
+   ========================================================================== */
+@media print {
+  /* line 22, ../css/manhattan/1_foundations/_print.scss */
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important; }
+
+  /* line 30, ../css/manhattan/1_foundations/_print.scss */
+  a,
+  a:visited {
+    text-decoration: underline; }
+
+  /* line 34, ../css/manhattan/1_foundations/_print.scss */
+  a[href]:after {
+    content: " (" attr(href) ")"; }
+
+  /* line 38, ../css/manhattan/1_foundations/_print.scss */
+  abbr[title]:after {
+    content: " (" attr(title) ")"; }
+
+  /* line 45, ../css/manhattan/1_foundations/_print.scss */
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: ""; }
+
+  /* line 50, ../css/manhattan/1_foundations/_print.scss */
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid; }
+
+  /* line 55, ../css/manhattan/1_foundations/_print.scss */
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */ }
+
+  /* line 60, ../css/manhattan/1_foundations/_print.scss */
+  tr,
+  img {
+    page-break-inside: avoid; }
+
+  /* line 64, ../css/manhattan/1_foundations/_print.scss */
+  img {
+    max-width: 100% !important; }
+
+  @page {
+    margin: 0.5cm; }
+
+  /* line 74, ../css/manhattan/1_foundations/_print.scss */
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3; }
+
+  /* line 80, ../css/manhattan/1_foundations/_print.scss */
+  h2,
+  h3 {
+    page-break-after: avoid; } }
+/***
+
+  @layout
+---------------------------------------------------------
+
+  A large portion of CSS is structural layout. You will use
+  these helpers to create the scaffolding that will support
+  the elements that make up your site.
+
+  Comment out any partial you don't need for this app.
+
+---------------------------------------------------------  */
+/**
+
+  @clearfix
+---------------------------------------------------------
+  _2_layout/clearfix.scss
+--------------------------------------------------------
+
+  Use @include clearfix(); in your CSS
+  Note: If you're using Compass, this mixin will replace the
+  Compass clearfix() mixin.
+
+--------------------------------------------------------- */
+/**
+
+  @container
+--------------------------------------------------------
+  _2_layout/container.scss
+--------------------------------------------------------
+
+  Restricts content to the site's max width
+  but allows for full color bars for sections.
+
+  Example: Container
+  <section class="awesome-section-with-background-color">
+    <div class="container">
+      <article style='width: 100%; height: 5em; background-color: #eee; border: 1px solid #ccc;'>.</article>
+    </div>
+  </section>
+
+------------------------------------------------------ */
+/* line 20, ../css/manhattan/2_layout/_container.scss */
+.container {
+  zoom: 1;
+  margin: 0 auto;
+  padding: 0 2em; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .container:before, .container:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .container:after {
+    clear: both; }
+  @media screen and (min-width: 48em) {
+    /* line 20, ../css/manhattan/2_layout/_container.scss */
+    .container {
+      margin: 0 auto;
+      max-width: 57em;
+      padding: 0 5%; } }
+  @media screen and (min-width: 64em) {
+    /* line 20, ../css/manhattan/2_layout/_container.scss */
+    .container {
+      padding: 0 3em; } }
+  @media screen and (min-width: 87.5em) {
+    /* line 20, ../css/manhattan/2_layout/_container.scss */
+    .container {
+      padding: 0 2.5%; } }
+
+/**
+
+  @widths
+---------------------------------------------------------
+  _2_layout/widths.scss
+--------------------------------------------------------
+
+  Global Width Classes like .one-third or .seven-twelfths
+
+  If you append the width class with a size indicator, the
+  size will only be applied if the viewport is at least
+  at that breakpoint size.  For instance, to apply a width
+  of 50% to a div once it is at a large size, use
+  .lg-one-half
+
+  Note: we can probably write this partial using a recursive
+  loop instead of just writing it all out like it is
+  currently.  (nice to have)
+
+---------------------------------------------------------  */
+/* @viewport-agnostic
+--------------------------------------------------------
+
+  These will be honored at every viewport
+
+------------------------------------------------------ */
+/* line 35, ../css/manhattan/2_layout/_widths.scss */
+.one-whole {
+  width: 100%; }
+
+/* line 39, ../css/manhattan/2_layout/_widths.scss */
+.one-half {
+  width: 50%; }
+
+/* line 43, ../css/manhattan/2_layout/_widths.scss */
+.one-third {
+  width: 33.333%; }
+
+/* line 44, ../css/manhattan/2_layout/_widths.scss */
+.two-thirds {
+  width: 66.666%; }
+
+/* line 48, ../css/manhattan/2_layout/_widths.scss */
+.one-fourth {
+  width: 25%; }
+
+/* line 49, ../css/manhattan/2_layout/_widths.scss */
+.two-fourths {
+  width: 50%; }
+
+/* line 50, ../css/manhattan/2_layout/_widths.scss */
+.three-fourths {
+  width: 75%; }
+
+/* line 54, ../css/manhattan/2_layout/_widths.scss */
+.one-fifth {
+  width: 20%; }
+
+/* line 55, ../css/manhattan/2_layout/_widths.scss */
+.two-fifths {
+  width: 40%; }
+
+/* line 56, ../css/manhattan/2_layout/_widths.scss */
+.three-fifths {
+  width: 60%; }
+
+/* line 57, ../css/manhattan/2_layout/_widths.scss */
+.four-fifths {
+  width: 80%; }
+
+/* line 61, ../css/manhattan/2_layout/_widths.scss */
+.one-sixth {
+  width: 16.666%; }
+
+/* line 62, ../css/manhattan/2_layout/_widths.scss */
+.two-sixths {
+  width: 33.333%; }
+
+/* line 63, ../css/manhattan/2_layout/_widths.scss */
+.three-sixths {
+  width: 50%; }
+
+/* line 64, ../css/manhattan/2_layout/_widths.scss */
+.four-sixths {
+  width: 66.666%; }
+
+/* line 65, ../css/manhattan/2_layout/_widths.scss */
+.five-sixths {
+  width: 83.333%; }
+
+/* line 69, ../css/manhattan/2_layout/_widths.scss */
+.one-eighth {
+  width: 12.5%; }
+
+/* line 70, ../css/manhattan/2_layout/_widths.scss */
+.two-eighths {
+  width: 25%; }
+
+/* line 71, ../css/manhattan/2_layout/_widths.scss */
+.three-eighths {
+  width: 37.5%; }
+
+/* line 72, ../css/manhattan/2_layout/_widths.scss */
+.four-eighths {
+  width: 50%; }
+
+/* line 73, ../css/manhattan/2_layout/_widths.scss */
+.five-eighths {
+  width: 62.5%; }
+
+/* line 74, ../css/manhattan/2_layout/_widths.scss */
+.six-eighths {
+  width: 75%; }
+
+/* line 75, ../css/manhattan/2_layout/_widths.scss */
+.seven-eighths {
+  width: 87.5%; }
+
+/* line 79, ../css/manhattan/2_layout/_widths.scss */
+.one-tenth {
+  width: 10%; }
+
+/* line 80, ../css/manhattan/2_layout/_widths.scss */
+.two-tenths {
+  width: 20%; }
+
+/* line 81, ../css/manhattan/2_layout/_widths.scss */
+.three-tenths {
+  width: 30%; }
+
+/* line 82, ../css/manhattan/2_layout/_widths.scss */
+.four-tenths {
+  width: 40%; }
+
+/* line 83, ../css/manhattan/2_layout/_widths.scss */
+.five-tenths {
+  width: 50%; }
+
+/* line 84, ../css/manhattan/2_layout/_widths.scss */
+.six-tenths {
+  width: 60%; }
+
+/* line 85, ../css/manhattan/2_layout/_widths.scss */
+.seven-tenths {
+  width: 70%; }
+
+/* line 86, ../css/manhattan/2_layout/_widths.scss */
+.eight-tenths {
+  width: 80%; }
+
+/* line 87, ../css/manhattan/2_layout/_widths.scss */
+.nine-tenths {
+  width: 90%; }
+
+/* line 91, ../css/manhattan/2_layout/_widths.scss */
+.one-twelfth {
+  width: 8.333%; }
+
+/* line 92, ../css/manhattan/2_layout/_widths.scss */
+.two-twelfths {
+  width: 16.666%; }
+
+/* line 93, ../css/manhattan/2_layout/_widths.scss */
+.three-twelfths {
+  width: 25%; }
+
+/* line 94, ../css/manhattan/2_layout/_widths.scss */
+.four-twelfths {
+  width: 33.333%; }
+
+/* line 95, ../css/manhattan/2_layout/_widths.scss */
+.five-twelfths {
+  width: 41.666%; }
+
+/* line 96, ../css/manhattan/2_layout/_widths.scss */
+.six-twelfths {
+  width: 50%; }
+
+/* line 97, ../css/manhattan/2_layout/_widths.scss */
+.seven-twelfths {
+  width: 58.333%; }
+
+/* line 98, ../css/manhattan/2_layout/_widths.scss */
+.eight-twelfths {
+  width: 66.666%; }
+
+/* line 99, ../css/manhattan/2_layout/_widths.scss */
+.nine-twelfths {
+  width: 75%; }
+
+/* line 100, ../css/manhattan/2_layout/_widths.scss */
+.ten-twelfths {
+  width: 83.333%; }
+
+/* line 101, ../css/manhattan/2_layout/_widths.scss */
+.eleven-twelfths {
+  width: 91.666%; }
+
+/* @breakpoint__sm
+--------------------------------------------------------
+
+  Sizes that are applied if viewport is at least at
+  the $breakpoint__sm size
+
+------------------------------------------------------ */
+@media screen and (min-width: 34.375em) {
+  /* line 117, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-whole {
+    width: 100%; }
+
+  /* line 121, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-half {
+    width: 50%; }
+
+  /* line 125, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-third {
+    width: 33.333%; }
+
+  /* line 126, ../css/manhattan/2_layout/_widths.scss */
+  .sm-two-thirds {
+    width: 66.666%; }
+
+  /* line 130, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-fourth {
+    width: 25%; }
+
+  /* line 131, ../css/manhattan/2_layout/_widths.scss */
+  .sm-two-fourths {
+    width: 50%; }
+
+  /* line 132, ../css/manhattan/2_layout/_widths.scss */
+  .sm-three-fourths {
+    width: 75%; }
+
+  /* line 136, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-fifth {
+    width: 20%; }
+
+  /* line 137, ../css/manhattan/2_layout/_widths.scss */
+  .sm-two-fifths {
+    width: 40%; }
+
+  /* line 138, ../css/manhattan/2_layout/_widths.scss */
+  .sm-three-fifths {
+    width: 60%; }
+
+  /* line 139, ../css/manhattan/2_layout/_widths.scss */
+  .sm-four-fifths {
+    width: 80%; }
+
+  /* line 143, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-sixth {
+    width: 16.666%; }
+
+  /* line 144, ../css/manhattan/2_layout/_widths.scss */
+  .sm-two-sixths {
+    width: 33.333%; }
+
+  /* line 145, ../css/manhattan/2_layout/_widths.scss */
+  .sm-three-sixths {
+    width: 50%; }
+
+  /* line 146, ../css/manhattan/2_layout/_widths.scss */
+  .sm-four-sixths {
+    width: 66.666%; }
+
+  /* line 147, ../css/manhattan/2_layout/_widths.scss */
+  .sm-five-sixths {
+    width: 83.333%; }
+
+  /* line 151, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-eighth {
+    width: 12.5%; }
+
+  /* line 152, ../css/manhattan/2_layout/_widths.scss */
+  .sm-two-eighths {
+    width: 25%; }
+
+  /* line 153, ../css/manhattan/2_layout/_widths.scss */
+  .sm-three-eighths {
+    width: 37.5%; }
+
+  /* line 154, ../css/manhattan/2_layout/_widths.scss */
+  .sm-four-eighths {
+    width: 50%; }
+
+  /* line 155, ../css/manhattan/2_layout/_widths.scss */
+  .sm-five-eighths {
+    width: 62.5%; }
+
+  /* line 156, ../css/manhattan/2_layout/_widths.scss */
+  .sm-six-eighths {
+    width: 75%; }
+
+  /* line 157, ../css/manhattan/2_layout/_widths.scss */
+  .sm-seven-eighths {
+    width: 87.5%; }
+
+  /* line 161, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-tenth {
+    width: 10%; }
+
+  /* line 162, ../css/manhattan/2_layout/_widths.scss */
+  .sm-two-tenths {
+    width: 20%; }
+
+  /* line 163, ../css/manhattan/2_layout/_widths.scss */
+  .sm-three-tenths {
+    width: 30%; }
+
+  /* line 164, ../css/manhattan/2_layout/_widths.scss */
+  .sm-four-tenths {
+    width: 40%; }
+
+  /* line 165, ../css/manhattan/2_layout/_widths.scss */
+  .sm-five-tenths {
+    width: 50%; }
+
+  /* line 166, ../css/manhattan/2_layout/_widths.scss */
+  .sm-six-tenths {
+    width: 60%; }
+
+  /* line 167, ../css/manhattan/2_layout/_widths.scss */
+  .sm-seven-tenths {
+    width: 70%; }
+
+  /* line 168, ../css/manhattan/2_layout/_widths.scss */
+  .sm-eight-tenths {
+    width: 80%; }
+
+  /* line 169, ../css/manhattan/2_layout/_widths.scss */
+  .sm-nine-tenths {
+    width: 90%; }
+
+  /* line 173, ../css/manhattan/2_layout/_widths.scss */
+  .sm-one-twelfth {
+    width: 8.333%; }
+
+  /* line 174, ../css/manhattan/2_layout/_widths.scss */
+  .sm-two-twelfths {
+    width: 16.666%; }
+
+  /* line 175, ../css/manhattan/2_layout/_widths.scss */
+  .sm-three-twelfths {
+    width: 25%; }
+
+  /* line 176, ../css/manhattan/2_layout/_widths.scss */
+  .sm-four-twelfths {
+    width: 33.333%; }
+
+  /* line 177, ../css/manhattan/2_layout/_widths.scss */
+  .sm-five-twelfths {
+    width: 41.666%; }
+
+  /* line 178, ../css/manhattan/2_layout/_widths.scss */
+  .sm-six-twelfths {
+    width: 50%; }
+
+  /* line 179, ../css/manhattan/2_layout/_widths.scss */
+  .sm-seven-twelfths {
+    width: 58.333%; }
+
+  /* line 180, ../css/manhattan/2_layout/_widths.scss */
+  .sm-eight-twelfths {
+    width: 66.666%; }
+
+  /* line 181, ../css/manhattan/2_layout/_widths.scss */
+  .sm-nine-twelfths {
+    width: 75%; }
+
+  /* line 182, ../css/manhattan/2_layout/_widths.scss */
+  .sm-ten-twelfths {
+    width: 83.333%; }
+
+  /* line 183, ../css/manhattan/2_layout/_widths.scss */
+  .sm-eleven-twelfths {
+    width: 91.666%; } }
+/* @breakpoint__md
+--------------------------------------------------------
+
+  Sizes that are applied if viewport is at least at
+  the $breakpoint__md size
+
+------------------------------------------------------ */
+@media screen and (min-width: 48em) {
+  /* line 200, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-whole {
+    width: 100%; }
+
+  /* line 204, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-half {
+    width: 50%; }
+
+  /* line 208, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-third {
+    width: 33.333%; }
+
+  /* line 209, ../css/manhattan/2_layout/_widths.scss */
+  .md-two-thirds {
+    width: 66.666%; }
+
+  /* line 213, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-fourth {
+    width: 25%; }
+
+  /* line 214, ../css/manhattan/2_layout/_widths.scss */
+  .md-two-fourths {
+    width: 50%; }
+
+  /* line 215, ../css/manhattan/2_layout/_widths.scss */
+  .md-three-fourths {
+    width: 75%; }
+
+  /* line 219, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-fifth {
+    width: 20%; }
+
+  /* line 220, ../css/manhattan/2_layout/_widths.scss */
+  .md-two-fifths {
+    width: 40%; }
+
+  /* line 221, ../css/manhattan/2_layout/_widths.scss */
+  .md-three-fifths {
+    width: 60%; }
+
+  /* line 222, ../css/manhattan/2_layout/_widths.scss */
+  .md-four-fifths {
+    width: 80%; }
+
+  /* line 226, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-sixth {
+    width: 16.666%; }
+
+  /* line 227, ../css/manhattan/2_layout/_widths.scss */
+  .md-two-sixths {
+    width: 33.333%; }
+
+  /* line 228, ../css/manhattan/2_layout/_widths.scss */
+  .md-three-sixths {
+    width: 50%; }
+
+  /* line 229, ../css/manhattan/2_layout/_widths.scss */
+  .md-four-sixths {
+    width: 66.666%; }
+
+  /* line 230, ../css/manhattan/2_layout/_widths.scss */
+  .md-five-sixths {
+    width: 83.333%; }
+
+  /* line 234, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-eighth {
+    width: 12.5%; }
+
+  /* line 235, ../css/manhattan/2_layout/_widths.scss */
+  .md-two-eighths {
+    width: 25%; }
+
+  /* line 236, ../css/manhattan/2_layout/_widths.scss */
+  .md-three-eighths {
+    width: 37.5%; }
+
+  /* line 237, ../css/manhattan/2_layout/_widths.scss */
+  .md-four-eighths {
+    width: 50%; }
+
+  /* line 238, ../css/manhattan/2_layout/_widths.scss */
+  .md-five-eighths {
+    width: 62.5%; }
+
+  /* line 239, ../css/manhattan/2_layout/_widths.scss */
+  .md-six-eighths {
+    width: 75%; }
+
+  /* line 240, ../css/manhattan/2_layout/_widths.scss */
+  .md-seven-eighths {
+    width: 87.5%; }
+
+  /* line 244, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-tenth {
+    width: 10%; }
+
+  /* line 245, ../css/manhattan/2_layout/_widths.scss */
+  .md-two-tenths {
+    width: 20%; }
+
+  /* line 246, ../css/manhattan/2_layout/_widths.scss */
+  .md-three-tenths {
+    width: 30%; }
+
+  /* line 247, ../css/manhattan/2_layout/_widths.scss */
+  .md-four-tenths {
+    width: 40%; }
+
+  /* line 248, ../css/manhattan/2_layout/_widths.scss */
+  .md-five-tenths {
+    width: 50%; }
+
+  /* line 249, ../css/manhattan/2_layout/_widths.scss */
+  .md-six-tenths {
+    width: 60%; }
+
+  /* line 250, ../css/manhattan/2_layout/_widths.scss */
+  .md-seven-tenths {
+    width: 70%; }
+
+  /* line 251, ../css/manhattan/2_layout/_widths.scss */
+  .md-eight-tenths {
+    width: 80%; }
+
+  /* line 252, ../css/manhattan/2_layout/_widths.scss */
+  .md-nine-tenths {
+    width: 90%; }
+
+  /* line 256, ../css/manhattan/2_layout/_widths.scss */
+  .md-one-twelfth {
+    width: 8.333%; }
+
+  /* line 257, ../css/manhattan/2_layout/_widths.scss */
+  .md-two-twelfths {
+    width: 16.666%; }
+
+  /* line 258, ../css/manhattan/2_layout/_widths.scss */
+  .md-three-twelfths {
+    width: 25%; }
+
+  /* line 259, ../css/manhattan/2_layout/_widths.scss */
+  .md-four-twelfths {
+    width: 33.333%; }
+
+  /* line 260, ../css/manhattan/2_layout/_widths.scss */
+  .md-five-twelfths {
+    width: 41.666%; }
+
+  /* line 261, ../css/manhattan/2_layout/_widths.scss */
+  .md-six-twelfths {
+    width: 50%; }
+
+  /* line 262, ../css/manhattan/2_layout/_widths.scss */
+  .md-seven-twelfths {
+    width: 58.333%; }
+
+  /* line 263, ../css/manhattan/2_layout/_widths.scss */
+  .md-eight-twelfths {
+    width: 66.666%; }
+
+  /* line 264, ../css/manhattan/2_layout/_widths.scss */
+  .md-nine-twelfths {
+    width: 75%; }
+
+  /* line 265, ../css/manhattan/2_layout/_widths.scss */
+  .md-ten-twelfths {
+    width: 83.333%; }
+
+  /* line 266, ../css/manhattan/2_layout/_widths.scss */
+  .md-eleven-twelfths {
+    width: 91.666%; } }
+/* @breakpoint__lg
+--------------------------------------------------------
+
+  Sizes that are applied if viewport is at least at
+  the $breakpoint__lg size
+
+------------------------------------------------------ */
+@media screen and (min-width: 64em) {
+  /* line 284, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-whole {
+    width: 100%; }
+
+  /* line 288, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-half {
+    width: 50%; }
+
+  /* line 292, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-third {
+    width: 33.333%; }
+
+  /* line 293, ../css/manhattan/2_layout/_widths.scss */
+  .lg-two-thirds {
+    width: 66.666%; }
+
+  /* line 297, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-fourth {
+    width: 25%; }
+
+  /* line 298, ../css/manhattan/2_layout/_widths.scss */
+  .lg-two-fourths {
+    width: 50%; }
+
+  /* line 299, ../css/manhattan/2_layout/_widths.scss */
+  .lg-three-fourths {
+    width: 75%; }
+
+  /* line 303, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-fifth {
+    width: 20%; }
+
+  /* line 304, ../css/manhattan/2_layout/_widths.scss */
+  .lg-two-fifths {
+    width: 40%; }
+
+  /* line 305, ../css/manhattan/2_layout/_widths.scss */
+  .lg-three-fifths {
+    width: 60%; }
+
+  /* line 306, ../css/manhattan/2_layout/_widths.scss */
+  .lg-four-fifths {
+    width: 80%; }
+
+  /* line 310, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-sixth {
+    width: 16.666%; }
+
+  /* line 311, ../css/manhattan/2_layout/_widths.scss */
+  .lg-two-sixths {
+    width: 33.333%; }
+
+  /* line 312, ../css/manhattan/2_layout/_widths.scss */
+  .lg-three-sixths {
+    width: 50%; }
+
+  /* line 313, ../css/manhattan/2_layout/_widths.scss */
+  .lg-four-sixths {
+    width: 66.666%; }
+
+  /* line 314, ../css/manhattan/2_layout/_widths.scss */
+  .lg-five-sixths {
+    width: 83.333%; }
+
+  /* line 318, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-eighth {
+    width: 12.5%; }
+
+  /* line 319, ../css/manhattan/2_layout/_widths.scss */
+  .lg-two-eighths {
+    width: 25%; }
+
+  /* line 320, ../css/manhattan/2_layout/_widths.scss */
+  .lg-three-eighths {
+    width: 37.5%; }
+
+  /* line 321, ../css/manhattan/2_layout/_widths.scss */
+  .lg-four-eighths {
+    width: 50%; }
+
+  /* line 322, ../css/manhattan/2_layout/_widths.scss */
+  .lg-five-eighths {
+    width: 62.5%; }
+
+  /* line 323, ../css/manhattan/2_layout/_widths.scss */
+  .lg-six-eighths {
+    width: 75%; }
+
+  /* line 324, ../css/manhattan/2_layout/_widths.scss */
+  .lg-seven-eighths {
+    width: 87.5%; }
+
+  /* line 328, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-tenth {
+    width: 10%; }
+
+  /* line 329, ../css/manhattan/2_layout/_widths.scss */
+  .lg-two-tenths {
+    width: 20%; }
+
+  /* line 330, ../css/manhattan/2_layout/_widths.scss */
+  .lg-three-tenths {
+    width: 30%; }
+
+  /* line 331, ../css/manhattan/2_layout/_widths.scss */
+  .lg-four-tenths {
+    width: 40%; }
+
+  /* line 332, ../css/manhattan/2_layout/_widths.scss */
+  .lg-five-tenths {
+    width: 50%; }
+
+  /* line 333, ../css/manhattan/2_layout/_widths.scss */
+  .lg-six-tenths {
+    width: 60%; }
+
+  /* line 334, ../css/manhattan/2_layout/_widths.scss */
+  .lg-seven-tenths {
+    width: 70%; }
+
+  /* line 335, ../css/manhattan/2_layout/_widths.scss */
+  .lg-eight-tenths {
+    width: 80%; }
+
+  /* line 336, ../css/manhattan/2_layout/_widths.scss */
+  .lg-nine-tenths {
+    width: 90%; }
+
+  /* line 340, ../css/manhattan/2_layout/_widths.scss */
+  .lg-one-twelfth {
+    width: 8.333%; }
+
+  /* line 341, ../css/manhattan/2_layout/_widths.scss */
+  .lg-two-twelfths {
+    width: 16.666%; }
+
+  /* line 342, ../css/manhattan/2_layout/_widths.scss */
+  .lg-three-twelfths {
+    width: 25%; }
+
+  /* line 343, ../css/manhattan/2_layout/_widths.scss */
+  .lg-four-twelfths {
+    width: 33.333%; }
+
+  /* line 344, ../css/manhattan/2_layout/_widths.scss */
+  .lg-five-twelfths {
+    width: 41.666%; }
+
+  /* line 345, ../css/manhattan/2_layout/_widths.scss */
+  .lg-six-twelfths {
+    width: 50%; }
+
+  /* line 346, ../css/manhattan/2_layout/_widths.scss */
+  .lg-seven-twelfths {
+    width: 58.333%; }
+
+  /* line 347, ../css/manhattan/2_layout/_widths.scss */
+  .lg-eight-twelfths {
+    width: 66.666%; }
+
+  /* line 348, ../css/manhattan/2_layout/_widths.scss */
+  .lg-nine-twelfths {
+    width: 75%; }
+
+  /* line 349, ../css/manhattan/2_layout/_widths.scss */
+  .lg-ten-twelfths {
+    width: 83.333%; }
+
+  /* line 350, ../css/manhattan/2_layout/_widths.scss */
+  .lg-eleven-twelfths {
+    width: 91.666%; } }
+/* @breakpoint__xl
+--------------------------------------------------------
+
+  Sizes that are applied if viewport is at least at
+  the $breakpoint__lg size
+
+------------------------------------------------------ */
+@media screen and (min-width: 87.5em) {
+  /* line 369, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-whole {
+    width: 100%; }
+
+  /* line 373, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-half {
+    width: 50%; }
+
+  /* line 377, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-third {
+    width: 33.333%; }
+
+  /* line 378, ../css/manhattan/2_layout/_widths.scss */
+  .xl-two-thirds {
+    width: 66.666%; }
+
+  /* line 382, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-fourth {
+    width: 25%; }
+
+  /* line 383, ../css/manhattan/2_layout/_widths.scss */
+  .xl-two-fourths {
+    width: 50%; }
+
+  /* line 384, ../css/manhattan/2_layout/_widths.scss */
+  .xl-three-fourths {
+    width: 75%; }
+
+  /* line 388, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-fifth {
+    width: 20%; }
+
+  /* line 389, ../css/manhattan/2_layout/_widths.scss */
+  .xl-two-fifths {
+    width: 40%; }
+
+  /* line 390, ../css/manhattan/2_layout/_widths.scss */
+  .xl-three-fifths {
+    width: 60%; }
+
+  /* line 391, ../css/manhattan/2_layout/_widths.scss */
+  .xl-four-fifths {
+    width: 80%; }
+
+  /* line 395, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-sixth {
+    width: 16.666%; }
+
+  /* line 396, ../css/manhattan/2_layout/_widths.scss */
+  .xl-two-sixths {
+    width: 33.333%; }
+
+  /* line 397, ../css/manhattan/2_layout/_widths.scss */
+  .xl-three-sixths {
+    width: 50%; }
+
+  /* line 398, ../css/manhattan/2_layout/_widths.scss */
+  .xl-four-sixths {
+    width: 66.666%; }
+
+  /* line 399, ../css/manhattan/2_layout/_widths.scss */
+  .xl-five-sixths {
+    width: 83.333%; }
+
+  /* line 403, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-eighth {
+    width: 12.5%; }
+
+  /* line 404, ../css/manhattan/2_layout/_widths.scss */
+  .xl-two-eighths {
+    width: 25%; }
+
+  /* line 405, ../css/manhattan/2_layout/_widths.scss */
+  .xl-three-eighths {
+    width: 37.5%; }
+
+  /* line 406, ../css/manhattan/2_layout/_widths.scss */
+  .xl-four-eighths {
+    width: 50%; }
+
+  /* line 407, ../css/manhattan/2_layout/_widths.scss */
+  .xl-five-eighths {
+    width: 62.5%; }
+
+  /* line 408, ../css/manhattan/2_layout/_widths.scss */
+  .xl-six-eighths {
+    width: 75%; }
+
+  /* line 409, ../css/manhattan/2_layout/_widths.scss */
+  .xl-seven-eighths {
+    width: 87.5%; }
+
+  /* line 413, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-tenth {
+    width: 10%; }
+
+  /* line 414, ../css/manhattan/2_layout/_widths.scss */
+  .xl-two-tenths {
+    width: 20%; }
+
+  /* line 415, ../css/manhattan/2_layout/_widths.scss */
+  .xl-three-tenths {
+    width: 30%; }
+
+  /* line 416, ../css/manhattan/2_layout/_widths.scss */
+  .xl-four-tenths {
+    width: 40%; }
+
+  /* line 417, ../css/manhattan/2_layout/_widths.scss */
+  .xl-five-tenths {
+    width: 50%; }
+
+  /* line 418, ../css/manhattan/2_layout/_widths.scss */
+  .xl-six-tenths {
+    width: 60%; }
+
+  /* line 419, ../css/manhattan/2_layout/_widths.scss */
+  .xl-seven-tenths {
+    width: 70%; }
+
+  /* line 420, ../css/manhattan/2_layout/_widths.scss */
+  .xl-eight-tenths {
+    width: 80%; }
+
+  /* line 421, ../css/manhattan/2_layout/_widths.scss */
+  .xl-nine-tenths {
+    width: 90%; }
+
+  /* line 425, ../css/manhattan/2_layout/_widths.scss */
+  .xl-one-twelfth {
+    width: 8.333%; }
+
+  /* line 426, ../css/manhattan/2_layout/_widths.scss */
+  .xl-two-twelfths {
+    width: 16.666%; }
+
+  /* line 427, ../css/manhattan/2_layout/_widths.scss */
+  .xl-three-twelfths {
+    width: 25%; }
+
+  /* line 428, ../css/manhattan/2_layout/_widths.scss */
+  .xl-four-twelfths {
+    width: 33.333%; }
+
+  /* line 429, ../css/manhattan/2_layout/_widths.scss */
+  .xl-five-twelfths {
+    width: 41.666%; }
+
+  /* line 430, ../css/manhattan/2_layout/_widths.scss */
+  .xl-six-twelfths {
+    width: 50%; }
+
+  /* line 431, ../css/manhattan/2_layout/_widths.scss */
+  .xl-seven-twelfths {
+    width: 58.333%; }
+
+  /* line 432, ../css/manhattan/2_layout/_widths.scss */
+  .xl-eight-twelfths {
+    width: 66.666%; }
+
+  /* line 433, ../css/manhattan/2_layout/_widths.scss */
+  .xl-nine-twelfths {
+    width: 75%; }
+
+  /* line 434, ../css/manhattan/2_layout/_widths.scss */
+  .xl-ten-twelfths {
+    width: 83.333%; }
+
+  /* line 435, ../css/manhattan/2_layout/_widths.scss */
+  .xl-eleven-twelfths {
+    width: 91.666%; } }
+/**
+
+  @ups
+--------------------------------------------------------
+  _2_layout/ups.scss
+--------------------------------------------------------
+
+  UPS?
+
+  Yep, ups.  These are global classes that will set
+  their direct children to a specific width.  You will
+  mainly use these in grids, and maybe with tabs or
+  navigations.
+
+  For instance: four-up will set each child to 25%
+
+  Example: Ups and grids
+  <div class="gw two-up">
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+  </div><!--/gw-->
+  <div class="gw three-up">
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+  </div><!--/gw-->
+
+  Ups work like widths in that they have responsive behavior.  If
+  you prepend an up class with a responsive prefix, like (s for small
+  or m for medium) the behaviour will only kick in at those
+  viewports.
+
+  For example, if you want your gallery to be two-up at the smallest
+  viewport, four-up at medium, six-up at large, and eight-up on the largest then use
+  this.
+
+  Example: Responsive Ups
+  <div class="gw two-up m-four-up l-six-up xl-eight-up">
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+  </div><!--/gw-->
+
+-----------------------------------------------------  */
+/* @viewport-agnostic
+--------------------------------------------------------
+
+  These will be honored at every viewport
+
+------------------------------------------------------ */
+/* line 71, ../css/manhattan/2_layout/_ups.scss */
+.two-up > * {
+  width: 50%; }
+
+/* line 76, ../css/manhattan/2_layout/_ups.scss */
+.three-up > * {
+  width: 33.333333%; }
+
+/* line 81, ../css/manhattan/2_layout/_ups.scss */
+.four-up > * {
+  width: 25%; }
+
+/* line 86, ../css/manhattan/2_layout/_ups.scss */
+.five-up > * {
+  width: 20%; }
+
+/* line 91, ../css/manhattan/2_layout/_ups.scss */
+.six-up > * {
+  width: 16.6666666%; }
+
+/* line 96, ../css/manhattan/2_layout/_ups.scss */
+.seven-up > * {
+  width: 14.285714286%; }
+
+/* line 101, ../css/manhattan/2_layout/_ups.scss */
+.eight-up > * {
+  width: 12.5%; }
+
+/* line 106, ../css/manhattan/2_layout/_ups.scss */
+.nine-up > * {
+  width: 11.111111111%; }
+
+/* line 111, ../css/manhattan/2_layout/_ups.scss */
+.ten-up {
+  width: 10%; }
+
+/* line 116, ../css/manhattan/2_layout/_ups.scss */
+.eleven-up > * {
+  width: 9.090909091%; }
+
+/* line 121, ../css/manhattan/2_layout/_ups.scss */
+.twelve-up > * {
+  width: 8.333333333%; }
+
+/* @breakpoint__sm
+--------------------------------------------------------
+
+  Up sizes that are applied if viewport is at least at
+  the $breakpoint__sm size
+
+------------------------------------------------------ */
+@media screen and (min-width: 34.375em) {
+  /* line 139, ../css/manhattan/2_layout/_ups.scss */
+  .sm-two-up > * {
+    width: 50%; }
+
+  /* line 144, ../css/manhattan/2_layout/_ups.scss */
+  .sm-three-up > * {
+    width: 33.333333%; }
+
+  /* line 149, ../css/manhattan/2_layout/_ups.scss */
+  .sm-four-up > * {
+    width: 25%; }
+
+  /* line 154, ../css/manhattan/2_layout/_ups.scss */
+  .sm-five-up > * {
+    width: 20%; }
+
+  /* line 159, ../css/manhattan/2_layout/_ups.scss */
+  .sm-six-up > * {
+    width: 16.6666666%; }
+
+  /* line 164, ../css/manhattan/2_layout/_ups.scss */
+  .sm-seven-up > * {
+    width: 14.285714286%; }
+
+  /* line 169, ../css/manhattan/2_layout/_ups.scss */
+  .sm-eight-up > * {
+    width: 12.5%; }
+
+  /* line 174, ../css/manhattan/2_layout/_ups.scss */
+  .sm-nine-up > * {
+    width: 11.111111111%; }
+
+  /* line 179, ../css/manhattan/2_layout/_ups.scss */
+  .sm-ten-up {
+    width: 10%; }
+
+  /* line 184, ../css/manhattan/2_layout/_ups.scss */
+  .sm-eleven-up > * {
+    width: 9.090909091%; }
+
+  /* line 189, ../css/manhattan/2_layout/_ups.scss */
+  .sm-twelve-up > * {
+    width: 8.333333333%; } }
+/* @breakpoint__md
+--------------------------------------------------------
+
+  Up sizes that are applied if viewport is at least at
+  the $breakpoint__md size
+
+------------------------------------------------------ */
+@media screen and (min-width: 48em) {
+  /* line 210, ../css/manhattan/2_layout/_ups.scss */
+  .md-two-up > * {
+    width: 50%; }
+
+  /* line 215, ../css/manhattan/2_layout/_ups.scss */
+  .md-three-up > * {
+    width: 33.333333%; }
+
+  /* line 220, ../css/manhattan/2_layout/_ups.scss */
+  .md-four-up > * {
+    width: 25%; }
+
+  /* line 225, ../css/manhattan/2_layout/_ups.scss */
+  .md-five-up > * {
+    width: 20%; }
+
+  /* line 230, ../css/manhattan/2_layout/_ups.scss */
+  .md-six-up > * {
+    width: 16.6666666%; }
+
+  /* line 235, ../css/manhattan/2_layout/_ups.scss */
+  .md-seven-up > * {
+    width: 14.285714286%; }
+
+  /* line 240, ../css/manhattan/2_layout/_ups.scss */
+  .md-eight-up > * {
+    width: 12.5%; }
+
+  /* line 245, ../css/manhattan/2_layout/_ups.scss */
+  .md-nine-up > * {
+    width: 11.111111111%; }
+
+  /* line 250, ../css/manhattan/2_layout/_ups.scss */
+  .md-ten-up {
+    width: 10%; }
+
+  /* line 255, ../css/manhattan/2_layout/_ups.scss */
+  .md-eleven-up > * {
+    width: 9.090909091%; }
+
+  /* line 260, ../css/manhattan/2_layout/_ups.scss */
+  .md-twelve-up > * {
+    width: 8.333333333%; } }
+/* @breakpoint__lg
+--------------------------------------------------------
+
+  Up sizes that are applied if viewport is at least at
+  the $breakpoint__lg size
+
+------------------------------------------------------ */
+@media screen and (min-width: 64em) {
+  /* line 280, ../css/manhattan/2_layout/_ups.scss */
+  .lg-two-up > * {
+    width: 50%; }
+
+  /* line 285, ../css/manhattan/2_layout/_ups.scss */
+  .lg-three-up > * {
+    width: 33.333333%; }
+
+  /* line 290, ../css/manhattan/2_layout/_ups.scss */
+  .lg-four-up > * {
+    width: 25%; }
+
+  /* line 295, ../css/manhattan/2_layout/_ups.scss */
+  .lg-five-up > * {
+    width: 20%; }
+
+  /* line 300, ../css/manhattan/2_layout/_ups.scss */
+  .lg-six-up > * {
+    width: 16.6666666%; }
+
+  /* line 305, ../css/manhattan/2_layout/_ups.scss */
+  .lg-seven-up > * {
+    width: 14.285714286%; }
+
+  /* line 310, ../css/manhattan/2_layout/_ups.scss */
+  .lg-eight-up > * {
+    width: 12.5%; }
+
+  /* line 315, ../css/manhattan/2_layout/_ups.scss */
+  .lg-nine-up > * {
+    width: 11.111111111%; }
+
+  /* line 320, ../css/manhattan/2_layout/_ups.scss */
+  .lg-ten-up {
+    width: 10%; }
+
+  /* line 325, ../css/manhattan/2_layout/_ups.scss */
+  .lg-eleven-up > * {
+    width: 9.090909091%; }
+
+  /* line 330, ../css/manhattan/2_layout/_ups.scss */
+  .lg-twelve-up > * {
+    width: 8.333333333%; } }
+/* @breakpoint__xl
+--------------------------------------------------------
+
+  Up sizes that are applied if viewport is at least at
+  the $breakpoint__xl size
+
+------------------------------------------------------ */
+@media screen and (min-width: 87.5em) {
+  /* line 351, ../css/manhattan/2_layout/_ups.scss */
+  .xl-two-up > * {
+    width: 50%; }
+
+  /* line 356, ../css/manhattan/2_layout/_ups.scss */
+  .xl-three-up > * {
+    width: 33.333333%; }
+
+  /* line 361, ../css/manhattan/2_layout/_ups.scss */
+  .xl-four-up > * {
+    width: 25%; }
+
+  /* line 366, ../css/manhattan/2_layout/_ups.scss */
+  .xl-five-up > * {
+    width: 20%; }
+
+  /* line 371, ../css/manhattan/2_layout/_ups.scss */
+  .xl-six-up > * {
+    width: 16.6666666%; }
+
+  /* line 376, ../css/manhattan/2_layout/_ups.scss */
+  .xl-seven-up > * {
+    width: 14.285714286%; }
+
+  /* line 381, ../css/manhattan/2_layout/_ups.scss */
+  .xl-eight-up > * {
+    width: 12.5%; }
+
+  /* line 386, ../css/manhattan/2_layout/_ups.scss */
+  .xl-nine-up > * {
+    width: 11.111111111%; }
+
+  /* line 391, ../css/manhattan/2_layout/_ups.scss */
+  .xl-ten-up {
+    width: 10%; }
+
+  /* line 396, ../css/manhattan/2_layout/_ups.scss */
+  .xl-eleven-up > * {
+    width: 9.090909091%; }
+
+  /* line 401, ../css/manhattan/2_layout/_ups.scss */
+  .xl-twelve-up > * {
+    width: 8.333333333%; } }
+/**
+
+  @grids
+---------------------------------------------------------
+  _2_layout/_grids.scss
+--------------------------------------------------------
+
+  Manhattan uses a simple grid system.  It starts with
+  a wrapper div that can have a classname of .grid-wrap
+  or .gw for short.  Inside of that div, you'll nest
+  your grid units.  These are divs with classname of
+  either .grid or .g for short.
+
+  For a grid wrap containing equally-sized grid units, like
+  a gallery of thumbnails for instance, use the modifier
+  classes like .gw--4-up.  If you do this, you won't need
+  to specify the widths on the grid units.
+
+  For individual sizes, combine .g/.grid
+  divs with width classes like and you're all
+  set to go.
+
+------------------------------------------------------ */
+/* @grid wrappers and grid units
+--------------------------------------------------------
+
+  Example: Grid
+  <div class="gw two-up">
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+  </div><!--/gw-->
+  <div class="gw three-up">
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+  </div><!--/gw-->
+  <div class="gw six-up">
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+  </div><!--/gw-->
+   <div class="gw twelve-up">
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g"><img src="http://fillmurray.com/500/300"></div>
+  </div><!--/gw-->
+  <div class="gw">
+    <div class="g one-fourth"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g one-half"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g one-eighth"><img src="http://fillmurray.com/500/300"></div>
+    <div class="g one-eighth"><img src="http://fillmurray.com/500/300"></div>
+  </div><!--/gw-->
+
+------------------------------------------------------ */
+/* line 77, ../css/manhattan/2_layout/_grids.scss */
+.grid-wrap,
+.gw {
+  zoom: 1;
+  list-style-type: none; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .grid-wrap:before, .grid-wrap:after,
+  .gw:before,
+  .gw:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .grid-wrap:after,
+  .gw:after {
+    clear: both; }
+  @media screen and (min-width: 34.375em) {
+    /* line 77, ../css/manhattan/2_layout/_grids.scss */
+    .grid-wrap,
+    .gw {
+      margin: 0 -1.5em; } }
+
+/* line 89, ../css/manhattan/2_layout/_grids.scss */
+.grid,
+.g {
+  zoom: 1;
+  min-height: 1rem;
+  position: relative;
+  padding: 0 0 3em; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .grid:before, .grid:after,
+  .g:before,
+  .g:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .grid:after,
+  .g:after {
+    clear: both; }
+  @media screen and (min-width: 34.375em) {
+    /* line 89, ../css/manhattan/2_layout/_grids.scss */
+    .grid,
+    .g {
+      padding: 0 1.5em 3em;
+      float: left; } }
+
+/* @table grids
+--------------------------------------------------------
+
+  Grids that behave as tables and table cells at certain
+  viewports
+
+------------------------------------------------------ */
+@media screen and (min-width: 34.375em) {
+  /* line 128, ../css/manhattan/2_layout/_grids.scss */
+  .sm-tw {
+    display: table;
+    width: 100%;
+    border-collapse: collapse; }
+
+  /* line 131, ../css/manhattan/2_layout/_grids.scss */
+  .sm-t {
+    display: table-cell;
+    float: none;
+    vertical-align: top; } }
+@media screen and (min-width: 48em) {
+  /* line 138, ../css/manhattan/2_layout/_grids.scss */
+  .md-tw {
+    display: table;
+    width: 100%;
+    border-collapse: collapse; }
+
+  /* line 141, ../css/manhattan/2_layout/_grids.scss */
+  .md-t {
+    display: table-cell;
+    float: none;
+    vertical-align: top; } }
+@media screen and (min-width: 64em) {
+  /* line 149, ../css/manhattan/2_layout/_grids.scss */
+  .lg-tw {
+    display: table;
+    width: 100%;
+    border-collapse: collapse; }
+
+  /* line 152, ../css/manhattan/2_layout/_grids.scss */
+  .lg-t {
+    display: table-cell;
+    float: none;
+    vertical-align: top; } }
+@media screen and (min-width: 87.5em) {
+  /* line 160, ../css/manhattan/2_layout/_grids.scss */
+  .xl-tw {
+    display: table;
+    width: 100%;
+    border-collapse: collapse; }
+
+  /* line 163, ../css/manhattan/2_layout/_grids.scss */
+  .xl-t {
+    display: table-cell;
+    float: none;
+    vertical-align: top; } }
+/**
+
+  @media
+--------------------------------------------------------
+  _2_layout/media.scss
+--------------------------------------------------------
+
+  The 'media' object is a common pattern in OOCSS.
+  It consists of a wrapper element with a classname of
+  .media and then two child elements, one that contains
+  an image or video that is floated, and the other
+  contains text.
+
+  This used commonly in bios, or comments where you
+  have an avatar to one site, and the comment next to it.
+
+  Source: http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+
+-----------------------------------------------------  */
+/* @media objects
+---------------------------------------------------------
+
+  Example: Media object, left
+  <article class="media">
+    <div class="media__left one-fifth">
+      <img src="http://fillmurray.com/300/300">
+    </div>
+    <div class="media__body">
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>
+  </article>
+
+  Example: Media object, right
+  <article class="media">
+    <div class="media__right one-fifth">
+      <img src="http://fillmurray.com/300/300">
+    </div>
+    <div class="media__body">
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>
+  </article>
+
+---------------------------------------------------------  */
+/* line 48, ../css/manhattan/2_layout/_media.scss */
+.media {
+  display: block;
+  zoom: 1;
+  margin-bottom: 1em; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .media:before, .media:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .media:after {
+    clear: both; }
+
+/* line 57, ../css/manhattan/2_layout/_media.scss */
+.media__left {
+  float: left;
+  margin-right: 1em; }
+
+/* line 61, ../css/manhattan/2_layout/_media.scss */
+.media__right {
+  float: right;
+  margin-left: 1em; }
+
+/* line 68, ../css/manhattan/2_layout/_media.scss */
+.media__left img,
+.media__right img {
+  display: block; }
+
+/* line 75, ../css/manhattan/2_layout/_media.scss */
+.media__body {
+  overflow: hidden; }
+
+/* line 79, ../css/manhattan/2_layout/_media.scss */
+.media__body,
+.media__body > :last-child {
+  margin-bottom: 0; }
+
+/**
+
+  @hide
+---------------------------------------------------------
+  _2_layout/hide.scss
+--------------------------------------------------------
+
+  Utility state classes to hide things in different ways
+
+  Note: there is room for improvement here.
+
+--------------------------------------------------------- */
+/* line 15, ../css/manhattan/2_layout/_hide.scss */
+.is-hidden {
+  display: none; }
+
+/* line 22, ../css/manhattan/2_layout/_hide.scss */
+.is-visually-hidden {
+  position: absolute;
+  left: -9999%;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0; }
+
+@media screen and (min-width: 20em) {
+  /* line 34, ../css/manhattan/2_layout/_hide.scss */
+  .hide__xs {
+    display: none; } }
+@media screen and (min-width: 34.375em) {
+  /* line 39, ../css/manhattan/2_layout/_hide.scss */
+  .hide__sm {
+    display: none; } }
+@media screen and (min-width: 48em) {
+  /* line 44, ../css/manhattan/2_layout/_hide.scss */
+  .hide__md {
+    display: none; } }
+@media screen and (min-width: 64em) {
+  /* line 49, ../css/manhattan/2_layout/_hide.scss */
+  .hide__lg {
+    display: none; } }
+@media screen and (min-width: 87.5em) {
+  /* line 54, ../css/manhattan/2_layout/_hide.scss */
+  .hide__xl {
+    display: none; } }
+/**
+
+  @island
+---------------------------------------------------------
+
+  Island creates large vertical padding
+
+  Example:
+  <article class="island">
+    <h4>Small heading here</h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, consequatur, quis, unde, libero odit similique hic repudiandae doloremque expedita mollitia ipsum et excepturi pariatur facere optio obcaecati sit dicta dolorum.</p>
+  </article>
+
+--------------------------------------------------------- */
+/* line 16, ../css/manhattan/2_layout/_island.scss */
+.island {
+  margin-bottom: 5%; }
+
+/***
+
+  @base
+---------------------------------------------------------
+
+  Global styling of base elements.
+
+  Feel free to edit these partials; add your own
+  styling for this app or improve on the base styling.
+
+  Comment out any partial you don't need for this app.
+
+---------------------------------------------------------  */
+/**
+
+  @fonts
+--------------------------------------------------------
+  _3_elements/fonts.scss
+--------------------------------------------------------
+
+  Define the fonts used in this app and declare variables
+  to be used in your CSS.
+
+  If you are using a webfont, see the _1_foundations/_mixins.scss
+  file for deets on the font embed mixin that is used to
+  embed webfonts.
+
+  for example, to create a font-family named "interstate-light"
+  using a font at /fonts/interstate_light-webfont.woff (and other extensions)
+
+  @include embed-font("interstate-light", "/fonts/interstate_light-webfont");
+
+-------------------------------------------------------- */
+/* @sans
+--------------------------------------------------------
+
+  Brown from LineTo
+  use $sans for this font plus mods like --bold and --italic
+
+------------------------------------------------------ */
+/*
+ * Legal Disclaimer
+ *
+ * These Fonts are licensed only for use on these domains and their subdomains:
+ * crushlovely.com
+ *
+ * It is illegal to download or use them on other websites.
+ *
+ * While the @font-face statements below may be modified by the client, this
+ * disclaimer may not be removed.
+ *
+ * Lineto.com, 2013
+ */
+@font-face {
+  font-family: 'BrownRegular';
+  src: url("/fonts/lineto-brown-regular.eot");
+  src: url("/fonts/lineto-brown-regular.eot?#iefix") format("embedded-opentype"), url("/fonts/lineto-brown-regular.woff") format("woff"), url("/fonts/lineto-brown-regular.ttf") format("truetype"), url("/fonts/lineto-brown-regular.svg#BrownRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'BrownItalic';
+  src: url("/fonts/lineto-brown-italic.eot");
+  src: url("/fonts/lineto-brown-italic.eot?#iefix") format("embedded-opentype"), url("/fonts/lineto-brown-italic.woff") format("woff"), url("/fonts/lineto-brown-italic.ttf") format("truetype"), url("/fonts/lineto-brown-italic.svg#BrownItalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'BrownBold';
+  src: url("/fonts/lineto-brown-bold.eot");
+  src: url("/fonts/lineto-brown-bold.eot?#iefix") format("embedded-opentype"), url("/fonts/lineto-brown-bold.woff") format("woff"), url("/fonts/lineto-brown-bold.ttf") format("truetype"), url("/fonts/lineto-brown-bold.svg#BrownBold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'BrownBoldItalic';
+  src: url("/fonts/lineto-brown-bolditalic.eot");
+  src: url("/fonts/lineto-brown-bolditalic.eot?#iefix") format("embedded-opentype"), url("/fonts/lineto-brown-bolditalic.woff") format("woff"), url("/fonts/lineto-brown-bolditalic.ttf") format("truetype"), url("/fonts/lineto-brown-bolditalic.svg#BrownBoldItalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'BrownLight';
+  src: url("/fonts/lineto-brown-light.eot");
+  src: url("/fonts/lineto-brown-light.eot?#iefix") format("embedded-opentype"), url("/fonts/lineto-brown-light.woff") format("woff"), url("/fonts/lineto-brown-light.ttf") format("truetype"), url("/fonts/lineto-brown-light.svg#BrownLight") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'BrownLightItalic';
+  src: url("/fonts/lineto-brown-lightitalic.eot");
+  src: url("/fonts/lineto-brown-lightitalic.eot?#iefix") format("embedded-opentype"), url("/fonts/lineto-brown-lightitalic.woff") format("woff"), url("/fonts/lineto-brown-lightitalic.ttf") format("truetype"), url("/fonts/lineto-brown-lightitalic.svg#BrownLightItalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'BrownThin';
+  src: url("/fonts/lineto-brown-thin.eot");
+  src: url("/fonts/lineto-brown-thin.eot?#iefix") format("embedded-opentype"), url("/fonts/lineto-brown-thin.woff") format("woff"), url("/fonts/lineto-brown-thin.ttf") format("truetype"), url("/fonts/lineto-brown-thin.svg#BrownThin") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'BrownThinItalic';
+  src: url("/fonts/lineto-brown-thinitalic.eot");
+  src: url("/fonts/lineto-brown-thinitalic.eot?#iefix") format("embedded-opentype"), url("/fonts/lineto-brown-thinitalic.woff") format("woff"), url("/fonts/lineto-brown-thinitalic.ttf") format("truetype"), url("/fonts/lineto-brown-thinitalic.svg#BrownThinItalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* @serif
+--------------------------------------------------------
+
+  Use $serif for this font
+
+-------------------------------------------------------- */
+/* @brand
+--------------------------------------------------------
+
+  Use $brand for this font
+
+------------------------------------------------------ */
+/**
+
+   @HTML
+--------------------------------------------------------
+
+  HTML should contain the site's default background color
+  and font-size
+
+------------------------------------------------------ */
+/* line 11, ../css/manhattan/3_base/_html.scss */
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  position: relative;
+  background: #e3e3e3; }
+
+/**
+
+  @body
+--------------------------------------------------------
+
+  Body should contain the document's default font and
+  background color for the content, if that background
+  color is different than the html.
+
+------------------------------------------------------ */
+/* line 13, ../css/manhattan/3_base/_body.scss */
+body {
+  font-family: "ff-tisa-web-pro", georgia, times;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  color: #010101; }
+  @media screen and (max-width: 33.375em) {
+    /* line 13, ../css/manhattan/3_base/_body.scss */
+    body {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: scroll;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding-top: 20%; } }
+
+/**
+
+  @headings
+--------------------------------------------------------
+  _3_elements/headings.scss
+--------------------------------------------------------
+
+  We set any base styles for any headings that have
+  no classnames.
+
+  Note: Often, we'll use bold fonts, and if a bold font
+        has font-weight: bold it looks terrible.  In
+        this case, use font-weight: normal;
+
+  Example: Headings
+  <h1>This is an h1 heading</h1>
+  <h2>This is an h2 heading</h2>
+  <h3>This is an h3 heading</h3>
+  <h4>This is an h4 heading</h4>
+  <h5>This is an h5 heading</h5>
+  <h6>This is an h6 heading</h6>
+
+------------------------------------------------------ */
+/* line 25, ../css/manhattan/3_base/_headings.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "BrownBold", georgia, sans-serif;
+  margin-bottom: .25em;
+  line-height: 1.05; }
+
+/* line 34, ../css/manhattan/3_base/_headings.scss */
+h1 {
+  font-size: 2.90625; }
+
+/* line 40, ../css/manhattan/3_base/_headings.scss */
+h2 {
+  font-size: 1.8125em; }
+
+/* line 47, ../css/manhattan/3_base/_headings.scss */
+h3 {
+  font-size: 2.5em; }
+
+/* line 54, ../css/manhattan/3_base/_headings.scss */
+h4 {
+  font-size: 2.25em; }
+
+/* line 61, ../css/manhattan/3_base/_headings.scss */
+h5 {
+  font-size: 2em; }
+
+/* line 68, ../css/manhattan/3_base/_headings.scss */
+h6 {
+  font-size: 1.75em; }
+
+/**
+
+  @text
+--------------------------------------------------------
+  _3_elements/text.scss
+--------------------------------------------------------
+
+  Some basic styles to paragraphs and
+  inline styles
+
+-----------------------------------------------------  */
+/* @paragraphs
+--------------------------------------------------------
+
+  Example: Paragraphs
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+--------------------------------------------------------  */
+/* line 26, ../css/manhattan/3_base/_text.scss */
+p {
+  margin-bottom: 1.5em;
+  font-size: 1.5em;
+  line-height: 1.5; }
+
+/* @inline
+--------------------------------------------------------
+
+  Common inline elements
+
+  Example: inline elements
+  <p>Lorem Ipsum is <b>bold</b> text of the <strong>strong</strong> printing and typesetting industry. Lorem Ipsum is <i>italic</i> simply dummy text <em>emphasized</em> of the printing and typesetting industry.</p<
+
+-------------------------------------------------------- */
+/* line 47, ../css/manhattan/3_base/_text.scss */
+b,
+strong {
+  font-weight: bold; }
+
+/* line 54, ../css/manhattan/3_base/_text.scss */
+i,
+em {
+  font-style: italic; }
+
+/* line 60, ../css/manhattan/3_base/_text.scss */
+.fancy-ampersand {
+  font-size: 1.05em;
+  text-align: middle;
+  font-family: "BrownRegular", sans-serif;
+  font-style: italic; }
+
+/**
+
+  @quotes
+--------------------------------------------------------
+  _3_elements/quotes.scss
+--------------------------------------------------------
+
+  Blockquotes and pull quotes
+
+-----------------------------------------------------  */
+/* @blockquote
+--------------------------------------------------------
+
+  Example:
+  <blockquote>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    <cite><a href="http://foo.com">The source</a></cite>
+  </blockquote>
+
+  See http://html5doctor.com/cite-and-blockquote-reloaded/?utm_content=buffercaa2e&utm_source=buffer&utm_medium=twitter&utm_campaign=Buffer for details
+
+-------------------------------------------------------- */
+/* line 29, ../css/manhattan/3_base/_quotes.scss */
+blockquote {
+  margin: .5em 0 1.5em;
+  font-size: 1.25em; }
+  /* line 33, ../css/manhattan/3_base/_quotes.scss */
+  blockquote cite {
+    display: block;
+    font-weight: bold; }
+
+/* @pullquote
+--------------------------------------------------------
+
+  Large quotes pulled from body text.
+
+  Example:
+  <p class="pullquote">This is an awesome pull quote!</p>
+
+-------------------------------------------------------- */
+/* line 55, ../css/manhattan/3_base/_quotes.scss */
+.pullquote {
+  margin: 1em 0;
+  font-size: 2em;
+  font-style: italic;
+  color: #9dcdce;
+  text-align: center; }
+  /* line 62, ../css/manhattan/3_base/_quotes.scss */
+  .pullquote p {
+    line-height: 1.1; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/**
+
+  @lists
+--------------------------------------------------------
+  _3_elements/lists.scss
+--------------------------------------------------------
+
+  ure for lists
+
+  Example: Unordered List
+  <ul>
+    <li>List item here</li>
+    <li>List item here</li>
+    <li>List item here</li>
+    <li>List item here</li>
+    <li>
+      <ul>
+        <li>Nested Item</li>
+        <li>Nested Item</li>
+        <li>Nested Item</li>
+        <li>Nested Item</li>
+      </ul>
+    </li>
+  </ul>
+
+  Example: Ordered List
+  <ol>
+    <li>List item here</li>
+    <li>List item here</li>
+    <li>List item here</li>
+    <li>List item here</li>
+    <li>
+      <ol>
+        <li>Nested Item</li>
+        <li>Nested Item</li>
+        <li>Nested Item</li>
+        <li>Nested Item</li>
+      </ul>
+    </li>
+  </ol>
+
+-------------------------------------------------------- */
+/* line 45, ../css/manhattan/3_base/_lists.scss */
+ul,
+ol {
+  padding-left: 0;
+  margin-left: 0;
+  list-style-type: none; }
+
+/* @definition lists
+--------------------------------------------------------
+
+  Example: Definition lists
+  <dl>
+    <dt>The Term</dt><dd>The definition of that term right here</dd>
+    <dt>The Term</dt><dd>The definition of that term right here</dd>
+    <dt>The Term</dt><dd>The definition of that term right here</dd>
+    <dt>The Term</dt><dd>The definition of that term right here</dd>
+  </dl>
+
+--------------------------------------------------------  */
+/* line 68, ../css/manhattan/3_base/_lists.scss */
+dl {
+  margin-bottom: 1rem;
+  font-size: 1.75em; }
+  @media screen and (min-width: 64em) {
+    /* line 68, ../css/manhattan/3_base/_lists.scss */
+    dl {
+      font-size: 2em; } }
+
+/* @hr
+--------------------------------------------------------
+  _3_elements/hr.scss
+--------------------------------------------------------
+
+  Horizontal Rule
+
+  Example:
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+  <hr>
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+-------------------------------------------------------- */
+/* line 16, ../css/manhattan/3_base/_hr.scss */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/* @links
+--------------------------------------------------------
+  _3_elements/links.scss
+--------------------------------------------------------
+
+  Links, <a> etc.
+  & Webkit tap highlight
+
+  Example: link
+  <p>Lorem Ipsum is simply <a href="#">dummy text</a> of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+-------------------------------------------------------- */
+/* @anchors
+--------------------------------------------------------
+
+  Anchors will have this base styling
+
+------------------------------------------------------ */
+/* line 26, ../css/manhattan/3_base/_links.scss */
+a {
+  text-decoration: none;
+  color: inherit;
+  -webkit-transition: color 0.25s, opacity 0.25s, border 0.25s;
+  -moz-transition: color 0.25s, opacity 0.25s, border 0.25s;
+  -o-transition: color 0.25s, opacity 0.25s, border 0.25s;
+  transition: color 0.25s, opacity 0.25s, border 0.25s; }
+  /* line 32, ../css/manhattan/3_base/_links.scss */
+  a:hover {
+    text-decoration: none;
+    opacity: .85; }
+
+/* @webkit-tap-highlight
+--------------------------------------------------------
+
+  Declare the webkit tap highlight style
+
+------------------------------------------------------ */
+/* line 49, ../css/manhattan/3_base/_links.scss */
+body {
+  -webkit-tap-highlight-color: rba(0, 0, 0, 0.35); }
+
+/**
+
+  @images
+---------------------------------------------------------
+  _3_elements/images.scss
+--------------------------------------------------------
+
+  Base styling for images, plus some helpful utility
+  classes that modify images.
+
+  Note: You won't add any styling to these image classes,
+        these are just utility classes
+
+--------------------------------------------------------- */
+/* @images
+--------------------------------------------------------
+
+  Base Image Style is 100% width by default
+
+  Example: Image
+  <img src="http://fillmurray.com/600/300">
+
+------------------------------------------------------ */
+/* line 30, ../css/manhattan/3_base/_images.scss */
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle; }
+
+/* @img--natural
+--------------------------------------------------------
+
+  Natural Images are 100% max-width, but their natural width by default
+
+  Example: Image, Natural Width
+  <img class="img--natural" src="http://fillmurray.com/600/300">
+
+------------------------------------------------------ */
+/* line 51, ../css/manhattan/3_base/_images.scss */
+.img--natural {
+  width: auto; }
+
+/* @img--title
+--------------------------------------------------------
+
+  Title images fit within a heading/title element
+
+  Example: Image inside a title (.img--title)
+  <h1><img class="img--title" src="http://fillmurray.com/300/300"> Title Here versions of Lorem Ipsum.</h1>
+  <h2><img class="img--title" src="http://fillmurray.com/300/300"> Title Here versions of Lorem Ipsum.</h2>
+  <h3><img class="img--title" src="http://fillmurray.com/300/300"> Title Here versions of Lorem Ipsum.</h3>
+
+------------------------------------------------------ */
+/* line 71, ../css/manhattan/3_base/_images.scss */
+.img--title {
+  height: 1em;
+  width: auto;
+  vertical-align: top; }
+
+/* @img--placement
+--------------------------------------------------------
+
+  Here are a few helper classes to position images, particularly
+  helpful inside paragraphs.
+
+  Example: Image Right
+  <p><img class="img--right" src="http://fillmurray.com/400/300"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+  Example: Image, Natural Width
+  <p><img class="img--left" src="http://fillmurray.com/400/300"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+  Example: Image, Center
+  <p><img class="img--center" src="http://fillmurray.com/400/300"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+------------------------------------------------------ */
+/* line 98, ../css/manhattan/3_base/_images.scss */
+.img--right {
+  width: auto;
+  float: right;
+  margin-bottom: 1em;
+  margin-left: 1em; }
+
+/* line 105, ../css/manhattan/3_base/_images.scss */
+.img--left {
+  width: auto;
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 1em; }
+
+/* line 112, ../css/manhattan/3_base/_images.scss */
+.img--center {
+  width: auto;
+  display: block;
+  margin-right: auto;
+  margin-bottom: 1em;
+  margin-left: auto; }
+
+/* line 125, ../css/manhattan/3_base/_images.scss */
+.img--right img,
+.img--left img,
+.img--center img {
+  width: auto; }
+
+/* @img--circle
+--------------------------------------------------------
+
+  Popular circle image for bios etc.
+
+  Example: Circle image
+  <img class="img--circle" src="http://fillmurray.com/400/400">
+
+------------------------------------------------------ */
+/* line 144, ../css/manhattan/3_base/_images.scss */
+.img--circle {
+  border-radius: 50%; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/**
+
+  @tables
+---------------------------------------------------------
+  _3_elements/tables.scss
+--------------------------------------------------------
+
+  Base styling for tables
+
+--------------------------------------------------------- */
+/* @table
+--------------------------------------------------------
+  Base table styling
+
+  Example: Table
+  <table>
+    <thead>
+      <tr>
+        <th>Heading</th>
+        <th>Heading</th>
+        <th>Heading</th>
+        <th>Heading</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+      </tr>
+      <tr>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+      </tr>
+      <tr>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+      </tr>
+      <tr>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+      </tr>
+    </tbody>
+  </table>
+
+------------------------------------------------------ */
+/* line 58, ../css/manhattan/3_base/_tables.scss */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none; }
+
+/* @table--striped
+--------------------------------------------------------
+  Striped tables
+
+  Example: Table, striped
+  <table class="table--striped">
+    <thead>
+      <tr>
+        <th>Heading</th>
+        <th>Heading</th>
+        <th>Heading</th>
+        <th>Heading</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+      </tr>
+      <tr>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+      </tr>
+      <tr>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+      </tr>
+      <tr>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+      </tr>
+    </tbody>
+  </table>
+
+------------------------------------------------------ */
+/* line 123, ../css/manhattan/3_base/_tables.scss */
+.table--striped tbody tr:nth-of-type(odd) {
+  background-color: #eee; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/**
+
+  @forms
+---------------------------------------------------------
+  _3_elements/forms.scss
+--------------------------------------------------------
+
+  Base styles for all forms and form related elements
+
+  Below you'll set styles for all forms, and if you have
+  any specific kinds of forms, like a search form that you
+  create a classname of form--search, put that at the
+  bottom of this partial.
+
+  This scss partial is pretty big.  Here's how it is
+  organized.
+
+  * Base styling on form elements
+
+  * Styles for form & form modules
+
+
+--------------------------------------------------------- */
+/* @text inputs
+--------------------------------------------------------
+
+  Base styles for inputs
+
+  Example: Text Input
+  <input type="text" name="schramburger" placeholder="Your Name">
+
+  Inputs can use sizing classes, .input--s .input--l
+
+  Example: Text Small Input
+  <input class="input--s" type="text" name="schramburger" placeholder="Your Name">
+
+  Example: Text Input
+  <input class="input--l" type="text" name="schramburger" placeholder="Your Name">
+
+------------------------------------------------------ */
+/* line 58, ../css/manhattan/3_base/_forms.scss */
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=number],
+input[type=datetime],
+input[type=date],
+input[type=tel],
+input[type=month],
+input[type=week],
+input[type=search] {
+  width: 100%;
+  padding: .5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem; }
+  /* line 64, ../css/manhattan/3_base/_forms.scss */
+  input[type=text]:focus,
+  input[type=password]:focus,
+  input[type=email]:focus,
+  input[type=url]:focus,
+  input[type=number]:focus,
+  input[type=datetime]:focus,
+  input[type=date]:focus,
+  input[type=tel]:focus,
+  input[type=month]:focus,
+  input[type=week]:focus,
+  input[type=search]:focus {
+    outline: none; }
+  /* line 68, ../css/manhattan/3_base/_forms.scss */
+  input[type=text].input--s,
+  input[type=password].input--s,
+  input[type=email].input--s,
+  input[type=url].input--s,
+  input[type=number].input--s,
+  input[type=datetime].input--s,
+  input[type=date].input--s,
+  input[type=tel].input--s,
+  input[type=month].input--s,
+  input[type=week].input--s,
+  input[type=search].input--s {
+    font-size: .5rem; }
+  /* line 72, ../css/manhattan/3_base/_forms.scss */
+  input[type=text].input--l,
+  input[type=password].input--l,
+  input[type=email].input--l,
+  input[type=url].input--l,
+  input[type=number].input--l,
+  input[type=datetime].input--l,
+  input[type=date].input--l,
+  input[type=tel].input--l,
+  input[type=month].input--l,
+  input[type=week].input--l,
+  input[type=search].input--l {
+    font-size: 1.5rem; }
+
+/* line 83, ../css/manhattan/3_base/_forms.scss */
+input::-webkit-input-placeholder {
+  color: #b2b2b2; }
+/* line 86, ../css/manhattan/3_base/_forms.scss */
+input:-moz-placeholder {
+  color: #b2b2b2; }
+/* line 89, ../css/manhattan/3_base/_forms.scss */
+input::-moz-placeholder {
+  color: #b2b2b2; }
+/* line 92, ../css/manhattan/3_base/_forms.scss */
+input:-ms-input-placeholder {
+  color: #b2b2b2; }
+
+/* line 98, ../css/manhattan/3_base/_forms.scss */
+input:focus::-webkit-input-placeholder {
+  opacity: .3; }
+/* line 101, ../css/manhattan/3_base/_forms.scss */
+input:focus:-moz-placeholder {
+  opacity: .3; }
+/* line 104, ../css/manhattan/3_base/_forms.scss */
+input:focus::-moz-placeholder {
+  opacity: .3; }
+/* line 107, ../css/manhattan/3_base/_forms.scss */
+input:focus:-ms-input-placeholder {
+  opacity: .3; }
+
+/* @select inputs
+--------------------------------------------------------
+
+  Base styling for all selects
+
+  Example: Select Input
+  <select name="schramburger">
+    <option value="value-1">Option 1</option>
+    <option value="value-2">Option 2</option>
+    <option value="value-3">Option 3</option>
+    <option value="value-4">Option 4</option>
+  </select>
+
+  Selects can have added sizing classes, .select--s and .select--l
+
+  Example: Small select
+  <select name="schramburger" class="select--s">
+    <option value="value-1">Option 1</option>
+    <option value="value-2">Option 2</option>
+    <option value="value-3">Option 3</option>
+    <option value="value-4">Option 4</option>
+  </select>
+
+  Example: Large select
+  <select name="schramburger" class="select--l">
+    <option value="value-1">Option 1</option>
+    <option value="value-2">Option 2</option>
+    <option value="value-3">Option 3</option>
+    <option value="value-4">Option 4</option>
+  </select>
+
+------------------------------------------------------ */
+/* line 148, ../css/manhattan/3_base/_forms.scss */
+select {
+  width: 100%;
+  font-size: 1rem; }
+  /* line 151, ../css/manhattan/3_base/_forms.scss */
+  select.select--s {
+    font-size: .5rem; }
+  /* line 154, ../css/manhattan/3_base/_forms.scss */
+  select.select--l {
+    font-size: 1.5rem; }
+
+/* @textareas
+--------------------------------------------------------
+
+  Base styling for textareas
+
+  Textareas can have .textarea--s or .textarea--l classes
+  for different sizes
+
+  Example: Textarea
+  <textarea name="schramburger">Hello, there.</textarea>
+
+  Example: Small Textarea
+  <textarea class="textarea--s" name="schramburger">Hello, there.</textarea>
+
+  Example: Large Textarea
+  <textarea class="textarea--l" name="schramburger">Hello, there.</textarea>
+
+------------------------------------------------------ */
+/* line 182, ../css/manhattan/3_base/_forms.scss */
+textarea {
+  width: 100%;
+  min-height: 6em;
+  padding: .5rem;
+  border: 1px solid #ccc; }
+  /* line 187, ../css/manhattan/3_base/_forms.scss */
+  textarea.textarea--s {
+    font-size: .5rem; }
+  /* line 190, ../css/manhattan/3_base/_forms.scss */
+  textarea.textarea--l {
+    font-size: 1.5rem; }
+
+/* @radio inputs
+--------------------------------------------------------
+
+  Base styling for radio inputs.  Radios are surrounded
+  by a label for better click targets.
+
+  Example: Radio
+  <label class="label--radio" for="radio-1"><input id="radio-1" type="radio" value="yes"> Radio label</label>
+
+  Example: Radio with super-long label
+  <label class="label--radio" for="radio-3"><input id="radio-3" type="radio" value="yes"> Radio label Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, accusantium ipsum animi perspiciatis officiis iure voluptatibus corporis. Enim, officia, tempora vitae libero dolore sint voluptatum. Blanditiis odit laudantium minus repellat</label>
+
+
+------------------------------------------------------ */
+/* line 214, ../css/manhattan/3_base/_forms.scss */
+input[type=radio] {
+  -webkit-appearance: none;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 1px solid #444;
+  background: transparent; }
+  /* line 221, ../css/manhattan/3_base/_forms.scss */
+  input[type=radio]:checked {
+    background: #222; }
+
+/* line 227, ../css/manhattan/3_base/_forms.scss */
+.label--radio {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 1.25em; }
+  /* line 232, ../css/manhattan/3_base/_forms.scss */
+  .label--radio input {
+    position: absolute;
+    top: .2em;
+    left: 0; }
+
+/* @checkbox inputs
+--------------------------------------------------------
+
+  Base styling for checkbox inputs.  Checkboxes are surrounded
+  by a label for better click targets.
+
+  Example: Checkbox
+  <label class="label--checkbox" for="checkbox-1"><input id="checkbox-1" type="checkbox" value="yes"> Checkbox label</label>
+
+  Example: Checkbox with super-long label
+  <label class="label--checkbox" for="checkbox-3"><input id="checkbox-3" type="checkbox" value="yes"> Checkbox label Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, accusantium ipsum animi perspiciatis officiis iure voluptatibus corporis. Enim, officia, tempora vitae libero dolore sint voluptatum. Blanditiis odit laudantium minus repellat</label>
+
+
+------------------------------------------------------ */
+/* line 258, ../css/manhattan/3_base/_forms.scss */
+input[type=checkbox] {
+  -webkit-appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #444;
+  background: transparent; }
+  /* line 264, ../css/manhattan/3_base/_forms.scss */
+  input[type=checkbox]:checked {
+    background: #222; }
+
+/* line 269, ../css/manhattan/3_base/_forms.scss */
+.label--checkbox {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 1.25em; }
+  /* line 274, ../css/manhattan/3_base/_forms.scss */
+  .label--checkbox input {
+    position: absolute;
+    top: .2em;
+    left: 0; }
+
+/* @textareas
+--------------------------------------------------------
+
+  Base styling for textareas
+
+  Example: Textarea
+  <textarea name="schramburger">Hello, there.</textarea>
+
+------------------------------------------------------ */
+/* line 295, ../css/manhattan/3_base/_forms.scss */
+textarea {
+  width: 100%;
+  min-height: 6em; }
+
+/* @labels
+--------------------------------------------------------
+
+  Base styling for labels
+
+  Example: label
+  <label>Don't label me, I'm a free spirit</labe>
+
+------------------------------------------------------ */
+/* line 314, ../css/manhattan/3_base/_forms.scss */
+label {
+  font-size: 1em;
+  font-weight: bold; }
+
+/* @form
+--------------------------------------------------------
+
+  Like the bootstrap convention, apply standard styling
+  on any form with the classname .form
+
+  This allows us to create modifier classnames like
+  .form--inline and .form--horizontal, which will be
+  laid out further below.
+
+------------------------------------------------------ */
+/* line 335, ../css/manhattan/3_base/_forms.scss */
+.form {
+  width: 100%;
+  padding: 0 1em;
+  border: 1px solid #ccc;
+  background: #fafafa; }
+
+/* @form-header
+--------------------------------------------------------
+
+  A form header usually consists of a title and some
+  copy.
+
+  Example: Form header
+  <header class="form__header">
+    <h2>Contact Us</h2>
+    <p>Use this form to contact us.  We love talking to
+    our customers.</p>
+  </header>
+
+-------------------------------------------------------- */
+/* line 360, ../css/manhattan/3_base/_forms.scss */
+.form__header {
+  padding: 1em;
+  margin: 0 0 1em 0;
+  background: #eee;
+  border-bottom: 1px solid #ccc; }
+
+/* @fieldsets
+--------------------------------------------------------
+
+  Fieldsets group together related fields.
+
+  Example: Fieldset
+  <fieldset>
+    <legend>Personal Information</legend>
+    <article class="field">
+      <label class="field__label" for="exampleInput1">Your Name</label>
+      <input class="field__input="exampleInput1" type="text" required="required" placeholder="Your name">
+      <span class="field__feedback"></span>
+      <span class="field__hint"></span>
+    </article>
+    <article class="field">
+      <label class="field__label" for="exampleInput2">Your Email</label>
+      <input class="field__input="exampleInput2" type="email" required="required" placeholder="Your email">
+      <span class="field__feedback"></span>
+      <span class="field__hint">Must be a valid email address</span>
+    </article>
+  </fieldset>
+
+  Fieldsets are also nested inside other fieldsets.
+
+  Example: Nested Fieldsets
+  <fieldset>
+    <legend>Personal Information</legend>
+    <article class="field">
+      <label class="field__label" for="exampleInput31">Your Name</label>
+      <input class="field__input="exampleInput31" type="text" required="required" placeholder="Your name">
+      <span class="field__feedback"></span>
+      <span class="field__hint"></span>
+    </article>
+    <article class="field">
+      <label class="field__label" for="exampleInput32">Your Email</label>
+      <input class="field__input="exampleInput32" type="email" required="required" placeholder="Your email">
+      <span class="field__feedback"></span>
+      <span class="field__hint">Must be a valid email address</span>
+    </article>
+    <fieldset>
+      <legend>Address</legend>
+        <article class="field">
+          <label class="field__label" for="exampleInput33">Address 1</label>
+          <input class="field__input="exampleInput33" type="text" required="required" placeholder="Address 1">
+          <span class="field__feedback"></span>
+          <span class="field__hint">Must be a valid email address</span>
+        </article>
+        <article class="field">
+          <label class="field__label" for="exampleInput34">Address 2</label>
+          <input class="field__input="exampleInput34" type="text" required="required" placeholder="Address 2">
+          <span class="field__feedback"></span>
+          <span class="field__hint">Must be a valid email address</span>
+        </article>
+    </fieldset>
+  </fieldset>
+
+-------------------------------------------------------- */
+/* line 429, ../css/manhattan/3_base/_forms.scss */
+fieldset {
+  margin: 0 0 2rem;
+  padding: 0 0 1rem;
+  border: none; }
+  /* line 433, ../css/manhattan/3_base/_forms.scss */
+  fieldset fieldset {
+    margin-top: 2rem; }
+  /* line 436, ../css/manhattan/3_base/_forms.scss */
+  fieldset legend {
+    display: block;
+    margin: 0 0 .5rem 0;
+    color: #888;
+    font-size: .85em; }
+
+/* @fields
+--------------------------------------------------------
+
+  A field is an article that contains the input and anything
+  related to the input.
+
+  Example: Field for a text input
+  <article class="field">
+    <label class="field__label" for="exampleInput1">Your Name</label>
+    <input class="field__input="exampleInput1" type="text" required="required" placeholder="Your name">
+    <span class="field__feedback"></span>
+    <span class="field__hint"></span>
+  </article>
+
+  Example: Field with hint
+  <article class="field">
+    <label class="field__label" for="exampleInput2">Your Email</label>
+    <input class="field__input="exampleInput2" type="email" required="required" placeholder="Your email">
+    <span class="field__feedback"></span>
+    <span class="field__hint">Must be a valid email address</span>
+  </article>
+
+  Example: Field with Error
+  <article class="field is-error">
+    <label class="field__label" for="exampleInput3">Your Email</label>
+    <input class="field__input="exampleInput3" type="email" required="required" placeholder="Your email">
+    <span class="field__feedback">Sorry, that email is in use.</span>
+    <span class="field__hint"></span>
+  </article>
+
+  Example: Field for a select input
+  <article class="field">
+    <label class="field__label" for="exampleInput4" >Select your favorite</label>
+    <select class="field__input input--select" id="exampleInput4"  name="favorite-food">
+      <option>Pizza</option>
+      <option>Tacos</option>
+      <option>Burgers</option>
+    </select>
+    <span class="field__feedback"></span>
+    <span class="field__hint"></span>
+  </article>
+
+  Example: Field for a textarea input
+  <article class="field">
+    <label class="field__label">Your Name</label>
+    <textarea class="field__input">Hello, there</textarea>
+    <span class="field__feedback"></span>
+    <span class="field__hint"></span>
+  </article>
+
+-------------------------------------------------------- */
+/* line 498, ../css/manhattan/3_base/_forms.scss */
+.field {
+  position: relative;
+  margin-bottom: 1rem; }
+
+/* line 505, ../css/manhattan/3_base/_forms.scss */
+.field__label {
+  display: block; }
+
+/* line 510, ../css/manhattan/3_base/_forms.scss */
+.field__hint {
+  color: #888;
+  font-size: .75em;
+  padding: .25em 0;
+  font-style: italic; }
+
+/* line 518, ../css/manhattan/3_base/_forms.scss */
+.field__feedback {
+  display: none;
+  font-size: .75em;
+  padding: .25em .75em;
+  background: rgba(218, 35, 0, 0.3);
+  color: white; }
+
+/* line 529, ../css/manhattan/3_base/_forms.scss */
+.field.is-error .field__feedback {
+  display: block; }
+/* line 532, ../css/manhattan/3_base/_forms.scss */
+.field.is-error input {
+  border: 1px solid rgba(218, 35, 0, 0.3); }
+
+/* @input group
+--------------------------------------------------------
+
+  Group containing multiple inputs, helpful for lists
+  of radios or checkboxes.  Shown below in a field...
+
+  Example: Field with input group of radios
+  <article class="field">
+    <label class="field__label">Choose your favorite</label>
+    <div class="field__input-group">
+      <label class="label--radio" for="favorite-food-1"><input id="favorite-food-1" name="favorite-food" type="radio" value="pizza"> Pizza</label>
+      <label class="label--radio" for="favorite-food-2"><input id="favorite-food-2" name="favorite-food" type="radio" value="tacos"> Tacos</label>
+      <label class="label--radio" for="favorite-food-3"><input id="favorite-food-3" name="favorite-food" type="radio" value="burgers"> Burgers</label>
+    </div>
+    <span class="field__feedback"></span>
+    <span class="field__hint"></span>
+  </article>
+
+  Example: Field with input group of checkboxes
+  <article class="field">
+    <label class="field__label">Select your favorites</label>
+    <div class="field__input-group">
+      <label class="label--checkbox" for="favorite-food-4"><input id="favorite-food-4" name="favorite-food-alt" type="checkbox" value="pizza"> Pizza</label>
+      <label class="label--checkbox" for="favorite-food-5"><input id="favorite-food-5" name="favorite-food-alt" type="checkbox" value="tacos"> Tacos</label>
+      <label class="label--checkbox" for="favorite-food-6"><input id="favorite-food-6" name="favorite-food-alt" type="checkbox" value="burgers"> Burgers</label>
+    </div>
+    <span class="field__feedback"></span>
+    <span class="field__hint"></span>
+  </article>
+
+  Example: Field with input group list modifier
+  <article class="field">
+    <label class="field__label">Select your favorites</label>
+    <div class="field__input-group--list">
+      <label class="label--checkbox" for="favorite-food-7"><input id="favorite-food-7" name="favorite-food-alt2" type="checkbox" value="pizza"> Pizza</label>
+      <label class="label--checkbox" for="favorite-food-8"><input id="favorite-food-8" name="favorite-food-alt2" type="checkbox" value="tacos"> Tacos</label>
+      <label class="label--checkbox" for="favorite-food-9"><input id="favorite-food-9" name="favorite-food-alt2" type="checkbox" value="burgers"> Burgers</label>
+    </div>
+    <span class="field__feedback"></span>
+    <span class="field__hint"></span>
+  </article>
+
+------------------------------------------------------ */
+/* line 586, ../css/manhattan/3_base/_forms.scss */
+.field__input-group {
+  display: block; }
+  /* line 588, ../css/manhattan/3_base/_forms.scss */
+  .field__input-group > * {
+    display: inline-block;
+    margin-right: .5em; }
+    /* line 591, ../css/manhattan/3_base/_forms.scss */
+    .field__input-group > *:last-child {
+      margin-right: 0; }
+
+/* line 598, ../css/manhattan/3_base/_forms.scss */
+.field__input-group--list {
+  display: block; }
+  /* line 600, ../css/manhattan/3_base/_forms.scss */
+  .field__input-group--list > * {
+    display: block;
+    margin: .5em 0; }
+    /* line 603, ../css/manhattan/3_base/_forms.scss */
+    .field__input-group--list > *:last-child {
+      margin-bottom: 0; }
+
+/* @form action
+--------------------------------------------------------
+
+  Each form has an actions footer at the bottom to
+  submit the form
+
+  Example: Form Actions Footer
+  <footer class="form__actions">
+  <article class="field two-fiths">
+    <label class="field__label is-visually-hidden" for="exampleInput7" >Submit</label>
+    <input class="field__input btn btn--block" type="submit" id="exampleInput7" value="Submit">
+    <span  class="field__feedback"></span>
+    <span  class="field__hint"></span>
+  </article>
+  </footer>
+
+--------------------------------------------------------- */
+/* line 633, ../css/manhattan/3_base/_forms.scss */
+.form__actions {
+  padding: 1em;
+  margin: 1em 0 0 0;
+  background: #eee;
+  border-top: 1px solid #ccc; }
+
+/* @inline forms using grids
+--------------------------------------------------------
+
+  Combine forms and grids to create an inline layout
+
+  Example: Inline Form
+  <form class="form">
+    <div class="gw">
+      <div class="g s-two-fifths">
+        <article class="field">
+          <label class="field__label is-visually-hidden" for="exampleInput8" >Email</label>
+          <input class="field__input" type="email" id="exampleInput8" placeholder="Your email">
+          <span  class="field__feedback"></span>
+          <span  class="field__hint"></span>
+        </article>
+      </div>
+      <div class="g s-two-fifths">
+        <article class="field">
+          <label class="field__label is-visually-hidden" for="exampleInput9" >Name</label>
+          <input class="field__input" type="email" id="exampleInput9" placeholder="Your name">
+          <span  class="field__feedback"></span>
+          <span  class="field__hint"></span>
+        </article>
+      </div>
+      <div class="g s-one-fifth">
+        <article class="field">
+          <input class="field__input btn" type="submit" value="submit">
+        </article>
+      </div>
+    </div>
+  </form>
+
+--------------------------------------------------------- */
+/* @horizontal forms using grids
+--------------------------------------------------------
+
+  Combine forms and grids to create a horizontal layout
+  Note: you'll move the .field__label outside of the .field article for this
+
+  Example: Inline Form
+  <form class="form">
+    <article class="field">
+      <div class="gw">
+        <div class="g s-one-half m-one-fifth">
+          <label class="field__label" for="exampleInput10" >Email</label>
+        </div>
+        <div class="g s-one-half m-four-fifths">
+          <input class="field__input" type="email" id="exampleInput10" placeholder="Your email">
+          <span  class="field__feedback"></span>
+          <span  class="field__hint"></span>
+        </div>
+      </div>
+    </article>
+    <article class="field">
+      <div class="gw">
+        <div class="g s-one-half m-one-fifth">
+          <label class="field__label" for="exampleInput11" >Name</label>
+        </div>
+        <div class="g s-one-half m-four-fifths">
+          <input class="field__input" type="text" id="exampleInput11" placeholder="Your name">
+          <span  class="field__feedback"></span>
+          <span  class="field__hint"></span>
+        </div>
+      </div>
+    </article>
+    <article class="field">
+      <div class="gw">
+        <div class="g s-one-half m-one-fifth">
+          <label class="field__label">Select your favorites</label>
+        </div>
+        <div class="g s-one-half m-four-fifths">
+          <div class="field__input-group--list">
+            <label class="label--checkbox" for="favorite-food-17"><input id="favorite-food-17" name="favorite-food-alt2" type="checkbox" value="pizza"> Pizza</label>
+            <label class="label--checkbox" for="favorite-food-18"><input id="favorite-food-18" name="favorite-food-alt2" type="checkbox" value="tacos"> Tacos</label>
+            <label class="label--checkbox" for="favorite-food-19"><input id="favorite-food-19" name="favorite-food-alt2" type="checkbox" value="burgers"> Burgers</label>
+          </div>
+          <span class="field__feedback"></span>
+          <span class="field__hint"></span>
+      </div>
+    </article>
+    <footer class="form__actions">
+      <div class="gw">
+        <div class="g s-one-half m-one-fifth">
+          <!--nuthin-->
+        </div>
+        <div class="g s-one-half m-four-fifths">
+          <article class="field">
+            <label class="field__label is-visually-hidden" for="submit10">Submit</label>
+            <input class="field__input btn btn" id="submit10" value="Submit">
+            <span class="field__feedback"></span>
+            <span class="field__hint"></span>
+          </article>
+        </div>
+      </div>
+    </footer>
+
+
+  </form>
+
+--------------------------------------------------------- */
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/**
+
+  @buttons
+--------------------------------------------------------
+  _3_elements/buttons.scss
+--------------------------------------------------------
+
+  Buttons are a common UI component in sites/apps.  They
+  are usually either anchor, button, or input elements
+  with a classname of 'btn'.  They provide an easily
+  identified clickable target.
+
+  Buttons commonly have modifying classes that apply
+  specific styles.  Examples of these are .btn--large and
+  .btn--inline
+
+  Also see _button-groups.scss, a related component
+  that arranges buttons into useful groups.
+
+  Example: Buttons using anchors
+  <p><a href="#" class="btn">Regular Button</a></p>
+
+  Example: Buttons using buttons
+  <p><button class="btn">Regular Button</button></p>
+
+------------------------------------------------------ */
+/* line 28, ../css/manhattan/3_base/_buttons.scss */
+.btn {
+  display: inline-block;
+  border: none;
+  vertical-align: middle;
+  border: 1px solid #010101;
+  background: #010101;
+  color: white;
+  padding: 1em;
+  font-size: .85rem;
+  border-radius: .125rem;
+  font-weight: normal;
+  -webkit-transition: color 0.2s, background-color 0.2s;
+  -moz-transition: color 0.2s, background-color 0.2s;
+  -o-transition: color 0.2s, background-color 0.2s;
+  transition: color 0.2s, background-color 0.2s; }
+  /* line 41, ../css/manhattan/3_base/_buttons.scss */
+  .btn:hover, .btn:focus {
+    color: #010101;
+    background: white; }
+
+/* @btn--large
+--------------------------------------------------------
+
+  A btn modifier, large
+
+  Example: .btn--large
+  <a class="btn btn--large">Large button</a>
+
+------------------------------------------------------ */
+/* line 62, ../css/manhattan/3_base/_buttons.scss */
+.btn--large {
+  font-size: 2rem; }
+
+/* @btn--inline
+--------------------------------------------------------
+
+  A btn modifier, if this button is in a paragraph or
+  in anything else that has a defined font-size, this
+  modifier will make the btn inherit the font-size of
+  the partent.
+
+  Example: .btn--inline
+  <p>Here's some text <a class="btn btn--inline">Cool button</a> text keeps going</p>
+
+------------------------------------------------------ */
+/* line 83, ../css/manhattan/3_base/_buttons.scss */
+.btn--inline {
+  font-size: 1em; }
+
+/* @btn--block
+--------------------------------------------------------
+
+  A btn modifier - makes the button display block, 100%
+  width and aligns the text to the center.  Removes left
+  and right padding since the text is center aligned, it
+  is not needed.  Actually sometimes having the padding
+  on the left and right causes problems if the centered
+  text is quite long - so we just remove it.
+
+  Example: .btn--block
+  <a href="#" class="btn btn--block">Block button</a>
+
+------------------------------------------------------ */
+/* line 104, ../css/manhattan/3_base/_buttons.scss */
+.btn--block {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-right: 0;
+  padding-left: 0; }
+
+/* @btn--icon
+--------------------------------------------------------
+
+  A btn modifier - makes the button display block, 100%
+  width and aligns the text to the center.  Removes left
+  and right padding since the text is center aligned, it
+  is not needed.  Actually sometimes having the padding
+  on the left and right causes problems if the centered
+  text is quite long - so we just remove it.
+
+  Example: .btn--icon
+  <button class="btn--icon ss-icon">Block button</button>
+
+------------------------------------------------------ */
+/* line 130, ../css/manhattan/3_base/_buttons.scss */
+.btn--icon {
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1em; }
+
+/**
+
+  @icons
+---------------------------------------------------------
+  _3_elements/icons.scss
+--------------------------------------------------------
+
+  Define classes for icons.  First a base class, .icon, and
+  then any modifiers.
+
+  Near the end of this partial, we're including symbolset,
+  which is a font-icon that we dig.
+
+--------------------------------------------------------- */
+/* @icon
+--------------------------------------------------------
+
+  Your open and close icons
+
+  Example: Open Icon
+  <i class="icon icon--open">&plus;</i>
+
+  Example: Close Icon
+  <i class="icon icon--close">&times;</i>
+
+------------------------------------------------------ */
+/* line 31, ../css/manhattan/3_base/_icons.scss */
+.icon {
+  color: inherit;
+  display: inline-block;
+  font-style: normal;
+  vertical-align: middle; }
+
+/* @symbolset
+--------------------------------------------------------
+
+  Symbolset
+  www.symbolset.com
+  Copyright © 2012 Oak Studios LLC
+
+------------------------------------------------------ */
+@font-face {
+  font-family: "SSStandard";
+  src: url("/fonts/ss-standard.eot");
+  /* IE9 Compat Modes */
+  src: url("/fonts/ss-standard.eot?#iefix") format("embedded-opentype"), url("/fonts/ss-standard.woff") format("woff"), url("/fonts/ss-standard.ttf") format("truetype"), url("/fonts/ss-standard.svg#svgFontName") format("svg");
+  /* Legacy iOS */ }
+
+/* line 61, ../css/manhattan/3_base/_icons.scss */
+.ss-icon, .carousel__prev,
+.carousel__next, .ss-icon.ss-standard, .ss-standard.carousel__prev,
+.ss-standard.carousel__next,
+[class^="ss-"]:before, [class*=" ss-"]:before,
+[class^="ss-"].ss-standard:before, [class*=" ss-"].ss-standard:before,
+[class^="ss-"].right:after, [class*=" ss-"].right:after,
+[class^="ss-"].ss-standard.right:after, [class*=" ss-"].ss-standard.right:after {
+  font-family: "SSStandard";
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  white-space: nowrap;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased; }
+
+/* line 77, ../css/manhattan/3_base/_icons.scss */
+[class^="ss-"].right:before, [class*=" ss-"].ss-standard.right:before {
+  display: none;
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-cursor:before, .ss-cursor.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-crosshair:before, .ss-crosshair.right:after {
+  content: '⌖'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-search:before, .ss-search.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-zoomin:before, .ss-zoomin.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-zoomout:before, .ss-zoomout.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-view:before, .ss-view.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-attach:before, .ss-attach.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-link:before, .ss-link.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-move:before, .ss-move.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-write:before, .ss-write.right:after {
+  content: '✎'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-writingdisabled:before, .ss-writingdisabled.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-erase:before, .ss-erase.right:after {
+  content: '✐'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-compose:before, .ss-compose.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-lock:before, .ss-lock.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-unlock:before, .ss-unlock.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-key:before, .ss-key.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-backspace:before, .ss-backspace.right:after {
+  content: '⌫'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-ban:before, .ss-ban.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-trash:before, .ss-trash.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-target:before, .ss-target.right:after {
+  content: '◎'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-tag:before, .ss-tag.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-bookmark:before, .ss-bookmark.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-flag:before, .ss-flag.right:after {
+  content: '⚑'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-like:before, .ss-like.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-dislike:before, .ss-dislike.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-heart:before, .ss-heart.right:after {
+  content: '♥'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-halfheart:before, .ss-halfheart.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-star:before, .ss-star.right:after {
+  content: '⋆'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-halfstar:before, .ss-halfstar.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-sample:before, .ss-sample.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-crop:before, .ss-crop.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-layers:before, .ss-layers.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-phone:before, .ss-phone.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-phonedisabled:before, .ss-phonedisabled.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-rss:before, .ss-rss.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-facetime:before, .ss-facetime.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-reply:before, .ss-reply.right:after {
+  content: '↩'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-send:before, .ss-send.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-mail:before, .ss-mail.right:after {
+  content: '✉'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-inbox:before, .ss-inbox.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-chat:before, .ss-chat.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-user:before, .ss-user.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-femaleuser:before, .ss-femaleuser.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-users:before, .ss-users.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-cart:before, .ss-cart.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-creditcard:before, .ss-creditcard.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-dollarsign:before, .ss-dollarsign.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-barchart:before, .ss-barchart.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-piechart:before, .ss-piechart.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-box:before, .ss-box.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-home:before, .ss-home.right:after {
+  content: '⌂'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-globe:before, .ss-globe.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-navigate:before, .ss-navigate.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-compass:before, .ss-compass.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-signpost:before, .ss-signpost.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-location:before, .ss-location.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-map:before, .ss-map.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-pin:before, .ss-pin.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-database:before, .ss-database.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-hdd:before, .ss-hdd.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-music:before, .ss-music.right:after {
+  content: '♫'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-mic:before, .ss-mic.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-volume:before, .ss-volume.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-volumelow:before, .ss-volumelow.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-volumehigh:before, .ss-volumehigh.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-airplay:before, .ss-airplay.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-camera:before, .ss-camera.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-picture:before, .ss-picture.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-video:before, .ss-video.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-play:before, .ss-play.right:after {
+  content: '▶'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-pause:before, .ss-pause.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-stop:before, .ss-stop.right:after {
+  content: '■'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-record:before, .ss-record.right:after {
+  content: '●'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-rewind:before, .ss-rewind.right:after {
+  content: '⏪'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-fastforward:before, .ss-fastforward.right:after {
+  content: '⏩'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-skipback:before, .ss-skipback.right:after {
+  content: '⏮'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-skipforward:before, .ss-skipforward.right:after {
+  content: '⏭'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-eject:before, .ss-eject.right:after {
+  content: '⏏'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-repeat:before, .ss-repeat.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-replay:before, .ss-replay.right:after {
+  content: '↺'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-shuffle:before, .ss-shuffle.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-book:before, .ss-book.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-openbook:before, .ss-openbook.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-notebook:before, .ss-notebook.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-grid:before, .ss-grid.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-rows:before, .ss-rows.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-columns:before, .ss-columns.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-thumbnails:before, .ss-thumbnails.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-desktop:before, .ss-desktop.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-laptop:before, .ss-laptop.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-tablet:before, .ss-tablet.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-cell:before, .ss-cell.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-battery:before, .ss-battery.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-batteryhigh:before, .ss-batteryhigh.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-batterymedium:before, .ss-batterymedium.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-batterylow:before, .ss-batterylow.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-batteryempty:before, .ss-batteryempty.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-clouddownload:before, .ss-clouddownload.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-download:before, .ss-download.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-cloudupload:before, .ss-cloudupload.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-upload:before, .ss-upload.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-fork:before, .ss-fork.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-merge:before, .ss-merge.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-refresh:before, .ss-refresh.right:after {
+  content: '↻'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-sync:before, .ss-sync.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-loading:before, .ss-loading.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-wifi:before, .ss-wifi.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-connection:before, .ss-connection.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-file:before, .ss-file.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-folder:before, .ss-folder.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-quote:before, .ss-quote.right:after {
+  content: '“'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-text:before, .ss-text.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-font:before, .ss-font.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-print:before, .ss-print.right:after {
+  content: '⎙'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-fax:before, .ss-fax.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-list:before, .ss-list.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-layout:before, .ss-layout.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-action:before, .ss-action.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-redirect:before, .ss-redirect.right:after {
+  content: '↪'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-expand:before, .ss-expand.right:after {
+  content: '⤢'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-contract:before, .ss-contract.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-help:before, .ss-help.right:after {
+  content: '❓'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-info:before, .ss-info.right:after {
+  content: 'ℹ'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-alert:before, .ss-alert.right:after {
+  content: '⚠'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-caution:before, .ss-caution.right:after {
+  content: '⛔'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-logout:before, .ss-logout.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-plus:before, .ss-plus.right:after {
+  content: '+'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-hyphen:before, .ss-hyphen.right:after {
+  content: '-'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-check:before, .ss-check.right:after {
+  content: '✓'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-delete:before, .ss-delete.right:after {
+  content: '␡'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-settings:before, .ss-settings.right:after {
+  content: '⚙'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-dashboard:before, .ss-dashboard.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-notifications:before, .ss-notifications.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-notificationsdisabled:before, .ss-notificationsdisabled.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-clock:before, .ss-clock.right:after {
+  content: '⏲'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-stopwatch:before, .ss-stopwatch.right:after {
+  content: '⏱'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-calendar:before, .ss-calendar.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-calendaradd:before, .ss-calendaradd.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-calendarremove:before, .ss-calendarremove.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-calendarcheck:before, .ss-calendarcheck.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-calendardelete:before, .ss-calendardelete.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-briefcase:before, .ss-briefcase.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-cloud:before, .ss-cloud.right:after {
+  content: '☁'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-droplet:before, .ss-droplet.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-navigateup:before, .ss-navigateup.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-navigateright:before, .ss-navigateright.right:after {
+  content: '▻'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-navigatedown:before, .ss-navigatedown.right:after {
+  content: ''; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-navigateleft:before, .ss-navigateleft.right:after {
+  content: '◅'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-up:before, .ss-up.right:after {
+  content: '⬆'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-upright:before, .ss-upright.right:after {
+  content: '⬈'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-right:before, .ss-right.right:after {
+  content: '➡'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-downright:before, .ss-downright.right:after {
+  content: '⬊'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-down:before, .ss-down.right:after {
+  content: '⬇'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-downleft:before, .ss-downleft.right:after {
+  content: '⬋'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-left:before, .ss-left.right:after {
+  content: '⬅'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-upleft:before, .ss-upleft.right:after {
+  content: '⬉'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-directup:before, .ss-directup.right:after {
+  content: '▴'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-directright:before, .ss-directright.right:after {
+  content: '▹'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-dropdown:before, .ss-dropdown.right:after {
+  content: '▾'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-directleft:before, .ss-directleft.right:after {
+  content: '◃'; }
+
+/* line 79, ../css/manhattan/3_base/_icons.scss */
+.ss-retweet:before, .ss-retweet.right:after {
+  content: ''; }
+
+@font-face {
+  font-family: "SSSocial";
+  src: url("/fonts/ss-social-regular.eot");
+  /* IE9 Compat Modes */
+  src: url("/fonts/ss-social-regular.eot?#iefix") format("embedded-opentype"), url("/fonts/ss-social-regular.woff") format("woff"), url("/fonts/ss-social-regular.ttf") format("truetype"), url("/fonts/ss-social-regular.svg#svgFontName") format("svg");
+  /* Legacy iOS */ }
+
+/* line 92, ../css/manhattan/3_base/_icons.scss */
+.ss-icon.ss-social, .ss-social.carousel__prev,
+.ss-social.carousel__next, .ss-icon.ss-social-circle, .ss-social-circle.carousel__prev,
+.ss-social-circle.carousel__next,
+[class^="ss-"]:before, [class*=" ss-"]:before,
+[class^="ss-"][class*=" ss-social"]:before, [class*=" ss-"][class*=" ss-social"]:before,
+[class^="ss-"].right:after, [class*=" ss-"].right:after,
+[class^="ss-"][class*=" ss-social"].right:after, [class*=" ss-"][class*=" ss-social"].right:after {
+  font-family: "SSSocial";
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  white-space: nowrap;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased; }
+
+/* line 108, ../css/manhattan/3_base/_icons.scss */
+[class^="ss-"].right:before, [class^="ss-"][class*=" ss-social"].right:before {
+  display: none;
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-facebook:before, .ss-facebook.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-twitter:before, .ss-twitter.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-linkedin:before, .ss-linkedin.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-googleplus:before, .ss-googleplus.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-tumblr:before, .ss-tumblr.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-wordpress:before, .ss-wordpress.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-blogger:before, .ss-blogger.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-posterous:before, .ss-posterous.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-youtube:before, .ss-youtube.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-vimeo:before, .ss-vimeo.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-flickr:before, .ss-flickr.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-instagram:before, .ss-instagram.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-pinterest:before, .ss-pinterest.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-dribbble:before, .ss-dribbble.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-behance:before, .ss-behance.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-github:before, .ss-github.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-octocat:before, .ss-octocat.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-paypal:before, .ss-paypal.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-foursquare:before, .ss-foursquare.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-skype:before, .ss-skype.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-rdio:before, .ss-rdio.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-spotify:before, .ss-spotify.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-lastfm:before, .ss-lastfm.right:after {
+  content: ''; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-mail:before, .ss-mail.right:after {
+  content: '✉'; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-like:before, .ss-like.right:after {
+  content: '👍'; }
+
+/* line 110, ../css/manhattan/3_base/_icons.scss */
+.ss-rss:before, .ss-rss.right:after {
+  content: ''; }
+
+/***
+
+  @modules
+---------------------------------------------------------
+
+  Small, reusable objects that are usually combinations
+  of elemements.
+
+  If you create a new module, make sure the partial is
+  in the _4_modules directory, and you import it below
+
+  Comment out any partial you don't need for this app.
+
+---------------------------------------------------------  */
+/**
+
+  @alerts
+---------------------------------------------------------
+
+  Alerts are block elements containing text and a close
+  button
+
+--------------------------------------------------------- */
+/* @alert
+--------------------------------------------------------
+
+  Alerts are UI elements that give important info
+
+  Example: Error
+  <div class="alert alert--error">
+    <a href="#" class="btn__close">&times;</a>
+    <p>Uh oh - something went wrong</p>
+  </div>
+
+  Example: Warning
+  <div class="alert alert--warning">
+    <a href="#" class="btn__close">&times;</a>
+    <p>Shake it fast, but watch yourself.</p>
+  </div>
+
+  Example: Success
+  <div class="alert alert--success">
+    <a href="#" class="btn__close">&times;</a>
+    <p>The secret to my success is that I learn, 25 hours a day!</p>
+  </div>
+
+  Example: Info
+  <div class="alert alert--info">
+    <a href="#" class="btn__close">&times;</a>
+    <p>Did you ever know that you're my hero?</p>
+  </div>
+
+  NOTE: The code below uses declared color units, maybe it
+        makes sense to declare those in _vars.scss
+
+------------------------------------------------------ */
+/* line 50, ../css/manhattan/4_modules/_alerts.scss */
+.alert {
+  position: relative;
+  border-width: 1px;
+  border-style: solid;
+  padding: .5rem 4rem .5rem .5rem;
+  line-height: 1.25; }
+  /* line 56, ../css/manhattan/4_modules/_alerts.scss */
+  .alert:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 2.25em;
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid #000; }
+  /* line 68, ../css/manhattan/4_modules/_alerts.scss */
+  .alert p {
+    margin: 0; }
+  /* line 73, ../css/manhattan/4_modules/_alerts.scss */
+  .alert .btn__close {
+    position: absolute;
+    top: 50%;
+    margin-top: -.75em;
+    right: .5em;
+    opacity: .5;
+    -webkit-transition: all .3s;
+    transition: all .3s; }
+    /* line 81, ../css/manhattan/4_modules/_alerts.scss */
+    .alert .btn__close:hover {
+      opacity: 1; }
+
+/* line 92, ../css/manhattan/4_modules/_alerts.scss */
+.alert--error {
+  color: #e04646;
+  border-color: #e04646;
+  background: #ffe6e6; }
+  /* line 98, ../css/manhattan/4_modules/_alerts.scss */
+  .alert--error .btn__close {
+    color: #e04646; }
+  /* line 102, ../css/manhattan/4_modules/_alerts.scss */
+  .alert--error:after {
+    border-color: #e04646; }
+
+/* line 110, ../css/manhattan/4_modules/_alerts.scss */
+.alert--warning {
+  color: #b29804;
+  border-color: #b29804;
+  background: #fcf7d8; }
+  /* line 116, ../css/manhattan/4_modules/_alerts.scss */
+  .alert--warning .btn__close {
+    color: #b29804; }
+  /* line 120, ../css/manhattan/4_modules/_alerts.scss */
+  .alert--warning:after {
+    border-color: #b29804; }
+
+/* line 128, ../css/manhattan/4_modules/_alerts.scss */
+.alert--info {
+  color: #537df6;
+  border-color: #537df6;
+  background: #e8f3ff; }
+  /* line 134, ../css/manhattan/4_modules/_alerts.scss */
+  .alert--info .btn__close {
+    color: #537df6; }
+  /* line 138, ../css/manhattan/4_modules/_alerts.scss */
+  .alert--info:after {
+    border-color: #537df6; }
+
+/* line 146, ../css/manhattan/4_modules/_alerts.scss */
+.alert--success {
+  color: #0ca129;
+  border-color: #0ca129;
+  background: #dafce1; }
+  /* line 152, ../css/manhattan/4_modules/_alerts.scss */
+  .alert--success .btn__close {
+    color: #0ca129; }
+  /* line 156, ../css/manhattan/4_modules/_alerts.scss */
+  .alert--success:after {
+    border-color: #0ca129; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/**
+
+  @Button Groups
+---------------------------------------------------------
+
+  Ways of grouping buttons together
+
+--------------------------------------------------------- */
+/* @button-group
+--------------------------------------------------------
+
+  Default group
+
+  Example: Normal button group
+  <ul class="btn-group">
+    <li><a href="#" class="btn">Button Here</a></li>
+    <li><a href="#" class="btn">Button Here</a></li>
+    <li><a href="#" class="btn">Button Here</a></li>
+    <li><a href="#" class="btn">Button Here</a></li>
+  </ul>
+
+------------------------------------------------------ */
+/* line 26, ../css/manhattan/4_modules/_button-groups.scss */
+.btn-group {
+  zoom: 1;
+  width: auto;
+  display: inline-block; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .btn-group:before, .btn-group:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .btn-group:after {
+    clear: both; }
+  /* line 31, ../css/manhattan/4_modules/_button-groups.scss */
+  .btn-group li {
+    float: left; }
+
+/* @button-group--full-width
+--------------------------------------------------------
+
+  A group buttons that take up the full width
+
+  Example: Button Group, Full Width
+  <ul class="btn-group btn-group--full-width">
+    <li><a href="#" class="btn btn--block">Button Here</a></li>
+    <li><a href="#" class="btn btn--block">Button Here</a></li>
+    <li><a href="#" class="btn btn--block">Button Here</a></li>
+  </ul>
+
+------------------------------------------------------ */
+/* line 53, ../css/manhattan/4_modules/_button-groups.scss */
+.btn-group--full-width {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: table; }
+  /* line 59, ../css/manhattan/4_modules/_button-groups.scss */
+  .btn-group--full-width > li,
+  .btn-group--full-width > * {
+    display: table-cell;
+    float: none; }
+
+/* @button-group--block
+--------------------------------------------------------
+
+  A group buttons that are arranged in a block
+
+  Example: Button Group, Block
+  <ul class="btn-group btn-group--block">
+    <li><a href="#" class="btn btn--block">Button Here</a></li>
+    <li><a href="#" class="btn btn--block">Button Here</a></li>
+    <li><a href="#" class="btn btn--block">Button Here</a></li>
+  </ul>
+
+------------------------------------------------------ */
+/* line 82, ../css/manhattan/4_modules/_button-groups.scss */
+.btn-group--block {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: block; }
+  /* line 87, ../css/manhattan/4_modules/_button-groups.scss */
+  .btn-group--block > li {
+    display: block;
+    float: none;
+    padding-bottom: .5em; }
+    /* line 91, ../css/manhattan/4_modules/_button-groups.scss */
+    .btn-group--block > li:last-child {
+      padding: 0; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/**
+
+  @carousel
+--------------------------------------------------------
+
+  Carousels use FlexSlider
+
+  We'll add a title to the carousel module too
+
+  There are variations of carousels, there's a small carousel
+  and also different color themes
+
+------------------------------------------------------ */
+/* line 15, ../css/manhattan/4_modules/_carousel.scss */
+.carousel {
+  position: relative; }
+
+/* line 29, ../css/manhattan/4_modules/_carousel.scss */
+.carousel__direction-nav li {
+  float: left; }
+
+/* line 35, ../css/manhattan/4_modules/_carousel.scss */
+.carousel__prev,
+.carousel__next {
+  display: block;
+  text-align: center; }
+  /* line 41, ../css/manhattan/4_modules/_carousel.scss */
+  .carousel__prev:hover,
+  .carousel__next:hover {
+    opacity: 1; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/**
+
+   @dropdowns
+--------------------------------------------------------
+
+  NOTE: Cool dropdown stuff Coming soon
+
+-----------------------------------------------------  */
+/**
+
+  @heroes
+--------------------------------------------------------
+
+  Just your everyday, normal hero.  Contains a div that has
+  the media (video or image) in the background, and a div
+  for the main content.
+
+  Example: Hero
+  <div class="hero">
+    <div class="hero__main">
+      <h1 class="hero__leadin">This is the leadin</h1>
+      <h2 class="hero__name">Name Here</h2>
+    <div class="hero__media"><img src="http://fillmurray.com/1000/400"></div>
+  </div>
+------------------------------------------------------ */
+/* line 20, ../css/manhattan/4_modules/_heroes.scss */
+.hero {
+  position: relative;
+  background: #010101;
+  max-height: 28em;
+  overflow: hidden; }
+
+/* line 27, ../css/manhattan/4_modules/_heroes.scss */
+.hero__media {
+  position: relative;
+  z-index: 200;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+  opacity: 0; }
+  /* line 32, ../css/manhattan/4_modules/_heroes.scss */
+  html.is-ready .hero__media {
+    opacity: .35; }
+
+/* line 37, ../css/manhattan/4_modules/_heroes.scss */
+.hero__main {
+  position: absolute;
+  z-index: 210;
+  width: 100%;
+  top: 62%;
+  text-align: center;
+  color: white;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: .75em; }
+  @media screen and (min-width: 34.375em) {
+    /* line 37, ../css/manhattan/4_modules/_heroes.scss */
+    .hero__main {
+      top: 55%;
+      font-size: 1em; } }
+  @media screen and (min-width: 64em) {
+    /* line 37, ../css/manhattan/4_modules/_heroes.scss */
+    .hero__main {
+      font-size: 1.25em; } }
+
+/**
+
+  @modals
+---------------------------------------------------------
+
+  These are very basic modals, there's room for improvement.
+
+--------------------------------------------------------- */
+/* line 11, ../css/manhattan/4_modules/_modals.scss */
+.modal {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 1rem solid black;
+  background: white;
+  color: black; }
+
+/* line 22, ../css/manhattan/4_modules/_modals.scss */
+.modal__header {
+  height: 3rem;
+  padding: 1rem; }
+  /* line 26, ../css/manhattan/4_modules/_modals.scss */
+  .modal__header p {
+    font-size: .8rem;
+    line-height: 1.2; }
+
+/* line 32, ../css/manhattan/4_modules/_modals.scss */
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.4rem; }
+
+/* line 40, ../css/manhattan/4_modules/_modals.scss */
+.modal__body {
+  position: absolute;
+  top: 3rem;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  overflow: auto; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/* @popover
+--------------------------------------------------------
+
+  TBD
+
+------------------------------------------------------ */
+/**
+
+  @tabs
+--------------------------------------------------------
+
+  Tabs.
+
+------------------------------------------------------ */
+/* line 10, ../css/manhattan/4_modules/_tabs.scss */
+.tab.is-active {
+  pointer-events: none; }
+
+/* line 15, ../css/manhattan/4_modules/_tabs.scss */
+.panels {
+  position: relative; }
+
+/* line 21, ../css/manhattan/4_modules/_tabs.scss */
+.panel {
+  opacity: 0;
+  position: absolute;
+  top: -200%;
+  left: -200%; }
+  /* line 26, ../css/manhattan/4_modules/_tabs.scss */
+  .panel.is-active {
+    position: relative;
+    opacity: 1;
+    top: 0;
+    left: 0; }
+
+/* line 36, ../css/manhattan/4_modules/_tabs.scss */
+.panels.is-activated .panel.is-active {
+  position: absolute; }
+
+/**
+
+  @thumbnails
+--------------------------------------------------------
+
+  Thumbnails have an image, a title, and a caption
+
+  Example: Thumbnails in grids
+  <div class="gw m-three-up">
+    <div class="g">
+      <figure class="thumbnail">
+        <img class="thumbnail__image" src="http://fillmurray.com/400/250">
+        <h3 class="thumbnail__title">Mr. Murray</h3>
+        <figcaption class="thumbnail__caption">As you can see, this man is the man.</figcaption>
+      </figure>
+    </div>
+    <div class="g">
+      <figure class="thumbnail">
+        <img class="thumbnail__image" src="http://fillmurray.com/400/250">
+        <h3 class="thumbnail__title">Mr. Murray</h3>
+        <figcaption class="thumbnail__caption">As you can see, this man is the man.</figcaption>
+      </figure>
+    </div>
+    <div class="g">
+      <figure class="thumbnail">
+        <img class="thumbnail__image" src="http://fillmurray.com/400/250">
+        <h3 class="thumbnail__title">Mr. Murray</h3>
+        <figcaption class="thumbnail__caption">As you can see, this man is the man.</figcaption>
+      </figure>
+    </div>
+  <div>
+-----------------------------------------------------  */
+/* line 34, ../css/manhattan/4_modules/_thumbnails.scss */
+.thumbnail {
+  position: relative; }
+  /* line 38, ../css/manhattan/4_modules/_thumbnails.scss */
+  .thumbnail .thumbnail__media {
+    margin: 0 auto .25em;
+    display: block;
+    opacity: .75; }
+  /* line 45, ../css/manhattan/4_modules/_thumbnails.scss */
+  .thumbnail .thumbnail__caption {
+    position: relative;
+    padding: .5em;
+    font-size: .95em;
+    color: #010101; }
+    /* line 50, ../css/manhattan/4_modules/_thumbnails.scss */
+    .thumbnail .thumbnail__caption h4 {
+      margin: 0;
+      line-height: 1; }
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+/**
+
+  @tooltips
+---------------------------------------------------------
+
+  Tooltips use bootstrap.js for now.
+
+  <p>Tight pants next level keffiyeh <a href="#" data-toggle="tooltip" title="Default Tooltip">you probably</a>
+   haven't heard of them. Photo booth beard raw denim
+   letterpress vegan messenger bag stumptown.
+   Farm-to-table seitan, mcsweeney's fixie sustainable
+   quinoa 8-bit american apparel <a href="#" data-toggle="tooltip" title="Another tooltip">have a</a>
+   terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats.
+  </p>
+
+--------------------------------------------------------- */
+/**
+
+  @video
+--------------------------------------------------------
+
+  Video Embeds
+
+-----------------------------------------------------  */
+/* line 10, ../css/manhattan/4_modules/_video.scss */
+.video-embed {
+  display: block;
+  width: 100%;
+  height: 0;
+  position: relative;
+  padding-top: 66.666%; }
+  /* line 16, ../css/manhattan/4_modules/_video.scss */
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100% !important;
+    width: 100% !important; }
+
+/**
+
+  @well
+---------------------------------------------------------
+
+  Wells create padding and visual separation
+
+  Example:
+  <article class="well">
+    <h4>Small heading here</h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, consequatur, quis, unde, libero odit similique hic repudiandae doloremque expedita mollitia ipsum et excepturi pariatur facere optio obcaecati sit dicta dolorum.</p>
+  </article>
+
+--------------------------------------------------------- */
+/* line 16, ../css/manhattan/4_modules/_well.scss */
+.well {
+  padding: 2em;
+  background: rgba(0, 0, 0, 0.025);
+  border: 1px solid #010101; }
+
+/**
+
+  @pagination
+--------------------------------------------------------
+
+  Pagination
+
+-----------------------------------------------------  */
+/* line 10, ../css/manhattan/4_modules/_pagination.scss */
+.pagination {
+  width: 100%;
+  text-align: center; }
+
+/* line 17, ../css/manhattan/4_modules/_pagination.scss */
+.pagination__current,
+.pagination__previous,
+.pagination__next {
+  display: inline-block; }
+
+/* line 23, ../css/manhattan/4_modules/_pagination.scss */
+.pagination__previous {
+  float: left; }
+
+/* line 26, ../css/manhattan/4_modules/_pagination.scss */
+.pagination__next {
+  float: right; }
+
+/**
+
+  @grid guide
+--------------------------------------------------------
+
+  Styles for the Manhattan Grid Guide jQuery plugin that
+  shows grid guides overlayed on top of your site by
+  pressing the 'g' key
+
+-----------------------------------------------------  */
+/* line 12, ../css/manhattan/4_modules/_grid-guide.scss */
+.mnhttn-grid-guide {
+  opacity: .5;
+  pointer-events: none;
+  position: absolute;
+  z-index: 3000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100%;
+  display: none; }
+  /* line 25, ../css/manhattan/4_modules/_grid-guide.scss */
+  .mnhttn-grid-guide.is-active {
+    display: block; }
+
+/* line 30, ../css/manhattan/4_modules/_grid-guide.scss */
+.mnhttn-grid-guide .g {
+  background: rgba(146, 189, 202, 0.25); }
+
+/* line 34, ../css/manhattan/4_modules/_grid-guide.scss */
+.mnhttn-grid-guide .g div {
+  background: rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  height: 8000px; }
+
+/* line 42, ../css/manhattan/4_modules/_grid-guide.scss */
+.mnhttn-grid-guide__baselines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%; }
+
+/* line 50, ../css/manhattan/4_modules/_grid-guide.scss */
+.mnhttn-grid-guide__baseline {
+  display: block;
+  height: 1em;
+  border-bottom: 1px solid rgba(160, 155, 155, 0.4); }
+
+/***
+
+  @sections
+---------------------------------------------------------
+
+  Main areas of the site like the site's header,
+  main, and footer.  Other areas of the site that deserve
+  specific styling goes here too.
+
+  If you create a new section, make sure the partial is
+  in the _5_sections directory, and you import it below
+
+  Comment out any partial you don't need for this app.
+
+--------------------------------------------------------- */
+/**
+
+   @site-content
+--------------------------------------------------------
+  _5_sections/_site-content.scss
+--------------------------------------------------------
+
+  This is a utility div used when you want the content
+  to animate, like in a mobile context.
+
+------------------------------------------------------ */
+/* line 13, ../css/manhattan/5_sections/_site-content.scss */
+.site-content {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  -moz-transition: -moz-transform 0.25s ease-in-out;
+  -o-transition: -o-transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out; }
+  /* line 23, ../css/manhattan/5_sections/_site-content.scss */
+  html.is-showing-site-nav .site-content {
+    margin-left: 82.5%; }
+  /* line 26, ../css/manhattan/5_sections/_site-content.scss */
+  html.csstransforms.is-showing-site-nav .site-content {
+    margin-left: 0;
+    -webkit-transform: translate3d(82.5%, 0, 0);
+    -moz-transform: translate3d(82.5%, 0, 0);
+    -ms-transform: translate3d(82.5%, 0, 0);
+    -o-transform: translate3d(82.5%, 0, 0);
+    transform: translate3d(82.5%, 0, 0); }
+  @media screen and (min-width: 48em) {
+    /* line 13, ../css/manhattan/5_sections/_site-content.scss */
+    .site-content {
+      left: 17em; }
+      /* line 34, ../css/manhattan/5_sections/_site-content.scss */
+      .no-header .site-content {
+        left: 0; }
+      /* line 38, ../css/manhattan/5_sections/_site-content.scss */
+      html.is-showing-site-nav .site-content {
+        margin-left: 0; }
+      /* line 41, ../css/manhattan/5_sections/_site-content.scss */
+      html.csstransforms.is-showing-site-nav .site-content {
+        margin-left: 0;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0); } }
+
+/**
+
+   @site-header
+--------------------------------------------------------
+  _5_sections/site-header.scss
+--------------------------------------------------------
+
+  Site-wide header
+
+------------------------------------------------------ */
+/* line 12, ../css/manhattan/5_sections/_site-header.scss */
+.site-header {
+  zoom: 1;
+  background: #9dcdce;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 82.5%;
+  padding: 3em 3em; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .site-header:before, .site-header:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .site-header:after {
+    clear: both; }
+  @media screen and (min-width: 48em) {
+    /* line 12, ../css/manhattan/5_sections/_site-header.scss */
+    .site-header {
+      width: 17em; } }
+
+/* @mobile header
+--------------------------------------------------------
+
+  Mobile header
+
+------------------------------------------------------ */
+/* line 41, ../css/manhattan/5_sections/_site-header.scss */
+.mobile-header {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #9dcdce;
+  text-align: center;
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  -moz-transition: -moz-transform 0.25s ease-in-out;
+  -o-transition: -o-transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out; }
+  @media screen and (min-width: 48em) {
+    /* line 41, ../css/manhattan/5_sections/_site-header.scss */
+    .mobile-header {
+      display: none; } }
+  /* line 55, ../css/manhattan/5_sections/_site-header.scss */
+  html.is-showing-site-nav .mobile-header {
+    margin-left: 82.5%; }
+  /* line 58, ../css/manhattan/5_sections/_site-header.scss */
+  html.csstransforms.is-showing-site-nav .mobile-header {
+    margin-left: 0;
+    -webkit-transform: translate3d(82.5%, 0, 0);
+    -moz-transform: translate3d(82.5%, 0, 0);
+    -ms-transform: translate3d(82.5%, 0, 0);
+    -o-transform: translate3d(82.5%, 0, 0);
+    transform: translate3d(82.5%, 0, 0); }
+
+/* line 64, ../css/manhattan/5_sections/_site-header.scss */
+.mobile-header__branding {
+  display: inline-block;
+  margin: 0 auto; }
+
+/* line 68, ../css/manhattan/5_sections/_site-header.scss */
+.mobile-header__branding__logo {
+  height: 2em;
+  display: block;
+  width: auto;
+  margin: 1.25em 0; }
+
+/* @site-nav
+--------------------------------------------------------
+
+  Button to toggle site-nav
+
+------------------------------------------------------ */
+/* line 84, ../css/manhattan/5_sections/_site-header.scss */
+.site-nav__button {
+  padding: .5em 1em;
+  color: white;
+  position: absolute;
+  z-index: 400;
+  top: 0;
+  left: 0;
+  font-size: 2em; }
+
+/* @branding
+--------------------------------------------------------
+
+  The logo & (optional) wordmark
+
+  This would be setup like this
+
+  <a href="/" class="branding">
+    <img src="logo.svg" class="branding__logo" alt="My Company">
+    <h1 class="branding__wordmark">My Company</h1>
+  </a>
+
+------------------------------------------------------ */
+/* line 113, ../css/manhattan/5_sections/_site-header.scss */
+.branding {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 6.25em;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4); }
+
+/* line 122, ../css/manhattan/5_sections/_site-header.scss */
+.branding__logo {
+  width: 82%; }
+
+/* @site-nav
+--------------------------------------------------------
+
+  Main Site Navigation
+
+------------------------------------------------------ */
+/* line 138, ../css/manhattan/5_sections/_site-header.scss */
+.site-nav {
+  border-top: 2px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  padding: .75em 0 3em; }
+  /* line 142, ../css/manhattan/5_sections/_site-header.scss */
+  .site-nav ul {
+    display: block;
+    margin-top: .5em; }
+    /* line 145, ../css/manhattan/5_sections/_site-header.scss */
+    .site-nav ul li {
+      display: block; }
+      /* line 147, ../css/manhattan/5_sections/_site-header.scss */
+      .site-nav ul li a {
+        font-family: "BrownRegular", sans-serif;
+        display: block;
+        padding: .25em 0;
+        color: #4d6164;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out; }
+        /* line 153, ../css/manhattan/5_sections/_site-header.scss */
+        .site-nav ul li a:hover {
+          color: #637d81; }
+        /* line 158, ../css/manhattan/5_sections/_site-header.scss */
+        .site-nav ul li a.is-current, .site-nav ul li a.is-current:hover, .site-nav ul li a.is-current:focus {
+          color: white; }
+
+/* @social-nav
+--------------------------------------------------------
+
+  Social Navigation
+
+------------------------------------------------------ */
+/* line 178, ../css/manhattan/5_sections/_site-header.scss */
+.social-nav ul {
+  display: block;
+  margin-top: 1em; }
+  /* line 181, ../css/manhattan/5_sections/_site-header.scss */
+  .social-nav ul li {
+    float: left; }
+    /* line 183, ../css/manhattan/5_sections/_site-header.scss */
+    .social-nav ul li a {
+      display: block;
+      color: #9dcdce;
+      margin-right: .5em;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out; }
+      /* line 190, ../css/manhattan/5_sections/_site-header.scss */
+      .social-nav ul li a:hover {
+        background: rgba(255, 255, 255, 0.6); }
+      /* line 193, ../css/manhattan/5_sections/_site-header.scss */
+      .social-nav ul li a i {
+        height: 1.75em;
+        line-height: 2em;
+        width: 1.75em;
+        text-align: center;
+        display: block; }
+
+/* @site-main
+--------------------------------------------------------
+  _5_sections/site-main.scss
+--------------------------------------------------------
+
+  The site's main content
+
+------------------------------------------------------ */
+/* line 10, ../css/manhattan/5_sections/_site-main.scss */
+.site-main {
+  display: block;
+  background: white;
+  max-width: 66em;
+  min-height: 100%; }
+
+/* @site-footer
+--------------------------------------------------------
+  _5_sections/site-footer.scss
+--------------------------------------------------------
+
+  The site's footer
+
+  This is currently set up with the assumption that there
+  will be 2 navs and a credits area.
+
+------------------------------------------------------ */
+/* line 40, ../css/manhattan/5_sections/_site-footer.scss */
+.site-credits {
+  font-size: .5rem; }
+
+/* @pages
+--------------------------------------------------------
+  _5_sections/pages.scss
+--------------------------------------------------------
+
+  Common interior pages
+
+------------------------------------------------------ */
+/* line 10, ../css/manhattan/5_sections/_pages.scss */
+.page {
+  zoom: 1;
+  position: relative;
+  z-index: 500;
+  background: white;
+  width: auto;
+  padding-top: 8em;
+  padding-bottom: 5em; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .page:before, .page:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .page:after {
+    clear: both; }
+  @media screen and (min-width: 48em) {
+    /* line 10, ../css/manhattan/5_sections/_pages.scss */
+    .page {
+      padding-top: 3em; } }
+  /* line 23, ../css/manhattan/5_sections/_pages.scss */
+  .page a {
+    color: #3A9597;
+    border-bottom: 1px solid transparent; }
+    /* line 27, ../css/manhattan/5_sections/_pages.scss */
+    .page a:hover, .page a:focus {
+      color: #9dcdce;
+      border-color: #9dcdce; }
+  /* line 33, ../css/manhattan/5_sections/_pages.scss */
+  .page img {
+    margin-bottom: 1.5em; }
+  /* line 37, ../css/manhattan/5_sections/_pages.scss */
+  .page ul, .page ol {
+    margin-bottom: 1.5em; }
+    /* line 39, ../css/manhattan/5_sections/_pages.scss */
+    .page ul li, .page ol li {
+      font-size: 1.5em;
+      line-height: 1.5; }
+
+/* line 49, ../css/manhattan/5_sections/_pages.scss */
+.page__header {
+  zoom: 1;
+  font-family: "BrownRegular", sans-serif;
+  color: #b3bbbd;
+  margin: 0;
+  border-top: 1px solid #b3bbbd;
+  padding: 1em 0;
+  height: 7em; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .page__header:before, .page__header:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .page__header:after {
+    clear: both; }
+  /* line 58, ../css/manhattan/5_sections/_pages.scss */
+  .page__header p {
+    margin-bottom: .5em; }
+  /* line 61, ../css/manhattan/5_sections/_pages.scss */
+  .page__header h1 {
+    font-size: 1.5em;
+    text-transform: uppercase; }
+
+/* line 67, ../css/manhattan/5_sections/_pages.scss */
+.page__title {
+  font-size: 4.375em;
+  text-transform: uppercase; }
+
+/* line 73, ../css/manhattan/5_sections/_pages.scss */
+.page__footer {
+  zoom: 1;
+  position: relative;
+  text-align: center;
+  font-family: "BrownRegular", sans-serif;
+  color: #b3bbbd;
+  margin: 0;
+  border-top: 1px solid #b3bbbd;
+  padding: 1em 0;
+  height: 7em; }
+  /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+  .page__footer:before, .page__footer:after {
+    content: " ";
+    display: table; }
+  /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+  .page__footer:after {
+    clear: both; }
+  /* line 84, ../css/manhattan/5_sections/_pages.scss */
+  .page__footer p {
+    margin-bottom: .5em;
+    max-width: 40em; }
+
+/**
+
+  @post
+--------------------------------------------------------
+
+  Blog/Stream posts
+
+-----------------------------------------------------  */
+/* line 10, ../css/manhattan/5_sections/_post.scss */
+.post {
+  padding-top: 1em;
+  border-top: 1px solid #b3bbbd;
+  margin-bottom: 5em; }
+
+/* line 16, ../css/manhattan/5_sections/_post.scss */
+.post__title {
+  font-size: 4.375em;
+  text-transform: uppercase; }
+
+/**
+
+  @manifesto
+--------------------------------------------------------
+
+  The manifesto
+
+-----------------------------------------------------  */
+/* line 10, ../css/manhattan/5_sections/_manifesto.scss */
+.manifesto {
+  position: absolute;
+  z-index: 2000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  background: #9dcdce;
+  display: table; }
+  /* line 24, ../css/manhattan/5_sections/_manifesto.scss */
+  .manifesto .container {
+    zoom: 1;
+    margin: 0 auto;
+    max-width: 68em;
+    padding: 0 2em; }
+    /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
+    .manifesto .container:before, .manifesto .container:after {
+      content: " ";
+      display: table; }
+    /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
+    .manifesto .container:after {
+      clear: both; }
+    @media screen and (min-width: 34.375em) {
+      /* line 24, ../css/manhattan/5_sections/_manifesto.scss */
+      .manifesto .container {
+        max-width: 70em;
+        padding: 0 4em; } }
+    @media screen and (min-width: 48em) {
+      /* line 24, ../css/manhattan/5_sections/_manifesto.scss */
+      .manifesto .container {
+        max-width: 72em;
+        padding: 0 6em; } }
+
+/* line 40, ../css/manhattan/5_sections/_manifesto.scss */
+.manifesto__body {
+  display: table-cell;
+  width: 100%;
+  height: 100%;
+  padding-top: 15%; }
+  @media screen and (min-width: 34.375em) {
+    /* line 40, ../css/manhattan/5_sections/_manifesto.scss */
+    .manifesto__body {
+      vertical-align: middle;
+      padding: 3em; } }
+
+/* line 51, ../css/manhattan/5_sections/_manifesto.scss */
+.manifesto__main {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 1.5em 0 0;
+  color: white;
+  margin-bottom: 1.5em; }
+  /* line 57, ../css/manhattan/5_sections/_manifesto.scss */
+  .manifesto__main h1 {
+    font-size: 4em; }
+  /* line 60, ../css/manhattan/5_sections/_manifesto.scss */
+  .manifesto__main a {
+    color: #4d6164;
+    border-bottom: 1px solid transparent; }
+    /* line 64, ../css/manhattan/5_sections/_manifesto.scss */
+    .manifesto__main a:hover, .manifesto__main a:focus {
+      border-bottom: 1px solid white;
+      color: white; }
+  /* line 69, ../css/manhattan/5_sections/_manifesto.scss */
+  .manifesto__main p {
+    font-size: 2em !important;
+    margin-bottom: 2em; }
+    @media screen and (min-width: 48em) {
+      /* line 69, ../css/manhattan/5_sections/_manifesto.scss */
+      .manifesto__main p {
+        font-size: 1.5em !important; } }
+
+/* line 78, ../css/manhattan/5_sections/_manifesto.scss */
+.manifesto__mark {
+  width: 35%;
+  max-width: 9em; }
+
+/***
+
+  @Misc
+---------------------------------------------------------
+
+  If you're in a bind and need to throw in some code
+  and don't really know where it should go, put it here
+  and then later, put it in the right place.
+
+  A la @csswizardy _shame.scss
+  http://csswizardry.com/2013/04/shame-css/
+
+--------------------------------------------------------- */
+/* line 288, ../css/screen.scss */
+#mfPreviewBar {
+  display: none !important; }

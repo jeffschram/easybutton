@@ -1,0 +1,134 @@
+/* @overlay
+--------------------------------------------------------
+
+  Image overlay system
+  NOTE: It's actually under the site, but appears
+  like an overlay.  Better word than 'underlay'
+
+------------------------------------------------------ */
+
+#overlay {
+
+  #overlay-file-selector {
+    width: 100%;
+    position: relative;
+    display: block;
+    padding: 10px 0;
+    z-index: 9990;
+    cursor: pointer;
+    &:after {
+      cursor: pointer;
+      content: "Upload a file";
+      font-size: 12px;
+      display: block;
+      position: absolute;
+      z-index: 9995;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: white;
+      padding: 10px;
+      @include border-radius(5px);
+    }
+    &:hover:after {
+      background: $active;
+      color: white;
+    }
+  }
+
+  // Overlay Controls, opacity and drag
+  // By default, they are inactive
+  .overlay-control {
+    transition: opacity .4s;
+    -webkit-transition: opacity .4s;
+    opacity: .5;
+    pointer-events: none;
+    &.active {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
+  #overlay-file-opacity {
+    cursor: pointer;
+    width: 100%;
+    -webkit-appearance: none;
+    background-color: #dfdfdf;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 12px;
+      width: 12px;
+      background: #333;
+      border-radius: 2px;
+    }
+  }
+
+  > li.overlay-option {
+    > a {
+      display: inline-block;
+      float: left;
+      height: 65px;
+      line-height: 65px;
+      width: 90%;
+      &.active {
+        background: $active;
+        color: white;
+        pointer-events: none;
+      }
+      &.delete-overlay-option {
+        width: 10%;
+        text-align: center;
+        padding: 0;
+        line-height: 65px;
+      }
+      > img {
+        margin-right: 5px;
+        height: 40px;
+        width: auto;
+      }
+    }
+  }
+}
+
+#overlay-image {
+  position: absolute;
+  z-index: 9960; // below the iframe
+  top: 0;
+  left: 0;
+  width: auto !important;
+  max-width: 500% !important;
+  height: auto !important;
+  pointer-events: none;
+  cursor: none;
+  &.active {
+    pointer-events: auto;
+    cursor: move;
+  }
+  &.fixed {
+   position: fixed;
+  }
+}
+
+.on-off-icon {
+  color: #333 !important;
+  font-size: 4em;
+  float: right;
+  vertical-align: middle;
+  margin-top: -2px;
+  opacity: .3;
+}
+
+#overlay-toggle-active {
+  border-radius: 5px;
+}
+#overlay-toggle-active.active,
+#overlay-toggle-active.active:hover {
+  background: $active !important;;
+  color: white !important;
+  .on-off-icon {
+    color: #bada55 !important;
+    opacity: 1;
+  }
+}
+#overlay-toggle-active.active:active,
+#overlay-toggle-active:active {
+  opacity: .8;
+}

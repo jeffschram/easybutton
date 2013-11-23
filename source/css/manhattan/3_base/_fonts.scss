@@ -1,0 +1,26 @@
+/**
+
+  @fonts
+--------------------------------------------------------
+  _3_elements/fonts.scss
+--------------------------------------------------------
+
+  Define the fonts used in this app and declare variables
+  to be used in your CSS.
+
+  If you are using a webfont, see the _1_foundations/_mixins.scss
+  file for deets on the font embed mixin that is used to
+  embed webfonts.
+
+  for example, to create a font-family named "interstate-light"
+  using a font at /fonts/interstate_light-webfont.woff (and other extensions)
+
+  @include embed-font("interstate-light", "/fonts/interstate_light-webfont");
+
+-------------------------------------------------------- */
+
+
+$sans-stack: "myriad-pro", Helvetica, Arial, sans-serif;
+$sans-stack-simple: Helvetica, Arial, sans-serif;
+$serif-stack: georgia, sans-serif;
+$serif-stack-simple: georgia, times, serif;

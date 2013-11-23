@@ -1,0 +1,23 @@
+/**
+
+  @body
+--------------------------------------------------------
+
+  Body should contain the document's default font and
+  background color for the content, if that background
+  color is different than the html.
+
+------------------------------------------------------ */
+
+body {
+  background: #121212; // TODO: var for bg
+  padding-top: 26px;
+  font-family: $serif-stack;
+  color: $body-text;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}

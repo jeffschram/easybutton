@@ -1,0 +1,80 @@
+/**
+
+  @thumbnails
+--------------------------------------------------------
+
+  Thumbnails have an image, a title, and a caption
+
+  Example: Thumbnails in grids
+  <div class="gw m-three-up">
+    <div class="g">
+      <figure class="thumbnail">
+        <img class="thumbnail__image" src="http://fillmurray.com/400/250">
+        <h3 class="thumbnail__title">Mr. Murray</h3>
+        <figcaption class="thumbnail__caption">As you can see, this man is the man.</figcaption>
+      </figure>
+    </div>
+    <div class="g">
+      <figure class="thumbnail">
+        <img class="thumbnail__image" src="http://fillmurray.com/400/250">
+        <h3 class="thumbnail__title">Mr. Murray</h3>
+        <figcaption class="thumbnail__caption">As you can see, this man is the man.</figcaption>
+      </figure>
+    </div>
+    <div class="g">
+      <figure class="thumbnail">
+        <img class="thumbnail__image" src="http://fillmurray.com/400/250">
+        <h3 class="thumbnail__title">Mr. Murray</h3>
+        <figcaption class="thumbnail__caption">As you can see, this man is the man.</figcaption>
+      </figure>
+    </div>
+  <div>
+-----------------------------------------------------  */
+
+.thumbnail {
+  position: relative;       // some thumbnails have tooltips
+  // Sample styles below, edit as you wish...
+
+  .thumbnail__media {
+    // Sample styles below, edit as you wish...
+    margin: 0 auto .25em;
+    display: block;
+    max-height: 4em;
+    width: auto;
+    opacity: .75;
+  }
+
+  .thumbnail__caption {
+    position: relative;
+    text-align: center;
+    padding: .5em;
+    font-size: .95em;
+    h4 {
+      color: $color__grey;
+      margin: 0 0 .25em 0;
+      line-height: 1;
+    }
+    p {
+      display: block;
+      font-size: 1em;
+      @include bp-at-least($breakpoint__lg){
+        height: 5em;
+      }
+    }
+  }
+
+
+}
+
+
+
+
+
+/* Have something else to add?
+--------------------------------------------------------
+  + Add any new modifier classes below
+------------------------------------------------------ */
+
+
+
+

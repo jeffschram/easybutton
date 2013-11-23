@@ -1,0 +1,35 @@
+/**
+
+   @site-content
+--------------------------------------------------------
+  _5_sections/_site-content.scss
+--------------------------------------------------------
+
+  This is a utility div used when you want the content
+  to animate, like in a mobile context.
+
+------------------------------------------------------ */
+
+.site-content {
+  background: $color__white;
+  // Shift right if html.is-showing-site-nav up to breakpoint s
+  @include bp-until($breakpoint__sm){
+    position: fixed;
+    z-index: 100;
+    top: 0; bottom: 0; left: 0; right: 0;
+    overflow: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    @include transition(transform .25s ease-in-out);
+    html.is-showing-site-nav & {
+      margin-left: 85%;
+    }
+    html.csstransforms.is-showing-site-nav & {
+      margin-left: 0;
+      @include transform(translate3d(85%, 0, 0));
+    }
+  }
+}
+
+

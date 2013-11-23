@@ -1,0 +1,33 @@
+/* @pages
+--------------------------------------------------------
+  _5_sections/pages.scss
+--------------------------------------------------------
+
+  Common interior pages
+
+  Your Document would be set up like this
+
+  * Site-header
+  * Site-main
+  * Section with classname "page"
+  * Site-footer
+
+------------------------------------------------------ */
+
+.page {
+  background: $color__offwhite;
+  @include clearfix();
+  padding-top: 2em;
+  @include bp-at-least($breakpoint__sm){
+    padding-top: 3em;
+  }
+
+}
+.page__section {
+  padding-bottom: 3em;
+  margin: 0 0 3em;
+  border-bottom: 1px solid $color__grey;
+  @include bp-at-least($breakpoint__sm){
+    margin: 0 0 3em;
+  }
+}
