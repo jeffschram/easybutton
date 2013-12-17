@@ -664,6 +664,21 @@ table {
   h2,
   h3 {
     page-break-after: avoid; } }
+/* @animations
+-----------------------------------------------------
+
+  Animations
+
+-----------------------------------------------------  */
+@-webkit-keyframes fadeOut {
+  /* line 9, ../css/manhattan/1_foundations/_animations.scss */
+  0% {
+    opacity: 1; }
+
+  /* line 10, ../css/manhattan/1_foundations/_animations.scss */
+  100% {
+    opacity: 0; } }
+
 /***
 
   @layout
@@ -2043,7 +2058,7 @@ table {
     /* line 77, ../css/manhattan/2_layout/_grids.scss */
     .grid-wrap,
     .gw {
-      margin: 0 -1.5em; } }
+      margin: 0 -1em; } }
 
 /* line 89, ../css/manhattan/2_layout/_grids.scss */
 .grid,
@@ -2051,7 +2066,7 @@ table {
   zoom: 1;
   min-height: 1rem;
   position: relative;
-  padding: 0 0 3em; }
+  padding: 0 0 2em; }
   /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
   .grid:before, .grid:after,
   .g:before,
@@ -2066,7 +2081,7 @@ table {
     /* line 89, ../css/manhattan/2_layout/_grids.scss */
     .grid,
     .g {
-      padding: 0 1.5em 3em;
+      padding: 0 1em 2em;
       float: left; } }
 
 /* @table grids
@@ -2213,14 +2228,16 @@ table {
 
   Utility state classes to hide things in different ways
 
-  Note: there is room for improvement here.
+  For Crush, we have CSS rules for day, evening, weekday and
+  weekend editions.  There are corresponding utility classes
+  for this.
 
 --------------------------------------------------------- */
-/* line 15, ../css/manhattan/2_layout/_hide.scss */
+/* line 44, ../css/manhattan/2_layout/_hide.scss */
 .is-hidden {
   display: none; }
 
-/* line 22, ../css/manhattan/2_layout/_hide.scss */
+/* line 51, ../css/manhattan/2_layout/_hide.scss */
 .is-visually-hidden {
   position: absolute;
   left: -9999%;
@@ -2230,23 +2247,23 @@ table {
   opacity: 0; }
 
 @media screen and (min-width: 20em) {
-  /* line 34, ../css/manhattan/2_layout/_hide.scss */
+  /* line 63, ../css/manhattan/2_layout/_hide.scss */
   .hide__xs {
     display: none; } }
 @media screen and (min-width: 34.375em) {
-  /* line 39, ../css/manhattan/2_layout/_hide.scss */
+  /* line 68, ../css/manhattan/2_layout/_hide.scss */
   .hide__sm {
     display: none; } }
 @media screen and (min-width: 48em) {
-  /* line 44, ../css/manhattan/2_layout/_hide.scss */
+  /* line 73, ../css/manhattan/2_layout/_hide.scss */
   .hide__md {
     display: none; } }
 @media screen and (min-width: 64em) {
-  /* line 49, ../css/manhattan/2_layout/_hide.scss */
+  /* line 78, ../css/manhattan/2_layout/_hide.scss */
   .hide__lg {
     display: none; } }
 @media screen and (min-width: 87.5em) {
-  /* line 54, ../css/manhattan/2_layout/_hide.scss */
+  /* line 83, ../css/manhattan/2_layout/_hide.scss */
   .hide__xl {
     display: none; } }
 /**
@@ -2402,11 +2419,14 @@ html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
   position: relative;
-  background: #e3e3e3; }
+  background: #e3e3e3; 
+  height: 100%;
+}
+
+/* line 20, ../css/manhattan/3_base/_html.scss */
+html.no-header {
+  background: #9dcdce; }
 
 /**
 
@@ -2425,19 +2445,24 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  color: #010101; }
-  @media screen and (max-width: 33.375em) {
-    /* line 13, ../css/manhattan/3_base/_body.scss */
-    body {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      overflow: scroll;
-      overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
-      padding-top: 20%; } }
+  color: #010101;
+  /* If activating responsive editions, uncomment this
+  // Set opacity to 0 so the colors don't flicker with time change
+  opacity: 0;
+  // When edition is found, set opacity to 1
+  .edition & {
+    opacity: 1;
+  }
+  */ 
+  height: 100%;
+}
+  /* line 21, ../css/manhattan/3_base/_body.scss */
+  .edition--night body {
+    color: #464646; }
+
+/* line 34, ../css/manhattan/3_base/_body.scss */
+body.no-header {
+  background: #9dcdce; }
 
 /**
 
@@ -2464,7 +2489,7 @@ body {
 ------------------------------------------------------ */
 /* line 25, ../css/manhattan/3_base/_headings.scss */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "BrownBold", georgia, sans-serif;
+  font-family: "BrownBold", sans-serif;
   margin-bottom: .25em;
   line-height: 1.05; }
 
@@ -2517,6 +2542,17 @@ p {
   font-size: 1.5em;
   line-height: 1.5; }
 
+/* line 32, ../css/manhattan/3_base/_text.scss */
+.lead {
+  font-family: "BrownRegular", sans-serif;
+  line-height: 1.1;
+  margin-bottom: .65em;
+  font-size: 2.5em; }
+  @media screen and (min-width: 48em) {
+    /* line 32, ../css/manhattan/3_base/_text.scss */
+    .lead {
+      font-size: 3.5em; } }
+
 /* @inline
 --------------------------------------------------------
 
@@ -2526,17 +2562,17 @@ p {
   <p>Lorem Ipsum is <b>bold</b> text of the <strong>strong</strong> printing and typesetting industry. Lorem Ipsum is <i>italic</i> simply dummy text <em>emphasized</em> of the printing and typesetting industry.</p<
 
 -------------------------------------------------------- */
-/* line 47, ../css/manhattan/3_base/_text.scss */
+/* line 59, ../css/manhattan/3_base/_text.scss */
 b,
 strong {
   font-weight: bold; }
 
-/* line 54, ../css/manhattan/3_base/_text.scss */
+/* line 66, ../css/manhattan/3_base/_text.scss */
 i,
 em {
   font-style: italic; }
 
-/* line 60, ../css/manhattan/3_base/_text.scss */
+/* line 72, ../css/manhattan/3_base/_text.scss */
 .fancy-ampersand {
   font-size: 1.05em;
   text-align: middle;
@@ -2567,12 +2603,16 @@ em {
 -------------------------------------------------------- */
 /* line 29, ../css/manhattan/3_base/_quotes.scss */
 blockquote {
+  font-family: "ff-tisa-web-pro", georgia, times;
+  font-style: italic;
   margin: .5em 0 1.5em;
-  font-size: 1.25em; }
-  /* line 33, ../css/manhattan/3_base/_quotes.scss */
-  blockquote cite {
-    display: block;
-    font-weight: bold; }
+  font-size: 1.4em;
+  opacity: .45; }
+  /* line 36, ../css/manhattan/3_base/_quotes.scss */
+  blockquote p:last-of-type,
+  blockquote p:only-of-type {
+    margin-bottom: 0;
+    line-height: 1.35; }
 
 /* @pullquote
 --------------------------------------------------------
@@ -2583,14 +2623,14 @@ blockquote {
   <p class="pullquote">This is an awesome pull quote!</p>
 
 -------------------------------------------------------- */
-/* line 55, ../css/manhattan/3_base/_quotes.scss */
+/* line 62, ../css/manhattan/3_base/_quotes.scss */
 .pullquote {
   margin: 1em 0;
   font-size: 2em;
   font-style: italic;
   color: #9dcdce;
   text-align: center; }
-  /* line 62, ../css/manhattan/3_base/_quotes.scss */
+  /* line 69, ../css/manhattan/3_base/_quotes.scss */
   .pullquote p {
     line-height: 1.1; }
 
@@ -2716,11 +2756,12 @@ hr {
 a {
   text-decoration: none;
   color: inherit;
+  -webkit-transform: translateZ(0);
   -webkit-transition: color 0.25s, opacity 0.25s, border 0.25s;
   -moz-transition: color 0.25s, opacity 0.25s, border 0.25s;
   -o-transition: color 0.25s, opacity 0.25s, border 0.25s;
   transition: color 0.25s, opacity 0.25s, border 0.25s; }
-  /* line 32, ../css/manhattan/3_base/_links.scss */
+  /* line 33, ../css/manhattan/3_base/_links.scss */
   a:hover {
     text-decoration: none;
     opacity: .85; }
@@ -2731,7 +2772,7 @@ a {
   Declare the webkit tap highlight style
 
 ------------------------------------------------------ */
-/* line 49, ../css/manhattan/3_base/_links.scss */
+/* line 50, ../css/manhattan/3_base/_links.scss */
 body {
   -webkit-tap-highlight-color: rba(0, 0, 0, 0.35); }
 
@@ -2856,6 +2897,41 @@ img {
 --------------------------------------------------------
   + Add any new modifier classes below
 ------------------------------------------------------ */
+/**
+
+  @figures
+--------------------------------------------------------
+
+  Figures hold media and have background modifiers
+
+-----------------------------------------------------  */
+/* line 10, ../css/manhattan/3_base/_figures.scss */
+figure {
+  margin-bottom: 3em; }
+
+/* line 15, ../css/manhattan/3_base/_figures.scss */
+.screenshot--web {
+  padding-top: 1.5em;
+  background: #9ca2a5;
+  border-radius: .45em;
+  overflow: hidden;
+  position: relative; }
+  /* line 21, ../css/manhattan/3_base/_figures.scss */
+  .screenshot--web:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: .5em;
+    width: 3em;
+    height: 1.5em;
+    background-image: url(/images/theme/web-chrome-buttons.png);
+    background-size: auto 45%;
+    background-repeat: no-repeat;
+    background-position: 0 50%; }
+    /* line 32, ../css/manhattan/3_base/_figures.scss */
+    html.svg .screenshot--web:before {
+      background-image: url(/images/theme/web-chrome-buttons.svg); }
+
 /**
 
   @tables
@@ -3019,10 +3095,13 @@ input[type=month],
 input[type=week],
 input[type=search] {
   width: 100%;
-  padding: .5rem;
-  border: 1px solid #ccc;
-  font-size: 1rem; }
-  /* line 64, ../css/manhattan/3_base/_forms.scss */
+  padding: 1em;
+  border: none;
+  font-size: 1em;
+  background: #e9e9e9;
+  font-family: "BrownRegular", sans-serif;
+  color: #010101; }
+  /* line 67, ../css/manhattan/3_base/_forms.scss */
   input[type=text]:focus,
   input[type=password]:focus,
   input[type=email]:focus,
@@ -3035,7 +3114,7 @@ input[type=search] {
   input[type=week]:focus,
   input[type=search]:focus {
     outline: none; }
-  /* line 68, ../css/manhattan/3_base/_forms.scss */
+  /* line 71, ../css/manhattan/3_base/_forms.scss */
   input[type=text].input--s,
   input[type=password].input--s,
   input[type=email].input--s,
@@ -3048,7 +3127,7 @@ input[type=search] {
   input[type=week].input--s,
   input[type=search].input--s {
     font-size: .5rem; }
-  /* line 72, ../css/manhattan/3_base/_forms.scss */
+  /* line 75, ../css/manhattan/3_base/_forms.scss */
   input[type=text].input--l,
   input[type=password].input--l,
   input[type=email].input--l,
@@ -3062,30 +3141,47 @@ input[type=search] {
   input[type=search].input--l {
     font-size: 1.5rem; }
 
-/* line 83, ../css/manhattan/3_base/_forms.scss */
-input::-webkit-input-placeholder {
-  color: #b2b2b2; }
-/* line 86, ../css/manhattan/3_base/_forms.scss */
-input:-moz-placeholder {
-  color: #b2b2b2; }
-/* line 89, ../css/manhattan/3_base/_forms.scss */
-input::-moz-placeholder {
-  color: #b2b2b2; }
-/* line 92, ../css/manhattan/3_base/_forms.scss */
-input:-ms-input-placeholder {
-  color: #b2b2b2; }
+/* line 80, ../css/manhattan/3_base/_forms.scss */
+input, textarea {
+  -webkit-appearance: none;
+  border-radius: 0; }
 
-/* line 98, ../css/manhattan/3_base/_forms.scss */
-input:focus::-webkit-input-placeholder {
-  opacity: .3; }
-/* line 101, ../css/manhattan/3_base/_forms.scss */
-input:focus:-moz-placeholder {
-  opacity: .3; }
+/* line 92, ../css/manhattan/3_base/_forms.scss */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #010101;
+  text-transform: uppercase; }
+/* line 96, ../css/manhattan/3_base/_forms.scss */
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #010101;
+  text-transform: uppercase; }
+/* line 100, ../css/manhattan/3_base/_forms.scss */
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #010101;
+  text-transform: uppercase; }
 /* line 104, ../css/manhattan/3_base/_forms.scss */
-input:focus::-moz-placeholder {
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #010101;
+  text-transform: uppercase; }
+
+/* line 112, ../css/manhattan/3_base/_forms.scss */
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
   opacity: .3; }
-/* line 107, ../css/manhattan/3_base/_forms.scss */
-input:focus:-ms-input-placeholder {
+/* line 115, ../css/manhattan/3_base/_forms.scss */
+input:focus:-moz-placeholder,
+textarea:focus:-moz-placeholder {
+  opacity: .3; }
+/* line 118, ../css/manhattan/3_base/_forms.scss */
+input:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder {
+  opacity: .3; }
+/* line 121, ../css/manhattan/3_base/_forms.scss */
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder {
   opacity: .3; }
 
 /* @select inputs
@@ -3120,14 +3216,14 @@ input:focus:-ms-input-placeholder {
   </select>
 
 ------------------------------------------------------ */
-/* line 148, ../css/manhattan/3_base/_forms.scss */
+/* line 162, ../css/manhattan/3_base/_forms.scss */
 select {
   width: 100%;
   font-size: 1rem; }
-  /* line 151, ../css/manhattan/3_base/_forms.scss */
+  /* line 165, ../css/manhattan/3_base/_forms.scss */
   select.select--s {
     font-size: .5rem; }
-  /* line 154, ../css/manhattan/3_base/_forms.scss */
+  /* line 168, ../css/manhattan/3_base/_forms.scss */
   select.select--l {
     font-size: 1.5rem; }
 
@@ -3149,18 +3245,27 @@ select {
   <textarea class="textarea--l" name="schramburger">Hello, there.</textarea>
 
 ------------------------------------------------------ */
-/* line 182, ../css/manhattan/3_base/_forms.scss */
+/* line 196, ../css/manhattan/3_base/_forms.scss */
 textarea {
+  position: relative;
   width: 100%;
-  min-height: 6em;
-  padding: .5rem;
-  border: 1px solid #ccc; }
-  /* line 187, ../css/manhattan/3_base/_forms.scss */
+  min-height: 9em;
+  padding: 1em;
+  border: none;
+  background: #e9e9e9;
+  font-family: "BrownRegular", sans-serif;
+  color: #010101; }
+  /* line 205, ../css/manhattan/3_base/_forms.scss */
   textarea.textarea--s {
     font-size: .5rem; }
-  /* line 190, ../css/manhattan/3_base/_forms.scss */
+  /* line 208, ../css/manhattan/3_base/_forms.scss */
   textarea.textarea--l {
     font-size: 1.5rem; }
+  @media screen and (min-width: 48em) {
+    /* line 196, ../css/manhattan/3_base/_forms.scss */
+    textarea {
+      min-height: 8em;
+      padding-bottom: 9em; } }
 
 /* @radio inputs
 --------------------------------------------------------
@@ -3176,7 +3281,7 @@ textarea {
 
 
 ------------------------------------------------------ */
-/* line 214, ../css/manhattan/3_base/_forms.scss */
+/* line 236, ../css/manhattan/3_base/_forms.scss */
 input[type=radio] {
   -webkit-appearance: none;
   width: 1em;
@@ -3184,17 +3289,17 @@ input[type=radio] {
   border-radius: 50%;
   border: 1px solid #444;
   background: transparent; }
-  /* line 221, ../css/manhattan/3_base/_forms.scss */
+  /* line 243, ../css/manhattan/3_base/_forms.scss */
   input[type=radio]:checked {
     background: #222; }
 
-/* line 227, ../css/manhattan/3_base/_forms.scss */
+/* line 249, ../css/manhattan/3_base/_forms.scss */
 .label--radio {
   display: inline-block;
   position: relative;
   cursor: pointer;
   padding-left: 1.25em; }
-  /* line 232, ../css/manhattan/3_base/_forms.scss */
+  /* line 254, ../css/manhattan/3_base/_forms.scss */
   .label--radio input {
     position: absolute;
     top: .2em;
@@ -3214,42 +3319,28 @@ input[type=radio] {
 
 
 ------------------------------------------------------ */
-/* line 258, ../css/manhattan/3_base/_forms.scss */
+/* line 280, ../css/manhattan/3_base/_forms.scss */
 input[type=checkbox] {
   -webkit-appearance: none;
   width: 1em;
   height: 1em;
   border: 1px solid #444;
   background: transparent; }
-  /* line 264, ../css/manhattan/3_base/_forms.scss */
+  /* line 286, ../css/manhattan/3_base/_forms.scss */
   input[type=checkbox]:checked {
     background: #222; }
 
-/* line 269, ../css/manhattan/3_base/_forms.scss */
+/* line 291, ../css/manhattan/3_base/_forms.scss */
 .label--checkbox {
   display: inline-block;
   position: relative;
   cursor: pointer;
   padding-left: 1.25em; }
-  /* line 274, ../css/manhattan/3_base/_forms.scss */
+  /* line 296, ../css/manhattan/3_base/_forms.scss */
   .label--checkbox input {
     position: absolute;
     top: .2em;
     left: 0; }
-
-/* @textareas
---------------------------------------------------------
-
-  Base styling for textareas
-
-  Example: Textarea
-  <textarea name="schramburger">Hello, there.</textarea>
-
------------------------------------------------------- */
-/* line 295, ../css/manhattan/3_base/_forms.scss */
-textarea {
-  width: 100%;
-  min-height: 6em; }
 
 /* @labels
 --------------------------------------------------------
@@ -3260,7 +3351,7 @@ textarea {
   <label>Don't label me, I'm a free spirit</labe>
 
 ------------------------------------------------------ */
-/* line 314, ../css/manhattan/3_base/_forms.scss */
+/* line 318, ../css/manhattan/3_base/_forms.scss */
 label {
   font-size: 1em;
   font-weight: bold; }
@@ -3276,12 +3367,12 @@ label {
   laid out further below.
 
 ------------------------------------------------------ */
-/* line 335, ../css/manhattan/3_base/_forms.scss */
+/* line 339, ../css/manhattan/3_base/_forms.scss */
 .form {
-  width: 100%;
-  padding: 0 1em;
-  border: 1px solid #ccc;
-  background: #fafafa; }
+  width: 100%; }
+  /* line 341, ../css/manhattan/3_base/_forms.scss */
+  .form .g {
+    padding-bottom: 0; }
 
 /* @form-header
 --------------------------------------------------------
@@ -3297,7 +3388,7 @@ label {
   </header>
 
 -------------------------------------------------------- */
-/* line 360, ../css/manhattan/3_base/_forms.scss */
+/* line 364, ../css/manhattan/3_base/_forms.scss */
 .form__header {
   padding: 1em;
   margin: 0 0 1em 0;
@@ -3361,15 +3452,15 @@ label {
   </fieldset>
 
 -------------------------------------------------------- */
-/* line 429, ../css/manhattan/3_base/_forms.scss */
+/* line 433, ../css/manhattan/3_base/_forms.scss */
 fieldset {
   margin: 0 0 2rem;
   padding: 0 0 1rem;
   border: none; }
-  /* line 433, ../css/manhattan/3_base/_forms.scss */
+  /* line 437, ../css/manhattan/3_base/_forms.scss */
   fieldset fieldset {
     margin-top: 2rem; }
-  /* line 436, ../css/manhattan/3_base/_forms.scss */
+  /* line 440, ../css/manhattan/3_base/_forms.scss */
   fieldset legend {
     display: block;
     margin: 0 0 .5rem 0;
@@ -3427,23 +3518,26 @@ fieldset {
   </article>
 
 -------------------------------------------------------- */
-/* line 498, ../css/manhattan/3_base/_forms.scss */
+/* line 502, ../css/manhattan/3_base/_forms.scss */
 .field {
   position: relative;
-  margin-bottom: 1rem; }
+  margin-bottom: 2em; }
 
-/* line 505, ../css/manhattan/3_base/_forms.scss */
+/* line 509, ../css/manhattan/3_base/_forms.scss */
 .field__label {
-  display: block; }
+  position: fixed;
+  top: -200%;
+  left: -1000%;
+  opacity: 0; }
 
-/* line 510, ../css/manhattan/3_base/_forms.scss */
+/* line 517, ../css/manhattan/3_base/_forms.scss */
 .field__hint {
   color: #888;
   font-size: .75em;
   padding: .25em 0;
   font-style: italic; }
 
-/* line 518, ../css/manhattan/3_base/_forms.scss */
+/* line 525, ../css/manhattan/3_base/_forms.scss */
 .field__feedback {
   display: none;
   font-size: .75em;
@@ -3451,10 +3545,10 @@ fieldset {
   background: rgba(218, 35, 0, 0.3);
   color: white; }
 
-/* line 529, ../css/manhattan/3_base/_forms.scss */
+/* line 536, ../css/manhattan/3_base/_forms.scss */
 .field.is-error .field__feedback {
   display: block; }
-/* line 532, ../css/manhattan/3_base/_forms.scss */
+/* line 539, ../css/manhattan/3_base/_forms.scss */
 .field.is-error input {
   border: 1px solid rgba(218, 35, 0, 0.3); }
 
@@ -3501,25 +3595,25 @@ fieldset {
   </article>
 
 ------------------------------------------------------ */
-/* line 586, ../css/manhattan/3_base/_forms.scss */
+/* line 593, ../css/manhattan/3_base/_forms.scss */
 .field__input-group {
   display: block; }
-  /* line 588, ../css/manhattan/3_base/_forms.scss */
+  /* line 595, ../css/manhattan/3_base/_forms.scss */
   .field__input-group > * {
     display: inline-block;
     margin-right: .5em; }
-    /* line 591, ../css/manhattan/3_base/_forms.scss */
+    /* line 598, ../css/manhattan/3_base/_forms.scss */
     .field__input-group > *:last-child {
       margin-right: 0; }
 
-/* line 598, ../css/manhattan/3_base/_forms.scss */
+/* line 605, ../css/manhattan/3_base/_forms.scss */
 .field__input-group--list {
   display: block; }
-  /* line 600, ../css/manhattan/3_base/_forms.scss */
+  /* line 607, ../css/manhattan/3_base/_forms.scss */
   .field__input-group--list > * {
     display: block;
     margin: .5em 0; }
-    /* line 603, ../css/manhattan/3_base/_forms.scss */
+    /* line 610, ../css/manhattan/3_base/_forms.scss */
     .field__input-group--list > *:last-child {
       margin-bottom: 0; }
 
@@ -3540,12 +3634,25 @@ fieldset {
   </footer>
 
 --------------------------------------------------------- */
-/* line 633, ../css/manhattan/3_base/_forms.scss */
+/* line 640, ../css/manhattan/3_base/_forms.scss */
 .form__actions {
-  padding: 1em;
-  margin: 1em 0 0 0;
-  background: #eee;
-  border-top: 1px solid #ccc; }
+  text-align: right; }
+  /* line 642, ../css/manhattan/3_base/_forms.scss */
+  .form__actions input {
+    width: 100%;
+    text-align: center; }
+  @media screen and (min-width: 48em) {
+    /* line 640, ../css/manhattan/3_base/_forms.scss */
+    .form__actions {
+      margin-top: -6.5em;
+      pointer-events: none;
+      position: relative;
+      padding-right: 1.5em;
+      pointer-events: none; }
+      /* line 652, ../css/manhattan/3_base/_forms.scss */
+      .form__actions input {
+        pointer-events: auto;
+        width: auto; } }
 
 /* @inline forms using grids
 --------------------------------------------------------
@@ -3682,21 +3789,18 @@ fieldset {
   display: inline-block;
   border: none;
   vertical-align: middle;
-  border: 1px solid #010101;
-  background: #010101;
+  border: none;
+  background: #9dcdce;
   color: white;
-  padding: 1em;
-  font-size: .85rem;
-  border-radius: .125rem;
-  font-weight: normal;
-  -webkit-transition: color 0.2s, background-color 0.2s;
-  -moz-transition: color 0.2s, background-color 0.2s;
-  -o-transition: color 0.2s, background-color 0.2s;
-  transition: color 0.2s, background-color 0.2s; }
-  /* line 41, ../css/manhattan/3_base/_buttons.scss */
+  padding: 1em 1.5em;
+  font-size: 1em;
+  border-radius: 0;
+  font-family: "BrownRegular", sans-serif;
+  text-transform: uppercase;
+  -webkit-transform: translateZ(0); }
+  /* line 42, ../css/manhattan/3_base/_buttons.scss */
   .btn:hover, .btn:focus {
-    color: #010101;
-    background: white; }
+    opacity: .75; }
 
 /* @btn--large
 --------------------------------------------------------
@@ -4628,6 +4732,37 @@ fieldset {
 .ss-rss:before, .ss-rss.right:after {
   content: ''; }
 
+/**
+
+  @video
+--------------------------------------------------------
+
+  Video figures
+
+-----------------------------------------------------  */
+/* line 10, ../css/manhattan/3_base/_video.scss */
+.video {
+  margin-bottom: 1.5em; }
+
+/**
+
+  @address
+--------------------------------------------------------
+
+  Addresses
+
+-----------------------------------------------------  */
+/* line 10, ../css/manhattan/3_base/_address.scss */
+address {
+  font-style: normal;
+  font-family: "BrownRegular", sans-serif;
+  color: #010101;
+  font-size: 1em; }
+  /* line 15, ../css/manhattan/3_base/_address.scss */
+  address a, address a:hover, address a:focus {
+    color: inherit !important;
+    border: none; }
+
 /***
 
   @modules
@@ -5098,13 +5233,20 @@ fieldset {
   /* line 45, ../css/manhattan/4_modules/_thumbnails.scss */
   .thumbnail .thumbnail__caption {
     position: relative;
-    padding: .5em;
+    padding: .5em 0;
     font-size: .95em;
     color: #010101; }
     /* line 50, ../css/manhattan/4_modules/_thumbnails.scss */
-    .thumbnail .thumbnail__caption h4 {
+    .thumbnail .thumbnail__caption h1, .thumbnail .thumbnail__caption h2, .thumbnail .thumbnail__caption h3, .thumbnail .thumbnail__caption h4, .thumbnail .thumbnail__caption p {
       margin: 0;
-      line-height: 1; }
+      font-weight: normal;
+      font-family: "BrownRegular", sans-serif;
+      color: #010101;
+      font-size: 1.5em; }
+      @media screen and (min-width: 48em) {
+        /* line 50, ../css/manhattan/4_modules/_thumbnails.scss */
+        .thumbnail .thumbnail__caption h1, .thumbnail .thumbnail__caption h2, .thumbnail .thumbnail__caption h3, .thumbnail .thumbnail__caption h4, .thumbnail .thumbnail__caption p {
+          font-size: 1em; } }
 
 /* Have something else to add?
 --------------------------------------------------------
@@ -5251,6 +5393,38 @@ fieldset {
   height: 1em;
   border-bottom: 1px solid rgba(160, 155, 155, 0.4); }
 
+/**
+
+  @embed
+--------------------------------------------------------
+
+  Embeds
+
+-----------------------------------------------------  */
+/* line 10, ../css/manhattan/4_modules/_embed.scss */
+.embed {
+  position: relative;
+  height: 0;
+  width: 100%;
+  display: block; }
+  /* line 15, ../css/manhattan/4_modules/_embed.scss */
+  .embed > iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%; }
+
+/* line 26, ../css/manhattan/4_modules/_embed.scss */
+.embed--72-5 {
+  padding-top: 72.5%; }
+
+/* line 30, ../css/manhattan/4_modules/_embed.scss */
+.embed--56-2 {
+  padding-top: 56.2%; }
+
 /***
 
   @sections
@@ -5277,50 +5451,27 @@ fieldset {
   to animate, like in a mobile context.
 
 ------------------------------------------------------ */
-/* line 13, ../css/manhattan/5_sections/_site-content.scss */
-.site-content {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: scroll;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transition: -webkit-transform 0.25s ease-in-out;
-  -moz-transition: -moz-transform 0.25s ease-in-out;
-  -o-transition: -o-transform 0.25s ease-in-out;
-  transition: transform 0.25s ease-in-out; }
-  /* line 23, ../css/manhattan/5_sections/_site-content.scss */
-  html.is-showing-site-nav .site-content {
-    margin-left: 82.5%; }
-  /* line 26, ../css/manhattan/5_sections/_site-content.scss */
-  html.csstransforms.is-showing-site-nav .site-content {
-    margin-left: 0;
-    -webkit-transform: translate3d(82.5%, 0, 0);
-    -moz-transform: translate3d(82.5%, 0, 0);
-    -ms-transform: translate3d(82.5%, 0, 0);
-    -o-transform: translate3d(82.5%, 0, 0);
-    transform: translate3d(82.5%, 0, 0); }
-  @media screen and (min-width: 48em) {
-    /* line 13, ../css/manhattan/5_sections/_site-content.scss */
-    .site-content {
-      left: 17em; }
-      /* line 34, ../css/manhattan/5_sections/_site-content.scss */
-      .no-header .site-content {
-        left: 0; }
-      /* line 38, ../css/manhattan/5_sections/_site-content.scss */
-      html.is-showing-site-nav .site-content {
-        margin-left: 0; }
-      /* line 41, ../css/manhattan/5_sections/_site-content.scss */
-      html.csstransforms.is-showing-site-nav .site-content {
-        margin-left: 0;
-        -webkit-transform: translate3d(0, 0, 0);
-        -moz-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-        -o-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0); } }
+/* line 15, ../css/manhattan/5_sections/_site-content.scss */
+html.csstransforms.touch.is-showing-site-nav .site-content {
+  -webkit-filter: blur(6px);
+  -moz-filter: blur(6px);
+  -o-filter: blur(6px);
+  -ms-filter: blur(6px);
+  filter: blur(6px);
+  pointer-events: none;
+  overflow: hidden; }
+@media screen and (min-width: 48em) {
+  /* line 13, ../css/manhattan/5_sections/_site-content.scss */
+  .site-content {
+    margin-left: 17em; }
+    /* line 28, ../css/manhattan/5_sections/_site-content.scss */
+    html.csstransforms.touch.is-showing-site-nav .site-content {
+      -webkit-filter: blur(0);
+      -moz-filter: blur(0);
+      -o-filter: blur(0);
+      -ms-filter: blur(0);
+      filter: blur(0);
+      pointer-events: auto; } }
 
 /**
 
@@ -5335,14 +5486,18 @@ fieldset {
 /* line 12, ../css/manhattan/5_sections/_site-header.scss */
 .site-header {
   zoom: 1;
-  background: #9dcdce;
+  background: rgba(157, 205, 206, 0.96);
   position: fixed;
-  z-index: 1000;
+  z-index: 1100;
   top: 0;
   bottom: 0;
   left: 0;
-  width: 82.5%;
-  padding: 3em 3em; }
+  overflow: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  padding: 5.5em 2em;
+  display: none; }
   /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
   .site-header:before, .site-header:after {
     content: " ";
@@ -5350,10 +5505,22 @@ fieldset {
   /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
   .site-header:after {
     clear: both; }
+  /* line 17, ../css/manhattan/5_sections/_site-header.scss */
+  .edition--night .site-header {
+    background: rgba(39, 39, 39, 0.96); }
+  /* line 31, ../css/manhattan/5_sections/_site-header.scss */
+  html.is-showing-site-nav .site-header {
+    display: block; }
   @media screen and (min-width: 48em) {
     /* line 12, ../css/manhattan/5_sections/_site-header.scss */
     .site-header {
-      width: 17em; } }
+      display: block !important;
+      width: 17em;
+      background: #9dcdce;
+      padding: 3em 3em; }
+      /* line 40, ../css/manhattan/5_sections/_site-header.scss */
+      .edition--night .site-header {
+        background: #272727; } }
 
 /* @mobile header
 --------------------------------------------------------
@@ -5361,62 +5528,69 @@ fieldset {
   Mobile header
 
 ------------------------------------------------------ */
-/* line 41, ../css/manhattan/5_sections/_site-header.scss */
+/* line 61, ../css/manhattan/5_sections/_site-header.scss */
 .mobile-header {
   position: fixed;
   z-index: 2000;
   top: 0;
   left: 0;
   right: 0;
-  background: #9dcdce;
-  text-align: center;
-  -webkit-transition: -webkit-transform 0.25s ease-in-out;
-  -moz-transition: -moz-transform 0.25s ease-in-out;
-  -o-transition: -o-transform 0.25s ease-in-out;
-  transition: transform 0.25s ease-in-out; }
+  background: #9dcdce; }
+  /* line 69, ../css/manhattan/5_sections/_site-header.scss */
+  .edition--night .mobile-header {
+    background: #272727; }
   @media screen and (min-width: 48em) {
-    /* line 41, ../css/manhattan/5_sections/_site-header.scss */
+    /* line 61, ../css/manhattan/5_sections/_site-header.scss */
     .mobile-header {
       display: none; } }
-  /* line 55, ../css/manhattan/5_sections/_site-header.scss */
-  html.is-showing-site-nav .mobile-header {
-    margin-left: 82.5%; }
-  /* line 58, ../css/manhattan/5_sections/_site-header.scss */
-  html.csstransforms.is-showing-site-nav .mobile-header {
-    margin-left: 0;
-    -webkit-transform: translate3d(82.5%, 0, 0);
-    -moz-transform: translate3d(82.5%, 0, 0);
-    -ms-transform: translate3d(82.5%, 0, 0);
-    -o-transform: translate3d(82.5%, 0, 0);
-    transform: translate3d(82.5%, 0, 0); }
 
-/* line 64, ../css/manhattan/5_sections/_site-header.scss */
+/* line 78, ../css/manhattan/5_sections/_site-header.scss */
 .mobile-header__branding {
   display: inline-block;
-  margin: 0 auto; }
+  margin: 3px auto 0;
+  -webkit-transition: opacity 0.25s;
+  -moz-transition: opacity 0.25s;
+  -o-transition: opacity 0.25s;
+  transition: opacity 0.25s; }
+  /* line 82, ../css/manhattan/5_sections/_site-header.scss */
+  html.is-showing-site-nav .mobile-header__branding {
+    opacity: 0; }
 
-/* line 68, ../css/manhattan/5_sections/_site-header.scss */
+/* line 86, ../css/manhattan/5_sections/_site-header.scss */
 .mobile-header__branding__logo {
   height: 2em;
   display: block;
   width: auto;
   margin: 1.25em 0; }
 
-/* @site-nav
+/* @site-nav button
 --------------------------------------------------------
 
   Button to toggle site-nav
 
 ------------------------------------------------------ */
-/* line 84, ../css/manhattan/5_sections/_site-header.scss */
+/* line 102, ../css/manhattan/5_sections/_site-header.scss */
 .site-nav__button {
-  padding: .5em 1em;
   color: white;
-  position: absolute;
-  z-index: 400;
-  top: 0;
-  left: 0;
-  font-size: 2em; }
+  float: right;
+  font-size: 2em;
+  height: 2.6em;
+  line-height: 2.85em; }
+  /* line 105, ../css/manhattan/5_sections/_site-header.scss */
+  .edition--night .site-nav__button {
+    color: #eeeeee; }
+  /* line 113, ../css/manhattan/5_sections/_site-header.scss */
+  .site-nav__button .icon--open-nav {
+    display: block; }
+  /* line 116, ../css/manhattan/5_sections/_site-header.scss */
+  .site-nav__button .icon--close-nav {
+    display: none; }
+  /* line 120, ../css/manhattan/5_sections/_site-header.scss */
+  html.is-showing-site-nav .site-nav__button .icon--open-nav {
+    display: none; }
+  /* line 123, ../css/manhattan/5_sections/_site-header.scss */
+  html.is-showing-site-nav .site-nav__button .icon--close-nav {
+    display: block; }
 
 /* @branding
 --------------------------------------------------------
@@ -5431,15 +5605,20 @@ fieldset {
   </a>
 
 ------------------------------------------------------ */
-/* line 113, ../css/manhattan/5_sections/_site-header.scss */
+/* line 148, ../css/manhattan/5_sections/_site-header.scss */
 .branding {
   position: relative;
-  display: block;
   width: 100%;
-  height: 6.25em;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.4); }
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  display: block;
+  padding: 1em 0 7em; }
+  @media screen and (min-width: 48em) {
+    /* line 148, ../css/manhattan/5_sections/_site-header.scss */
+    .branding {
+      height: 6.25em;
+      padding: 0; } }
 
-/* line 122, ../css/manhattan/5_sections/_site-header.scss */
+/* line 160, ../css/manhattan/5_sections/_site-header.scss */
 .branding__logo {
   width: 82%; }
 
@@ -5449,34 +5628,52 @@ fieldset {
   Main Site Navigation
 
 ------------------------------------------------------ */
-/* line 138, ../css/manhattan/5_sections/_site-header.scss */
+/* line 176, ../css/manhattan/5_sections/_site-header.scss */
 .site-nav {
-  border-top: 2px solid rgba(255, 255, 255, 0.4);
   border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  border-top: 2px solid rgba(255, 255, 255, 0.4);
   padding: .75em 0 3em; }
-  /* line 142, ../css/manhattan/5_sections/_site-header.scss */
+  /* line 180, ../css/manhattan/5_sections/_site-header.scss */
   .site-nav ul {
     display: block;
     margin-top: .5em; }
-    /* line 145, ../css/manhattan/5_sections/_site-header.scss */
+    /* line 183, ../css/manhattan/5_sections/_site-header.scss */
     .site-nav ul li {
       display: block; }
-      /* line 147, ../css/manhattan/5_sections/_site-header.scss */
+      /* line 185, ../css/manhattan/5_sections/_site-header.scss */
       .site-nav ul li a {
         font-family: "BrownRegular", sans-serif;
         display: block;
         padding: .25em 0;
-        color: #4d6164;
+        color: #3e5254;
+        font-size: 2.25em;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out; }
-        /* line 153, ../css/manhattan/5_sections/_site-header.scss */
+        /* line 191, ../css/manhattan/5_sections/_site-header.scss */
+        .edition--night .site-nav ul li a {
+          color: #618d8e; }
+        @media screen and (min-width: 48em) {
+          /* line 185, ../css/manhattan/5_sections/_site-header.scss */
+          .site-nav ul li a {
+            font-size: 1.25em; } }
+        @media screen and (min-width: 64em) {
+          /* line 185, ../css/manhattan/5_sections/_site-header.scss */
+          .site-nav ul li a {
+            font-size: 1em; } }
+        /* line 202, ../css/manhattan/5_sections/_site-header.scss */
         .site-nav ul li a:hover {
-          color: #637d81; }
-        /* line 158, ../css/manhattan/5_sections/_site-header.scss */
+          color: #546f71; }
+          /* line 205, ../css/manhattan/5_sections/_site-header.scss */
+          .edition--night .site-nav ul li a:hover {
+            color: #4c6f70; }
+        /* line 211, ../css/manhattan/5_sections/_site-header.scss */
         .site-nav ul li a.is-current, .site-nav ul li a.is-current:hover, .site-nav ul li a.is-current:focus {
           color: white; }
+          /* line 214, ../css/manhattan/5_sections/_site-header.scss */
+          .edition--night .site-nav ul li a.is-current, .edition--night .site-nav ul li a.is-current:hover, .edition--night .site-nav ul li a.is-current:focus {
+            color: #eeeeee; }
 
 /* @social-nav
 --------------------------------------------------------
@@ -5484,34 +5681,44 @@ fieldset {
   Social Navigation
 
 ------------------------------------------------------ */
-/* line 178, ../css/manhattan/5_sections/_site-header.scss */
-.social-nav ul {
-  display: block;
-  margin-top: 1em; }
-  /* line 181, ../css/manhattan/5_sections/_site-header.scss */
-  .social-nav ul li {
-    float: left; }
-    /* line 183, ../css/manhattan/5_sections/_site-header.scss */
-    .social-nav ul li a {
-      display: block;
-      color: #9dcdce;
-      margin-right: .5em;
-      background: rgba(255, 255, 255, 0.4);
-      border-radius: 50%;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out; }
-      /* line 190, ../css/manhattan/5_sections/_site-header.scss */
-      .social-nav ul li a:hover {
-        background: rgba(255, 255, 255, 0.6); }
-      /* line 193, ../css/manhattan/5_sections/_site-header.scss */
-      .social-nav ul li a i {
-        height: 1.75em;
-        line-height: 2em;
-        width: 1.75em;
-        text-align: center;
-        display: block; }
+/* line 234, ../css/manhattan/5_sections/_site-header.scss */
+.social-nav {
+  font-size: 2.5em; }
+  @media screen and (min-width: 48em) {
+    /* line 234, ../css/manhattan/5_sections/_site-header.scss */
+    .social-nav {
+      font-size: 1em; } }
+  /* line 239, ../css/manhattan/5_sections/_site-header.scss */
+  .social-nav ul {
+    display: block;
+    margin-top: 1em; }
+    /* line 242, ../css/manhattan/5_sections/_site-header.scss */
+    .social-nav ul li {
+      float: left; }
+      /* line 244, ../css/manhattan/5_sections/_site-header.scss */
+      .social-nav ul li a {
+        display: block;
+        color: #9dcdce;
+        margin-right: .5em;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out; }
+        /* line 248, ../css/manhattan/5_sections/_site-header.scss */
+        .edition--night .social-nav ul li a {
+          color: #272727; }
+        /* line 255, ../css/manhattan/5_sections/_site-header.scss */
+        .social-nav ul li a:hover {
+          background: white; }
+        /* line 258, ../css/manhattan/5_sections/_site-header.scss */
+        .social-nav ul li a i {
+          height: 1.75em;
+          line-height: 2em;
+          width: 1.75em;
+          text-align: center;
+          display: block; }
 
 /* @site-main
 --------------------------------------------------------
@@ -5525,8 +5732,14 @@ fieldset {
 .site-main {
   display: block;
   background: white;
-  max-width: 66em;
-  min-height: 100%; }
+  max-width: 66em; }
+  /* line 14, ../css/manhattan/5_sections/_site-main.scss */
+  .edition--night .site-main {
+    background: #eeeeee; }
+
+/* line 20, ../css/manhattan/5_sections/_site-main.scss */
+html.no-header .site-main {
+  background: none; }
 
 /* @site-footer
 --------------------------------------------------------
@@ -5567,38 +5780,55 @@ fieldset {
   /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
   .page:after {
     clear: both; }
+  /* line 16, ../css/manhattan/5_sections/_pages.scss */
+  .edition--night .page {
+    background: #eeeeee; }
   @media screen and (min-width: 48em) {
     /* line 10, ../css/manhattan/5_sections/_pages.scss */
     .page {
       padding-top: 3em; } }
-  /* line 23, ../css/manhattan/5_sections/_pages.scss */
+  /* line 27, ../css/manhattan/5_sections/_pages.scss */
   .page a {
     color: #3A9597;
     border-bottom: 1px solid transparent; }
-    /* line 27, ../css/manhattan/5_sections/_pages.scss */
+    /* line 31, ../css/manhattan/5_sections/_pages.scss */
     .page a:hover, .page a:focus {
       color: #9dcdce;
       border-color: #9dcdce; }
-  /* line 33, ../css/manhattan/5_sections/_pages.scss */
-  .page img {
-    margin-bottom: 1.5em; }
   /* line 37, ../css/manhattan/5_sections/_pages.scss */
+  .page .video {
+    margin-bottom: 3em; }
+  /* line 42, ../css/manhattan/5_sections/_pages.scss */
   .page ul, .page ol {
     margin-bottom: 1.5em; }
-    /* line 39, ../css/manhattan/5_sections/_pages.scss */
+    /* line 44, ../css/manhattan/5_sections/_pages.scss */
     .page ul li, .page ol li {
       font-size: 1.5em;
       line-height: 1.5; }
+      /* line 47, ../css/manhattan/5_sections/_pages.scss */
+      .page ul li li, .page ol li li {
+        font-size: 1em; }
+        /* line 49, ../css/manhattan/5_sections/_pages.scss */
+        .page ul li li:before, .page ol li li:before {
+          content: "";
+          height: .25em;
+          width: .25em;
+          vertical-align: middle;
+          position: relative;
+          display: inline-block;
+          border-radius: 50%;
+          margin-right: .5em;
+          background: #010101; }
 
-/* line 49, ../css/manhattan/5_sections/_pages.scss */
+/* line 68, ../css/manhattan/5_sections/_pages.scss */
 .page__header {
   zoom: 1;
   font-family: "BrownRegular", sans-serif;
   color: #b3bbbd;
-  margin: 0;
+  margin-top: 10em;
+  min-height: 4em;
   border-top: 1px solid #b3bbbd;
-  padding: 1em 0;
-  height: 7em; }
+  padding: 1em 0; }
   /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
   .page__header:before, .page__header:after {
     content: " ";
@@ -5606,20 +5836,30 @@ fieldset {
   /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
   .page__header:after {
     clear: both; }
-  /* line 58, ../css/manhattan/5_sections/_pages.scss */
+  /* line 74, ../css/manhattan/5_sections/_pages.scss */
+  .page__header:first-of-type {
+    margin: 0 0 1.5em;
+    min-height: 5.5em; }
+  /* line 81, ../css/manhattan/5_sections/_pages.scss */
   .page__header p {
-    margin-bottom: .5em; }
-  /* line 61, ../css/manhattan/5_sections/_pages.scss */
+    margin-bottom: 0;
+    line-height: 1.4;
+    max-width: 35em; }
+    @media screen and (min-width: 48em) {
+      /* line 81, ../css/manhattan/5_sections/_pages.scss */
+      .page__header p {
+        font-size: .85em; } }
+  /* line 89, ../css/manhattan/5_sections/_pages.scss */
   .page__header h1 {
     font-size: 1.5em;
     text-transform: uppercase; }
 
-/* line 67, ../css/manhattan/5_sections/_pages.scss */
+/* line 95, ../css/manhattan/5_sections/_pages.scss */
 .page__title {
   font-size: 4.375em;
   text-transform: uppercase; }
 
-/* line 73, ../css/manhattan/5_sections/_pages.scss */
+/* line 101, ../css/manhattan/5_sections/_pages.scss */
 .page__footer {
   zoom: 1;
   position: relative;
@@ -5637,7 +5877,7 @@ fieldset {
   /* line 20, ../css/manhattan/2_layout/_clearfix.scss */
   .page__footer:after {
     clear: both; }
-  /* line 84, ../css/manhattan/5_sections/_pages.scss */
+  /* line 112, ../css/manhattan/5_sections/_pages.scss */
   .page__footer p {
     margin-bottom: .5em;
     max-width: 40em; }
@@ -5671,23 +5911,29 @@ fieldset {
 -----------------------------------------------------  */
 /* line 10, ../css/manhattan/5_sections/_manifesto.scss */
 .manifesto {
-  position: absolute;
-  z-index: 2000;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
   background: #9dcdce;
   display: table; }
-  /* line 24, ../css/manhattan/5_sections/_manifesto.scss */
+  /* line 15, ../css/manhattan/5_sections/_manifesto.scss */
+  .edition--night .manifesto {
+    background: #272727; }
+  @media screen and (min-width: 48em) {
+    /* line 10, ../css/manhattan/5_sections/_manifesto.scss */
+    .manifesto {
+      position: absolute;
+      z-index: 2000;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch; } }
+  /* line 36, ../css/manhattan/5_sections/_manifesto.scss */
   .manifesto .container {
     zoom: 1;
     margin: 0 auto;
-    max-width: 68em;
+    max-width: 74.5em;
     padding: 0 2em; }
     /* line 16, ../css/manhattan/2_layout/_clearfix.scss */
     .manifesto .container:before, .manifesto .container:after {
@@ -5697,56 +5943,87 @@ fieldset {
     .manifesto .container:after {
       clear: both; }
     @media screen and (min-width: 34.375em) {
-      /* line 24, ../css/manhattan/5_sections/_manifesto.scss */
+      /* line 36, ../css/manhattan/5_sections/_manifesto.scss */
       .manifesto .container {
         max-width: 70em;
         padding: 0 4em; } }
     @media screen and (min-width: 48em) {
-      /* line 24, ../css/manhattan/5_sections/_manifesto.scss */
+      /* line 36, ../css/manhattan/5_sections/_manifesto.scss */
       .manifesto .container {
         max-width: 72em;
         padding: 0 6em; } }
 
-/* line 40, ../css/manhattan/5_sections/_manifesto.scss */
+/* line 52, ../css/manhattan/5_sections/_manifesto.scss */
 .manifesto__body {
   display: table-cell;
   width: 100%;
   height: 100%;
-  padding-top: 15%; }
+  padding: 15% 0; }
   @media screen and (min-width: 34.375em) {
-    /* line 40, ../css/manhattan/5_sections/_manifesto.scss */
+    /* line 52, ../css/manhattan/5_sections/_manifesto.scss */
     .manifesto__body {
       vertical-align: middle;
       padding: 3em; } }
 
-/* line 51, ../css/manhattan/5_sections/_manifesto.scss */
+/* line 63, ../css/manhattan/5_sections/_manifesto.scss */
 .manifesto__main {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
-  padding: 1.5em 0 0;
+  padding: 1.05em 0 0;
   color: white;
   margin-bottom: 1.5em; }
-  /* line 57, ../css/manhattan/5_sections/_manifesto.scss */
-  .manifesto__main h1 {
-    font-size: 4em; }
-  /* line 60, ../css/manhattan/5_sections/_manifesto.scss */
-  .manifesto__main a {
-    color: #4d6164;
-    border-bottom: 1px solid transparent; }
-    /* line 64, ../css/manhattan/5_sections/_manifesto.scss */
-    .manifesto__main a:hover, .manifesto__main a:focus {
-      border-bottom: 1px solid white;
-      color: white; }
   /* line 69, ../css/manhattan/5_sections/_manifesto.scss */
-  .manifesto__main p {
-    font-size: 2em !important;
-    margin-bottom: 2em; }
+  .manifesto__main h1 {
+    line-height: 1.2;
+    padding-bottom: .65em;
+    font-size: 2.75em; }
     @media screen and (min-width: 48em) {
       /* line 69, ../css/manhattan/5_sections/_manifesto.scss */
+      .manifesto__main h1 {
+        font-size: 3.5em;
+        padding-bottom: .5em; } }
+    @media screen and (min-width: 87.5em) {
+      /* line 69, ../css/manhattan/5_sections/_manifesto.scss */
+      .manifesto__main h1 {
+        font-size: 4.35em;
+        padding-bottom: .4em; } }
+    /* line 82, ../css/manhattan/5_sections/_manifesto.scss */
+    .manifesto__main h1 b {
+      color: #3e5254; }
+      /* line 87, ../css/manhattan/5_sections/_manifesto.scss */
+      .edition--night .manifesto__main h1 b {
+        color: #618d8e; }
+  /* line 92, ../css/manhattan/5_sections/_manifesto.scss */
+  .manifesto__main a {
+    color: #3e5254;
+    font-family: "BrownBold", sans-serif;
+    font-size: .85em;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent; }
+    /* line 97, ../css/manhattan/5_sections/_manifesto.scss */
+    .edition--night .manifesto__main a {
+      color: #618d8e; }
+    /* line 105, ../css/manhattan/5_sections/_manifesto.scss */
+    .manifesto__main a:hover, .manifesto__main a:focus {
+      border-bottom: 1px solid #3e5254;
+      opacity: .75; }
+  /* line 110, ../css/manhattan/5_sections/_manifesto.scss */
+  .manifesto__main p {
+    font-size: 2em !important;
+    margin-bottom: 2em;
+    color: #618d8e; }
+    /* line 115, ../css/manhattan/5_sections/_manifesto.scss */
+    .edition--night .manifesto__main p {
+      color: #618d8e; }
+    /* line 118, ../css/manhattan/5_sections/_manifesto.scss */
+    .manifesto__main p:last-child {
+      margin-bottom: 2.5em; }
+    @media screen and (min-width: 48em) {
+      /* line 110, ../css/manhattan/5_sections/_manifesto.scss */
       .manifesto__main p {
         font-size: 1.5em !important; } }
 
-/* line 78, ../css/manhattan/5_sections/_manifesto.scss */
+/* line 127, ../css/manhattan/5_sections/_manifesto.scss */
 .manifesto__mark {
   width: 35%;
   max-width: 9em; }
@@ -5764,6 +6041,16 @@ fieldset {
   http://csswizardry.com/2013/04/shame-css/
 
 --------------------------------------------------------- */
-/* line 288, ../css/screen.scss */
-#mfPreviewBar {
-  display: none !important; }
+/* line 296, ../css/screen.scss */
+.lead--contact {
+  color: #9dcdce;
+  max-width: 13em;
+  margin-bottom: .45em;
+  font-size: 2.75em; }
+
+/* line 303, ../css/screen.scss */
+.contact-info {
+  font-size: 1em;
+  color: #010101;
+  font-family: "BrownRegular", sans-serif;
+  margin-bottom: 3em; }

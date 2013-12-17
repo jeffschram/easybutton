@@ -19,14 +19,15 @@ $(document).ready(function(){
   overlays = [];
 
   if (localStorage.getItem("ezbtnOverlays")) {
-
     overlays = $.parseJSON(localStorage.getItem("ezbtnOverlays"));
+
     $.each(overlays, function(i, item) {
       var filename = overlays[i].overlayFilename,
           filedata = overlays[i].overlayFiledata;
       $("#overlay").append("<li class='overlay-option'><a href=''><img src='" + filedata + "'> " + filename + "</a><a data-overlay-option-key='" + i + "' class='delete-overlay-option'>x</a></li>");
     });
   }
+
 
 
   /* Notes

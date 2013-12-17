@@ -20,6 +20,7 @@
   padding: 15px 0 5px;
   border-left: 1px solid $medium-grey;
   border-bottom: 1px solid $medium-grey;
+  box-shadow: 0 6px 7px rgba(0, 0, 0, 0.15);
   > li {
     display: block;
     padding: 0;
@@ -29,9 +30,9 @@
       height: 10px;
     }
     > a {
-      padding: 0 8px;
-      height: 29px;
-      line-height: 29px;
+      padding: 0 15px;
+      height: 30px;
+      line-height: 30px;
       font-size: 12px;
       color: #333;
       font-family: $sans-stack;
@@ -65,7 +66,7 @@
       width: 100%;
     }
     > label {
-      padding: 0 8px;
+      padding: 0 12px;
       font-size: 12px;
       display: block;
       margin-bottom: 5px;
