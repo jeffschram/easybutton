@@ -240,12 +240,14 @@ $(document).ready(function(){
     resizeViewport($this.data('dimension-option-name'), $this.data('dimension-option-width'), $this.data('dimension-option-height'));
   });
 
+  // Clicking Dimension Normal
   $(".dimension-normal").on("click", function(event) {
     event.preventDefault();
     $("#viewport-title").fadeOut(function() {
       $("#viewport").removeClass("viewport-resized");
+      var calculatedWindowHeight = $(window).height() - ( $("#controls").height() + $("#controls-secondary").height() );
       $("#viewport-iframe-wrap").animate({
-        height: '9000px',
+        height: calculatedWindowHeight,
         width: '100%'
       }, function() {
         ;
@@ -254,11 +256,13 @@ $(document).ready(function(){
     });
   });
 
+  // Clicking Match Overlay Size
   $(".dimension-resize-to-match-overlay").on("click", function(event) {
     event.preventDefault();
     resizeViewportToMatchOverlay();
   });
 
+  // Clickig Delete Overlay
   $(".delete-overlay-option").on("click", function(event) {
     var i;
     event.preventDefault();
@@ -388,6 +392,7 @@ $(document).ready(function(){
   ----------------------------------------------------------------- */
   $(window).bind("resize load", function() {
     updateViewportDimensions();
+
   });
   $(window).bind("load", function() {
     updateMonitorResolution();

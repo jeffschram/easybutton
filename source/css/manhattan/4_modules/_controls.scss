@@ -12,16 +12,17 @@
   position: fixed;
   top: 0;
   left: 0;
+  height: 29px;
   width: 100%;
   z-index: 9990;
 }
 
 // section for secondary controls
 #controls-secondary {
-  background: $brand-dark;
   position: fixed;
   bottom: 0;
   left: 0;
+  height: 29px;
   width: 100%;
   z-index: 9999;
 }
