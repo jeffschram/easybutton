@@ -22,7 +22,7 @@
 // Title of viewport (iPad Landscape for instance)
 #viewport-title {
   font-family: $sans-stack;
-  color: white;
+  color: $white;
   font-size: 13px;
   display: none;
   margin: 16px auto;
@@ -105,10 +105,11 @@
   background: none;
   font-size: 12px;
   font-family: $sans-stack;
+  color: $white;
   @include transition(background, .2s);
   &:hover,
   &:focus {
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .2);
     outline: none;
     border: none;
     box-shadow: none;

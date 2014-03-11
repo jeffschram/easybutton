@@ -24,28 +24,22 @@
     display: block;
     float: right;
     a {
-      border: 1px solid transparent;
-      border-top: none;
+      color: $white;
+      @include transition(background, .2s);
     }
     p, a {
       font-size: 12px;
-      color: black;
       display: block;
       height: 29px;
-      line-height: 29px; // not exactly centered, but it looks better
+      line-height: 29px;
       padding: 0 10px;
     }
-    a.active {
-      background: $lighter-grey;
-      border-bottom: 1px solid $lighter-grey;
-      border-left: 1px solid $medium-grey;
-      border-right: 1px solid $medium-grey;
-    }
-    a:hover {
-      background: rgba(255, 255, 255, .4);
-    }
-    a.active:hover {
-      background: $lighter-grey;
+    a.active,
+    a:hover,
+    a:active,
+    a:focus {
+      background: $white;
+      color: black;
     }
     i {
       position: relative;
@@ -54,7 +48,6 @@
       display: inline-block;
       font-size: 13px;
       margin-right: 5px;
-      color: #333;
       &.rotated {
         margin-top: -3px;
         @include transform(rotate(90deg));

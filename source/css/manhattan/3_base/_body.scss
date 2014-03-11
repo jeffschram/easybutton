@@ -10,7 +10,7 @@
 ------------------------------------------------------ */
 
 body {
-  background: #121212; // TODO: var for bg
+  background: $black;
   font-family: $serif-stack;
   color: $body-text;
   -webkit-text-size-adjust: 100%;

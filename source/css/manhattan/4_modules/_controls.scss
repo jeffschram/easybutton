@@ -9,24 +9,18 @@
 
 // section for main controls
 #controls {
-  background: $grey;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 29px;
   z-index: 9990;
-  border-bottom: 1px solid $medium-grey;
 }
 
 // section for secondary controls
 #controls-secondary {
-  height: 30px;
-  background: $lighter-grey;
-  @include background(linear-gradient(top bottom, $light-grey, $lighter-grey));
-  border-top: 1px solid $medium-grey;
+  background: $brand-dark;
   position: fixed;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   width: 100%;
   z-index: 9999;

@@ -11,15 +11,15 @@
   display: none;
   position: absolute;
   top: 100%;
-  margin-top: 1px;
+  margin-top: 0;
   right: 0;
   z-index: 9990;
-  width: 25%;
-  min-width: 290px;
-  background: $lighter-grey;
+  width: 100%;
+  max-width: 300px;
+  background: $white;
   padding: 15px 0 5px;
-  border-left: 1px solid $medium-grey;
-  border-bottom: 1px solid $medium-grey;
+  // border-left: 1px solid $medium-grey;
+  // border-bottom: 1px solid $medium-grey;
   box-shadow: 0 6px 7px rgba(0, 0, 0, 0.15);
   > li {
     display: block;
@@ -34,13 +34,13 @@
       height: 30px;
       line-height: 30px;
       font-size: 12px;
-      color: #333;
+      color: $black;
       font-family: $sans-stack;
       &.shown {
         display: block;
       }
       &:hover, &:focus, &.active, &:active {
-        color: white;
+        color: $white;
         background: $medium-grey;
       }
       &:active {

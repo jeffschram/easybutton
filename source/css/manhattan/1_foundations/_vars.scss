@@ -41,13 +41,15 @@ $light-grey: #f3f3f3;
 $lighter-grey: #f7f7f7;
 $active: #333;
 
+$black: #010101;
+$white: #f8f8f8;
+
 
 // Links
-$link-default: $brand-dark;
-
+$link-default: $white;
 
 // Body
-$body-text: #333;
+$body-text: $white;
 
 
 /* @breakpoints
