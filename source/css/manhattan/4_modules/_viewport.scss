@@ -28,10 +28,22 @@
   font-size: 13px;
   display: none;
   margin: 16px auto;
-  opacity: .3;
-  &:hover {
-    opacity: 1;
+  span {
+    opacity: .3;
+    display: inline-block;
+    margin-right: 1em;
   }
+  a {
+    opacity: .3;
+    &.is-active {
+      opacity: .65;
+    }
+    i {
+      position: relative;
+      top: .15em;
+    }
+  }
+
 }
 
 // Contains the main iframe viewport
@@ -74,7 +86,63 @@
   &.active {
     pointer-events: auto;
   }
+}
 
+
+// Chrome
+#viewport-iframe-wrap.is-showing-chrome {
+  // iPhone 5 Portrait
+  &[data-setting-name="iphone-5-portrait"] {
+    background: url(/images/chrome_iphone-portrait.png) no-repeat;
+    background-size: 100% auto;
+    #viewport-iframe {
+      top: 64px !important;
+      bottom: 44px !important;
+      height: 460px !important;
+    }
+  }
+  // iPhone 5 Landscape
+  // Do nothin here
+
+  // iPad Portrait
+  &[data-setting-name="ipad-portrait"] {
+    background: url(/images/chrome_ipad-portrait.png) no-repeat;
+    background-size: 100% auto;
+    #viewport-iframe {
+      top: 96px !important;
+      bottom: 0px !important;
+      height: 674px !important;
+    }
+  }
+  // iPad Landscape
+  &[data-setting-name="ipad-landscape"] {
+    background: url(/images/chrome_ipad-landscape.png) no-repeat;
+    background-size: 100% auto;
+    #viewport-iframe {
+      top: 96px !important;
+      bottom: 0px !important;
+      height: 674px !important;
+    }
+  }
+  // 13" Landscape
+  &[data-setting-name="13-inch-laptop"] {
+    background: url(/images/chrome_13-inch-laptop.png) no-repeat;
+    background-size: 100% auto;
+    #viewport-iframe {
+      top: 71px !important;
+      bottom: 0px !important;
+      height: 722px !important;
+    }
+  }
+  &[data-setting-name="desktop"] {
+    background: url(/images/chrome_desktop.png) no-repeat;
+    background-size: 100% auto;
+    #viewport-iframe {
+      top: 71px !important;
+      bottom: 0px !important;
+      height: 929px !important;
+    }
+  }
 }
 
 

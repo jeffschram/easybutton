@@ -172,57 +172,47 @@ $(document).ready(function(){
   ----------------------------------------------------------------- */
   function resizeViewport(settingName, settingWidth, settingHeight) {
     var settingHeight,
-        settingWidth,
-        settingTopBarHeight,
-        settingBottomBarHeight;
+        settingWidth;
 
     if (settingName == "iPhone 5 Portrait") {
       settingHeight = 568;
       settingWidth = 320;
-      settingTopBarHeight = 80;
-      settingBottomBarHeight = 44;
     }
 
     if (settingName == "iPhone 5 Landscape") {
       settingHeight = 320;
       settingWidth = 568;
-      settingTopBarHeight = 80;
-      settingBottomBarHeight = 44;
     }
 
     if (settingName == "iPad Portrait") {
       settingHeight = 1024;
       settingWidth = 768;
-      settingTopBarHeight = 78;
-      settingBottomBarHeight = 0;
     }
 
     if (settingName == "iPad Landscape") {
       settingHeight = 768;
       settingWidth = 1024;
-      settingTopBarHeight = 78;
-      settingBottomBarHeight = 0;
     }
 
-    $("#viewport-iframe-wrap").attr("data-setting-name", settingName.replace(" ", "-")).animate({
+    $("#viewport-iframe-wrap").attr("data-setting-name", settingName.replace(/\s+/g, '-').toLowerCase()).animate({
       height: settingHeight,
       width: settingWidth
     }, 500, function() {
       updateViewportDimensions();
     });
 
-    // TO DO
-    // Use real calculated versions of these
-    settingTopBarHeight = 0;
-    settingBottomBarHeight = 0;
-
-    $("#viewport-iframe").animate({
-      top: settingTopBarHeight,
-      bottom: settingBottomBarHeight
-    });
     $("#viewport").addClass("viewport-resized");
-    $("#viewport-title").text(settingName).fadeIn();
+    $("#viewport-title").fadeIn().find("span").text(settingName);
   };
+
+  // Toggling Browser Chrome
+  $("#toggle-chrome").on("click", function(e){
+    e.preventDefault();
+    var el = $(this);
+    el.toggleClass("is-active");
+    $("#viewport-iframe-wrap").toggleClass("is-showing-chrome");
+  });
+
 
   function resizeViewportToMatchOverlay() {
     var $img = $("#overlay-image");

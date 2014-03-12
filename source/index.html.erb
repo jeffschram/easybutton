@@ -54,9 +54,8 @@ title: Easy Button
     <li>
       <a data-toggle="dimensions" class="button-with-options"><i class="ss-icon icon-window-width">&#xE201;</i> <span class="data" id="window-width"></span> x <span id="window-height"></span></a>
        <ul class="button-options" id="dimensions">
-         <li><label>Select A Dimension Setting</label></li>
 
-         <li><a class="dimension-normal"><i class="ss-icon">&#x21BA;</i> Reset</a></li>
+         <li><a class="dimension-normal"><i class="ss-icon">&#x21BA;</i> Reset To Fill Window</a></li>
 
          <li><a class="dimension-resize-to-match-overlay"><i class="ss-icon">&#x1F304;</i> Match The Overlay</a></li>
 
@@ -70,7 +69,7 @@ title: Easy Button
 
          <li><a class="dimension-option" data-dimension-option-name="iPad Landscape" data-dimension-option-width="1024" data-dimension-option-height="690" data-dimension-chrome-height="78"><i class="ss-icon icon--90deg">&#xEA01;</i> iPad Landscape</a></li>
 
-         <li><a class="dimension-option" data-dimension-option-name="13in. Laptop" data-dimension-option-width="1280" data-dimension-option-height="800"><i class="ss-icon">&#xEA00;</i> 13in. Laptop</a></li>
+         <li><a class="dimension-option" data-dimension-option-name="13 Inch Laptop" data-dimension-option-width="1280" data-dimension-option-height="800"><i class="ss-icon">&#xEA00;</i> 13in. Laptop</a></li>
 
          <li><a class="dimension-option" data-dimension-option-name="Desktop" data-dimension-option-width="1400" data-dimension-option-height="1000"><i class="ss-icon">&#x1F4BB;</i> Desktop</a></li>
        </ul>
@@ -80,8 +79,8 @@ title: Easy Button
 </section>
 
 <section id="viewport">
-  <h1 id="viewport-title">Test</h1>
-  <div id="viewport-iframe-wrap">
+  <h1 id="viewport-title"><span>Test</span> <a href="#" class="is-active" id="toggle-chrome"><i class="ss-icon">&#x1F440;</i> Chrome</h1>
+  <div id="viewport-iframe-wrap" class="is-showing-chrome">
     <iframe id="viewport-iframe" class="active" src="http://schramindustries.com"></iframe>
   </div>
 </section>
