@@ -85,6 +85,7 @@
   pointer-events: none;
   &.active {
     pointer-events: auto;
+    border: none;
   }
 }
 
