@@ -194,13 +194,17 @@ $(document).ready(function(){
       settingWidth = 1024;
     }
 
-    $("#viewport-iframe-wrap").attr("data-setting-name", settingName.replace(/\s+/g, '-').toLowerCase()).animate({
-      height: settingHeight,
-      width: settingWidth
-    }, 500, function() {
-      updateViewportDimensions();
-    });
+    $("#viewport-iframe-wrap")
+      .attr("data-setting-name", settingName.replace(/\s+/g, '-').toLowerCase())
+      .removeClass("is-showing-overlay")
+      .animate({
+        height: settingHeight,
+        width: settingWidth
+      }, 500, function() {
+        updateViewportDimensions();
+      });
 
+    $("#viewport-iframe").attr("scrolling", "auto");
     $("#viewport").addClass("viewport-resized");
     $("#viewport-title").fadeIn().find("span").text(settingName);
   };
@@ -213,14 +217,22 @@ $(document).ready(function(){
     $("#viewport-iframe-wrap").toggleClass("is-showing-chrome");
   });
 
+  function resizeViewportWrap(settingWidth, settingHeight) {
+    var wrapHeight = $(window).height() - 109;
+    $("#viewport-iframe").attr("scrolling", "no");
+    $("#viewport").addClass("viewport-resized");
+    $("#toggle-chrome").hide();
+    $("#viewport-iframe-wrap")
+      .removeClass("is-showing-chrome")
+      .addClass("is-showing-overlay")
+      .css({"width": settingWidth, "height": settingHeight});
+  }
 
   function resizeViewportToMatchOverlay() {
     var $img = $("#overlay-image");
-    $img.css({
-      top: 0,
-      left: 0
-    });
-    resizeViewport("", $img.width(), $img.height());
+    resizeViewportWrap($img.width(), $img.height());
+    var activeOverlayFilename = "Matching " + $(".overlay-option .active").text();
+    $("#viewport-title").fadeIn().find("span").text(activeOverlayFilename);
   }
 
   $(".dimension-option").on("click", function(event) {
@@ -236,7 +248,7 @@ $(document).ready(function(){
     $("#viewport-title").fadeOut(function() {
       $("#viewport").removeClass("viewport-resized");
       var calculatedWindowHeight = $(window).height() - ( $("#controls").height() + $("#controls-secondary").height() );
-      $("#viewport-iframe-wrap").animate({
+      $("#viewport-iframe-wrap").attr("data-setting-name", "reset").removeClass("is-showing-chrome").animate({
         height: calculatedWindowHeight,
         width: '100%'
       }, function() {
@@ -246,11 +258,13 @@ $(document).ready(function(){
     });
   });
 
+
   // Clicking Match Overlay Size
   $(".dimension-resize-to-match-overlay").on("click", function(event) {
     event.preventDefault();
     resizeViewportToMatchOverlay();
   });
+
 
   // Clickig Delete Overlay
   $(".delete-overlay-option").on("click", function(event) {
@@ -262,6 +276,7 @@ $(document).ready(function(){
     localStorage.setItem("ezbtnOverlays", JSON.stringify(overlays));
   });
 
+  // Choosing Overlay Option
   $("body").delegate(".overlay-option a", "click", function(event) {
     var imgSrc;
     event.preventDefault();
@@ -271,7 +286,7 @@ $(document).ready(function(){
     imgSrc = $(this).find("img").attr("src");
     // ADD ACTIVE CLASS TO THIS A
     $(this).addClass("active");
-    // ADD DRAGGABLE OVERLAY
+    // Add Draggable overlay
     $("#viewport-iframe-wrap").prepend($("<img draggable='true' id='overlay-image' src='" + imgSrc + "'>"));
     $("#overlay-image").draggable();
     // ACTIVATE OVERLAY CONTROLS
@@ -298,16 +313,10 @@ $(document).ready(function(){
   });
 
 
-
-
-
-
-
   /* Toggle overlay active state
   ----------------------------------------------------------------- */
   $(document).on("click", "#overlay-toggle-active", function(event) {
     event.preventDefault();
-    console.log('clicked');
     $("#overlay-image, #overlay-toggle-active, #viewport-iframe").toggleClass("active");
   });
 
@@ -361,9 +370,12 @@ $(document).ready(function(){
   ----------------------------------------------------------------- */
   function updateMonitorResolution() {
     var monitorResolution = window.devicePixelRatio;
-    $("#resolution").html("Pixel Ratio " + monitorResolution);
+    $("#resolution").html("Pixel Density " + monitorResolution);
     if (monitorResolution > 1) {
       $(".icon-resolution").html("&#xE9A0;");
+    }
+    else {
+      $(".icon-resolution").html("&#xE9A3;");
     }
   };
 
@@ -409,12 +421,7 @@ $(document).ready(function(){
       $("#" + $this.data("toggle")).show().addClass("active");
     }
   });
-  // On mouseleave
-  // $(".button-options").on("mouseleave", function(){
-  //   $(this).removeClass("active").hide();
-  //   $(this).siblings(".button-with-options").removeClass("active");
-  //   saveNoteContents();
-  // });
+
 
 
 

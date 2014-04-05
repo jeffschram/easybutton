@@ -13,12 +13,8 @@
   top: 29px;
   bottom: 29px;
   width: 100%;
-  overflow: hidden;
-  // viewport that has been resized
-  &.viewport-resized {
-    text-align: center;
-
-  }
+  overflow: scroll;
+  text-align: center;
 }
 
 // Title of viewport (iPad Landscape for instance)
@@ -31,7 +27,9 @@
   span {
     opacity: .3;
     display: inline-block;
-    margin-right: 1em;
+    & + #toggle-chrome {
+      margin-left: 1em;
+    }
   }
   a {
     opacity: .3;
@@ -64,11 +62,6 @@
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
-
-  // contains the 'overlay bg'
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-scroll: scroll;
 }
 
 

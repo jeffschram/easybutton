@@ -43,11 +43,14 @@ title: Easy Button
     <li>
       <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
       <ul class="button-options" id="overlay">
+        <li>
+          <p>Overlay an image to use as a guide
+            <input type="file" id="overlay-file-selector" onchange="readURL(this);">
+          </p>
+        </li>
         <li class="overlay-control"><a href="#" id="overlay-toggle-active"><i class="ss-icon">&#xE070;</i>Drag Overlay <b class="on-off-icon">&bull;</b></a></li>
         <li class="overlay-control"><input id="overlay-file-opacity" type="range" min="0" max="100" value="0">
         <li class="separator"></li>
-        <li class="separator"></li>
-        <li><input type="file" id="overlay-file-selector" onchange="readURL(this);"></li>
       </ul>
     </li>
     <!-- Dimensions -->
@@ -79,7 +82,7 @@ title: Easy Button
 </section>
 
 <section id="viewport">
-  <h1 id="viewport-title"><span>Test</span> <a href="#" class="is-active" id="toggle-chrome"><i class="ss-icon">&#x1F440;</i> Chrome</h1>
+  <h1 id="viewport-title"><span>Test</span> <a href="#" class="is-active" id="toggle-chrome"><i class="ss-icon">&#x1F440;</i> Chrome</a></h1>
   <div id="viewport-iframe-wrap" class="is-showing-chrome">
     <iframe id="viewport-iframe" class="active" src="http://schramindustries.com"></iframe>
   </div>

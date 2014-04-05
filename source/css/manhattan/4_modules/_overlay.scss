@@ -10,16 +10,36 @@
 #overlay {
   padding: 12px 12px 0;
 
+  li {
+    @include clearfix();
+    p {
+      vertical-align: middle;
+      color: $brand-dark;
+      font-size: .75em;
+      margin: 0;
+      line-height: 32px;
+      height: 32px;
+      padding: 0;
+    }
+  }
+
   #overlay-file-selector {
-    width: 100%;
+    width: 24%;
+    float: right;
     position: relative;
-    display: block;
-    padding: 10px 0;
     z-index: 9990;
     cursor: pointer;
+    padding: 1px;
+    font-size: 10px;
+    z-index: 9990;
+    cursor: pointer;
+    line-height: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
     &:after {
       cursor: pointer;
-      content: "Add a new overlay image";
+      content: "+ ADD";
       font-size: 12px;
       display: block;
       position: absolute;
@@ -54,6 +74,10 @@
     width: 100%;
     -webkit-appearance: none;
     background-color: #dfdfdf;
+    &:focus {
+      border: none;
+      outline: none;
+    }
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       height: 12px;
@@ -72,6 +96,7 @@
       width: 90%;
       padding: 0;
       background: white;
+      overflow: hidden;
       &:hover, &:focus, &.active {
         background: $active;
         color: white;
@@ -86,10 +111,11 @@
         line-height: 65px;
       }
       > img {
-        margin-right: 5px;
-        height: 65px;
+        float: left;
+        margin-right: 10px;
+        width: 65px;
+        height: auto;
         vertical-align: middle;
-        width: auto;
       }
     }
   }
