@@ -66,8 +66,16 @@ $(document).ready(function(){
   $("#viewport-url-form").submit(function(event) {
     event.preventDefault();
     thisURL = $("#viewport-url").val();
+    // If thisURL doesn't start with http://, add it
+    console.log(thisURL.substr(0, 7));
+    if (thisURL.substr(0, 7) != "http://" ) {
+      thisURL = "http://" + thisURL;
+      console.log(thisURL);
+    }
     // Update the viewport iframe
     $("#viewport-iframe").attr("src", thisURL);
+    // Update hash
+    window.location.hash = "url="+thisURL;
     // Save as the latest URL
     localStorage.setItem("ezbtnLatestURL", thisURL);
 
@@ -116,6 +124,9 @@ $(document).ready(function(){
   $("#viewport-url").on("focus", function(){
   	$(this).attr("data-original-value", $(this).val());
   });
+  $("#viewport-url").on("blur", function(){
+    setTimeout(function(){ $("#viewport-urls").removeClass("shown"); }, 500);
+  });
 
 
   // Clicking on a Viewed URL
@@ -124,7 +135,7 @@ $(document).ready(function(){
     event.preventDefault();
     $("#viewport-url").val($(this).attr("href"));
     $("#viewport-url-form").submit();
-    setTimeout(function(){ $("#viewport-urls").removeClass("shown"); }, 500);
+
   });
 
 
@@ -225,7 +236,9 @@ $(document).ready(function(){
     $("#viewport-iframe-wrap")
       .removeClass("is-showing-chrome")
       .addClass("is-showing-overlay")
-      .css({"width": settingWidth, "height": settingHeight});
+      .animate({"width": settingWidth, "height": settingHeight}, 500, function(){
+        updateViewportDimensions();
+      });
   }
 
   function resizeViewportToMatchOverlay() {
@@ -266,7 +279,7 @@ $(document).ready(function(){
   });
 
 
-  // Clickig Delete Overlay
+  // Clicking Delete Overlay
   $(".delete-overlay-option").on("click", function(event) {
     var i;
     event.preventDefault();
@@ -296,6 +309,8 @@ $(document).ready(function(){
     // SET OPACITY TO 50
     $("#overlay-file-opacity").attr("value", 50).css("background", "-webkit-gradient(linear, left top, right top, color-stop(50%,#fff), color-stop(50%,#DFDFDF), color-stop(0%,#fff))");
     $("#viewport-iframe").css("opacity", .5);
+    // ENABLE MATCH OVERLAY VIEWPORT
+    $("#resize-match-overlay").show();
 
   });
 
