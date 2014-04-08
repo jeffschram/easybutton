@@ -37,21 +37,29 @@
     display: inline-block;
     vertical-align: middle;
     height: 32px;
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
     &:after {
       cursor: pointer;
-      content: "+ ADD";
+      content: "+ NEW";
       font-size: 12px;
       display: block;
       position: absolute;
       text-align: center;
       z-index: 9995;
-      top: 0; right: 0; bottom: 0; left: 0;
-      background: $active;
-      color: white;
-      padding: 12px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: #FFFFFF;
+      color: rgb(65, 65, 65);
+      border: 1px solid rgb(236, 236, 236);
+      padding: 10px;
     }
     &:hover:after {
-      background: lighten($active, 5%);
+      background: #959595;
       color: white;
     }
   }
@@ -74,8 +82,8 @@
     width: 100%;
     -webkit-appearance: none;
     background-color: #dfdfdf;
+    border: 1px solid rgb(236, 236, 236);
     &:focus {
-      border: none;
       outline: none;
     }
     &::-webkit-slider-thumb {

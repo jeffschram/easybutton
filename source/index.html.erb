@@ -43,13 +43,15 @@ title: Easy Button
     <li>
       <a data-toggle="overlay" class="button-with-options"><i class="ss-icon">&#x1F304;</i>Overlay</a>
       <ul class="button-options" id="overlay">
+
+        <li class="overlay-control"><a href="#" id="overlay-toggle-active"><i class="ss-icon">&#xE070;</i>Drag Overlay <b class="on-off-icon">&bull;</b></a></li>
+        <li class="overlay-control"><input id="overlay-file-opacity" type="range" min="0" max="100" value="0">
+        <li class="separator"></li>
         <li>
           <p>Overlay an image to use as a guide
             <input type="file" id="overlay-file-selector" onchange="readURL(this);">
           </p>
         </li>
-        <li class="overlay-control"><a href="#" id="overlay-toggle-active"><i class="ss-icon">&#xE070;</i>Drag Overlay <b class="on-off-icon">&bull;</b></a></li>
-        <li class="overlay-control"><input id="overlay-file-opacity" type="range" min="0" max="100" value="0">
         <li class="separator"></li>
       </ul>
     </li>

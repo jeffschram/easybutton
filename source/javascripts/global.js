@@ -15,7 +15,6 @@ $(document).ready(function(){
 
   /* Overlays
   ----------------------------------------------------------------- */
-
   overlays = [];
 
   if (localStorage.getItem("ezbtnOverlays")) {
@@ -43,9 +42,11 @@ $(document).ready(function(){
   });
 
 
+
+
+
   /* Visited URLS
   ----------------------------------------------------------------- */
-
   visitedURLs = [];
 
   if (localStorage.getItem("ezbtnVisitedURLs")) {
@@ -61,7 +62,6 @@ $(document).ready(function(){
 
   /* Viewport & URLs
   ----------------------------------------------------------------- */
-
   // Submitting form
   $("#viewport-url-form").submit(function(event) {
     event.preventDefault();
@@ -78,7 +78,6 @@ $(document).ready(function(){
     window.location.hash = "url="+thisURL;
     // Save as the latest URL
     localStorage.setItem("ezbtnLatestURL", thisURL);
-
     // If thisURL is not in visitedURLs, do some shit
     var newURL = true;
     $.each(visitedURLs, function(i, item) {
@@ -135,7 +134,6 @@ $(document).ready(function(){
     event.preventDefault();
     $("#viewport-url").val($(this).attr("href"));
     $("#viewport-url-form").submit();
-
   });
 
 
@@ -166,13 +164,12 @@ $(document).ready(function(){
 
   /* Keyup Indicator
   ----------------------------------------------------------------- */
-
   $(document).on("keyup", function(event) {
-    $("#keypress-section").fadeIn();
+    $("#keypress-section").show();
     $("#keypress").text(event.which);
     setTimeout(function() {
       $("#keypress-section").fadeOut();
-    }, 1000);
+    }, 500);
   });
 
 
@@ -215,12 +212,42 @@ $(document).ready(function(){
         updateViewportDimensions();
       });
 
-    $("#viewport-iframe").attr("scrolling", "auto");
+    $("#overlay-image").fadeOut();
+    $("#viewport-iframe").attr("scrolling", "auto").animate({"opacity": 1});
     $("#viewport").addClass("viewport-resized");
+    $("#toggle-chrome").fadeIn();
     $("#viewport-title").fadeIn().find("span").text(settingName);
   };
 
-  // Toggling Browser Chrome
+
+
+
+
+  /* Resize Viewport To Match Overlays
+  ----------------------------------------------------------------- */
+  function resizeViewportToMatchOverlay() {
+    $("#overlay-image").show();
+    var $img = $("#overlay-image");
+    var wrapHeight = $(window).height() - 109;
+    $("#viewport-iframe").attr("scrolling", "no");
+    $("#viewport").addClass("viewport-resized");
+    $("#toggle-chrome").fadeOut();
+    $("#viewport-iframe-wrap")
+      .removeClass("is-showing-chrome")
+      .addClass("is-showing-overlay")
+      .animate({"width": $img.width(), "height": $img.height()}, 500, function(){
+        updateViewportDimensions();
+      });
+    var activeOverlayFilename = "Matching " + $(".overlay-option .active").text();
+    $("#viewport-title").fadeIn().find("span").text(activeOverlayFilename);
+  }
+
+
+
+
+
+  /* Toggle Chrome
+  ----------------------------------------------------------------- */
   $("#toggle-chrome").on("click", function(e){
     e.preventDefault();
     var el = $(this);
@@ -228,32 +255,21 @@ $(document).ready(function(){
     $("#viewport-iframe-wrap").toggleClass("is-showing-chrome");
   });
 
-  function resizeViewportWrap(settingWidth, settingHeight) {
-    var wrapHeight = $(window).height() - 109;
-    $("#viewport-iframe").attr("scrolling", "no");
-    $("#viewport").addClass("viewport-resized");
-    $("#toggle-chrome").hide();
-    $("#viewport-iframe-wrap")
-      .removeClass("is-showing-chrome")
-      .addClass("is-showing-overlay")
-      .animate({"width": settingWidth, "height": settingHeight}, 500, function(){
-        updateViewportDimensions();
-      });
-  }
 
-  function resizeViewportToMatchOverlay() {
-    var $img = $("#overlay-image");
-    resizeViewportWrap($img.width(), $img.height());
-    var activeOverlayFilename = "Matching " + $(".overlay-option .active").text();
-    $("#viewport-title").fadeIn().find("span").text(activeOverlayFilename);
-  }
 
+
+
+  /* Dimension Options
+  ----------------------------------------------------------------- */
+
+  // Clicking Dimension Option
   $(".dimension-option").on("click", function(event) {
     var $this;
     event.preventDefault();
     $this = $(this);
     resizeViewport($this.data('dimension-option-name'), $this.data('dimension-option-width'), $this.data('dimension-option-height'));
   });
+
 
   // Clicking Dimension Normal
   $(".dimension-normal").on("click", function(event) {
@@ -279,6 +295,12 @@ $(document).ready(function(){
   });
 
 
+
+
+
+  /* Overlay Functionality
+  ----------------------------------------------------------------- */
+
   // Clicking Delete Overlay
   $(".delete-overlay-option").on("click", function(event) {
     var i;
@@ -289,6 +311,7 @@ $(document).ready(function(){
     localStorage.setItem("ezbtnOverlays", JSON.stringify(overlays));
   });
 
+
   // Choosing Overlay Option
   $("body").delegate(".overlay-option a", "click", function(event) {
     var imgSrc;
@@ -297,6 +320,8 @@ $(document).ready(function(){
       $("#overlay-image").remove();
     }
     imgSrc = $(this).find("img").attr("src");
+    // REMOVE ACTIVE CLASS
+    $(".overlay-option .active").removeClass("active");
     // ADD ACTIVE CLASS TO THIS A
     $(this).addClass("active");
     // Add Draggable overlay
@@ -314,6 +339,8 @@ $(document).ready(function(){
 
   });
 
+
+  // Overlay File Opacity
   $("#overlay-file-opacity").on("change", function() {
     var percentage = $(this).val();
     $(this).css({
@@ -328,12 +355,14 @@ $(document).ready(function(){
   });
 
 
-  /* Toggle overlay active state
+  /* Toggle overlay active state (Move Button)
   ----------------------------------------------------------------- */
   $(document).on("click", "#overlay-toggle-active", function(event) {
     event.preventDefault();
     $("#overlay-image, #overlay-toggle-active, #viewport-iframe").toggleClass("active");
   });
+
+
 
 
 
@@ -381,6 +410,8 @@ $(document).ready(function(){
 
 
 
+
+
   /* Update Monitor Resolution
   ----------------------------------------------------------------- */
   function updateMonitorResolution() {
@@ -397,11 +428,14 @@ $(document).ready(function(){
 
 
 
+
   /* Update Browser Info
   ----------------------------------------------------------------- */
   function updateBrowserInfo() {
     $("#browser-info").html(BrowserDetect.browser + ' ' + BrowserDetect.version + ' on ' + BrowserDetect.OS);
   };
+
+
 
 
 
@@ -415,6 +449,8 @@ $(document).ready(function(){
     updateMonitorResolution();
     updateBrowserInfo();
   });
+
+
 
 
 
@@ -438,10 +474,11 @@ $(document).ready(function(){
   });
 
 
+}); // End dom ready
 
 
 
-});
+
 
 
 /* Non jQuery Functions
@@ -576,7 +613,7 @@ BrowserDetect.init();
 
 
 /* READ URL
-  ----------------------------------------------------------------- */
+----------------------------------------------------------------- */
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
